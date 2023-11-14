@@ -46,6 +46,7 @@
         <main>
             <div class="main-left-side">
                 <p>Корзина</p>
+                <!-- Товары в наличии -->
                 <div class="main-in-stock">
                     <div class="main-in-stock-header">
                         <div class="main-in-stock-select-all-checkbox">
@@ -197,13 +198,14 @@
                         </div>
                     </div>
                 </div>
-                <!-- Товар 1 -->
+                <!-- Товары НЕ в наличии -->
                 <div class="main-out-stock">
                     <div class="main-out-stock-header">
                         <p class="main-out-stock-select-all-text">Отсутствуют · 3 товара</p>
                         <img src="images/arrow.svg" class="main-out-stock-select-all-arrow" />
                     </div>
                     <div class="main-out-stock-products">
+                        <!-- Товар 1 -->
                         <div class="main-out-stock-product-container">
                             <div class="main-out-stock-product-card">
                                 <img src="images/T-short-out.png" class="main-out-stock-product-image-png" />
@@ -221,6 +223,7 @@
                             </div>
                         </div>
 
+                        <!-- Товар 2 -->
                         <div class="main-out-stock-product-container">
                             <div class="main-out-stock-product-card">
                                 <img src="images/phone-cargo-out.png" class="main-out-stock-product-image-png" />
@@ -239,6 +242,7 @@
                             </div>
                         </div>
 
+                        <!-- Товар 3 -->
                         <div class="main-out-stock-product-container">
                             <div class="main-out-stock-product-card">
                                 <img src="images/pencilse-out.png" class="main-out-stock-product-image-png" />
@@ -255,10 +259,177 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="main-order"></div>
+                <!-- Способ доставки -->
+                <div class="main-order">
+                    <div class="main-order-delivery">
+                        <div class="main-order-delivery-container">
+                            <div class="main-order-delivery-header">
+                                <p class="main-order-delivery-header-title">Способ доставки</p>
+                                <p class="main-order-delivery-header-change">Изменить</p>
+                            </div>
+                            <div class="main-order-delivery-content">
+                                <!-- ЗДЕСЬ ДЕЛАТЬ ЧЕРЕЗ GRID -->
+                                <p class="main-order-delivery-point-title">Пункт выдачи</p>
+                                <div class="main-order-delivery-point-content">
+                                    <p class="main-order-delivery-point-address">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+                                    <div class="main-order-delivery-point-details">
+                                        <div class="main-order-delivery-point-raiting-container">
+                                            <img src="images/star.svg" class="main-order-delivery-point-star-svg" />
+                                            <p class="main-order-delivery-point-raiting">4.99</p>
+                                        </div>
+                                        <p>Ежедневно с 10 до 21</p>
+                                    </div>
+                                </div>
+                                <p class="main-order-delivery-price-title">Стоимость доставки</p>
+                                <p class="main-order-delivery-price-content">Бесплатно</p>
+                                <p class="main-order-delivery-date-title">5—6 февраля</p>
+                                <div class="main-order-delivery-date-content">
+                                    <div class="main-order-delivery-product-container">
+                                        <img src="images/T-short.png" class="main-order-delivery-product-img" />
+                                    </div>
+                                    <div class="main-order-delivery-product-container">
+                                        <img src="images/phone-cargo.png" class="main-order-delivery-product-img" />
+                                        <p class="main-order-delivery-product-count">184</p>
+                                    </div>
+                                    <div class="main-order-delivery-product-container">
+                                        <img src="images/pencilse.png" class="main-order-delivery-product-img" />
+                                        <p class="main-order-delivery-product-count">2</p>
+                                    </div>
+                                </div>
+                                <p class="main-order-delivery-date-title">7—8 февраля</p>
+                                <div class="main-order-delivery-date-content">
+                                    <div class="main-order-delivery-product-container">
+                                        <img src="images/phone-cargo.png" class="main-order-delivery-product-img" />
+                                        <p class="main-order-delivery-product-count">16</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-order-delivery-refund">
+                            <img src="images/refund-check.svg" class="main-order-delivery-refund-check refund-check" />
+                            <p class="main-order-delivery-refund-text refund-text">Обратная доставка товаров на склад при отказе —</p>
+                            <p class="main-order-delivery-refund-for-free refund-for-free">бесплатно</p>
+                        </div>
+                    </div>
+                    <!-- Способ оплаты -->
+                    <div class="main-order-payment">
+                        <div class="main-order-payment-header">
+                            <p class="main-order-payment-header-text">Способ оплаты</p>
+                            <p class="main-order-payment-header-change">Изменить</p>
+                        </div>
+                        <div class="main-order-payment-content">
+                            <img src="images/mir-card.svg" class="main-order-payment-mir-card-png mir-card-png" />
+                            <p class="main-order-payment-card-number">1234 56•• •••• 1234</p>
+                            <p class="main-order-payment-card-date">01/30</p>
+                        </div>
+                        <p class="main-order-payment-footer-text">Спишем оплату с карты при получении</p>
+                    </div>
+                    <!-- Получатель -->
+                    <div class="main-order-person">
+                        <p class="main-order-person-header">Получатель</p>
+                        <div class="main-order-person-form">
+                            <div class="main-order-person-form-line">
+                                <input placeholder="Имя" class="main-order-person-input-first-name main-order-person-input" />
+                                <input placeholder="Фамилия" class="main-order-person-input-last-name main-order-person-input" />
+                            </div>
+                            <div class="main-order-person-form-line">
+                                <input placeholder="Почта" class="main-order-person-input-email main-order-person-input" />
+                                <input placeholder="Телефон" class="main-order-person-input-phone main-order-person-input" />
+                                <div class="">
+                                    <input placeholder="ИНН" class="main-order-person-input-inn main-order-person-input" />
+                                    <p class="main-order-person-input-descr">Для таможенного оформления</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="main-right-side"></div>
+            <!-- Правая сторона -->
+            <div class="main-right-side">
+                <div class="resume-container">
+                    <!-- Стоимости -->
+                    <div class="total-cost-container">
+                        <!-- Итого -->
+                        <div class="total-cost-final-price-container">
+                            <p class="total-cost-final-price-text">Итого</p>
+                            <div class="total-cost-final-price">
+                                <p class="total-cost-final-price-sum">2 101 063</p>
+                                <p class="total-cost-final-price-value">сом</p>
+                            </div>
+                        </div>
+                        <!-- Базовая стоимость за N товаров -->
+                        <div class="total-cost-basic-price-container">
+                            <p class="total-cost-final-price-text">203 товара</p>
+                            <div class="total-cost-final-price">
+                                <p class="total-cost-final-price-sum">2 302 048</p>
+                                <p class="total-cost-final-price-value">сом</p>
+                            </div>
+                        </div>
+                        <!-- Скидка -->
+                        <div class="total-cost-sale-container">
+                            <p class="total-cost-final-price-text">Скидка</p>
+                            <div class="total-cost-final-price">
+                                <p class="total-cost-final-price-sum">-200 985</p>
+                                <p class="total-cost-final-price-value">сом</p>
+                            </div>
+                        </div>
+                        <!-- Доставка -->
+                        <div class="total-cost-delivery-container">
+                            <p class="total-cost-final-price-text">Доставка</p>
+                            <div class="total-cost-final-price">
+                                <p class="total-cost-final-price-sum">Бесплатно</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Доставка в пункт выдачи -->
+                    <div class="total-delivery-container">
+                        <div class="total-delivery-point-contaier">
+                            <div class="total-delivery-point-header">
+                                <p class="total-delivery-point-header-text">Доставка в пункт выдачи</p>
+                                <img src="images/edit-pen.svg" class="total-delivery-point-header-edit edit-button" />
+                            </div>
+                            <p class="total-delivery-point-address">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+                            <p class="total-delivery-date">5–8 фев</p>
+                        </div>
+                        <div class="total-delivery-refund-container">
+                            <img src="images/refund-check.svg" class="total-delivery-refund-check refund-check" />
+                            <div class="total-delivery-refund-text-container">
+                                <p class="total-delivery-refund-text refund-text">Обратная доставка товаров на склад при отказе —</p>
+                                <p class="total-delivery-refund-for-free refund-for-free">бесплатно</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Оплата картой -->
+                    <div class="total-payment-container">
+                        <div class="total-payment-header">
+                            <p>Оплата картой</p>
+                            <img src="images/edit-pen.svg" class="total-payment-header-edit edit-button" />
+                        </div>
+                        <div class="total-payment-content">
+                            <img src="images/mir-card.svg" class="total-payment-mir-card-png mir-card-png" />
+                            <p class="total-payment-card-number">1234 56•• •••• 1234</p>
+                        </div>
+                        <div class="total-payment-immediatly-container">
+                            <div>
+                                <div class="total-payment-immediatly-checkbox">
+                                    <img src="images/check-box.svg" class="total-payment-immediatly-check-box-svg check-box" />
+                                    <img src="images/check-mark.svg" class="total-payment-immediatly-check-mark-svg check-mark" />
+                                </div>
+                                <p class="total-payment-immediatly-text">Списать оплату сразу</p>
+                            </div>
+                            <p class="total-payment-immediatly-descr">Спишем оплату с карты при получении</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Подтверждение заказа и соглашения -->
+                <div class="confirm-order-container">
+                    <p>Заказать</p>
+                    <div class="confirm-conditions-container">
+                        <img src="images/check-mark.svg" class="confirm-conditions-check-mark-svg check-mark" />
+                        <p class="confirm-conditions-paragraph">Соглашаюсь с правилами пользования торговой площадкой и возврата</p>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <footer>
