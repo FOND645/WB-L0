@@ -3,6 +3,7 @@
     flex-direction: column;
     padding-top: 14px;
     gap: 27px;
+    flex-grow: 1;
 }
 
 .main-in-stock-header {
@@ -142,6 +143,113 @@
     color: #9797af;
     text-decoration: line-through solid #9797af;
     border-bottom: 1px dashed #9797af;
+}
+
+.main-out-stock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    top: 12px;
+}
+
+.main-out-stock-header {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: space-between;
+}
+
+.main-out-stock-products {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main-out-stock-product-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.main-out-stock-product-card {
+    display: flex;
+    flex-direction: row;
+    width: 397px;
+    gap: 16px;
+    padding: 12px 0px 0px 0px;
+}
+
+.main-out-stock-product-describe-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.main-out-stock-product-parametrs {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.main-out-stock-select-all-text {
+    letter-spacing: 0.02em;
+}
+
+.main-out-stock-product-buttons-container-l1 {
+    display: flex;
+    flex-direction: row;
+    width: 226px;
+    align-items: flex-start;
+}
+
+.main-out-stock-product-buttons-container-l2 {
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+    justify-content: flex-end;
+    padding-top: 12px;
+}
+
+.main-out-stock-product-buttons-container-l3 {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.main-order-delivery-header-change {
+    color: #cb11ab;
+}
+
+.main-order {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 16px;
+    padding: 16px 0px 24px 0px;
+    gap: 24px;
+}
+
+.main-order-delivery-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 24px 0px 24px;
+    gap: 10px;
+}
+
+.main-order-delivery-content {
+    display: grid;
+}
+
+.main-order-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 24px 24px 24px;
+    border-radius: 16px;
+    background-color: #ffffff;
 }
 
 /*  */
