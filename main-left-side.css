@@ -34,9 +34,117 @@
     gap: 20px;
 }
 
+.main-in-stock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
 
+.main-in-stock-product-card {
+    display: flex;
+    width: 397px;
+    flex-direction: row;
+    gap: 16px;
+    padding-top: 12px;
+    align-items: flex-start;
+}
 
+.main-in-stock-product-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+.main-in-stock-product-image-container {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
+
+.main-in-stock-product-parametrs {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.main-in-stock-product-describe-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.main-in-stock-product-distributor-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.main-in-stock-product-seller-container {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    max-height: 16px;
+}
+
+.main-in-stock-product-price-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 226px;
+    gap: 16px;
+}
+
+.main-in-stock-product-count-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+    gap: 8px;
+}
+
+.main-in-stock-product-counter {
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+    height: 44px;
+    box-sizing: border-box;
+    padding: 5px 7px 4px 10px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.main-in-stock-product-counter-plus,
+.main-in-stock-product-counter-minus {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.main-in-stock-product-buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-self: flex-end;
+}
+
+.main-in-stock-product-price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 7px;
+    gap: 6px;
+}
+
+.main-in-stock-product-basic-price {
+    color: #9797af;
+    text-decoration: line-through solid #9797af;
+    border-bottom: 1px dashed #9797af;
+}
+
+/*  */
 
 .main-in-stock-select-all-text {
     font-weight: 400;
@@ -50,7 +158,8 @@
     line-height: 16px;
 }
 
-.main-in-stock-product-storage, .main-in-stock-product-seller {
+.main-in-stock-product-storage,
+.main-in-stock-product-seller {
     font-weight: 400;
     font-size: 13px;
     line-height: 16px;

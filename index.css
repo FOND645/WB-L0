@@ -6,7 +6,7 @@ body {
 }
 
 p {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     font-weight: 400;
@@ -15,7 +15,7 @@ p {
 }
 
 main {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     border-radius: 20px;
@@ -25,10 +25,12 @@ main {
     display: flex;
     flex-direction: row;
     gap: 32px;
+    background-color: #f6f6fa;
 }
 
-h1 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+h1,
+.h1 {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     font-weight: 700;
@@ -37,8 +39,9 @@ h1 {
     letter-spacing: -0.01em;
 }
 
-h2 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+h2,
+.h2 {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     font-weight: 700;
@@ -47,8 +50,9 @@ h2 {
     letter-spacing: -0.01em;
 }
 
-h3 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+h3,
+.h3 {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     font-weight: 700;
@@ -57,8 +61,9 @@ h3 {
     letter-spacing: -0.01em;
 }
 
-h4 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+h4,
+.h4 {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     font-weight: 700;
@@ -67,7 +72,7 @@ h4 {
 }
 
 .font-caption {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     font-weight: 400;
@@ -84,5 +89,4 @@ h4 {
 
 .refund-text-free {
     color: rgba(12, 180, 119, 1);
-
 }

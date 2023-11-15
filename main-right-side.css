@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 324px;
     border-radius: 16px;
+    /* box-sizing: border-box; */
     padding: 16px 24px 24px 24px;
     background-color: rgba(255, 255, 255, 1);
     gap: 24px;
@@ -29,7 +30,8 @@
     line-height: 28px;
 }
 
-.total-cost-final-price-text, .total-cost-final-price-sum {
+.total-cost-final-price-text,
+.total-cost-final-price-sum {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -59,7 +61,7 @@
 .total-cost-line-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between  ;
+    justify-content: space-between;
 }
 
 .total-cost-final-price-rest-info {
