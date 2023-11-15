@@ -1,13 +1,13 @@
 .main-right-side {
     display: flex;
     flex-direction: column;
-    width: 303px;
+    width: 324px;
     border-radius: 16px;
     padding: 16px 24px 24px 24px;
     background-color: rgba(255, 255, 255, 1);
     gap: 24px;
-    box-sizing: border-box;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    height: max-content;
 }
 
 .total-cost-final-price-g-text {
@@ -144,12 +144,12 @@
     padding-top: 5px;
 }
 
-.total-payment-immediatly-checkbox {
+.check-box-default-container {
     width: 22px;
     height: 22px;
 }
 
-.total-payment-immediatly-check-mark-svg {
+.check-box-default-mark {
     position: relative;
     top: -27px;
     left: 5px;
