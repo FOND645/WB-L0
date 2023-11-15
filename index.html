@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="header.css" />
     <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="main-in-stock.css" />
+    <link rel="stylesheet" type="text/css" href="main-right-side.css" />
     <title>Document</title>
 </head>
 
@@ -44,7 +46,7 @@
 
     <main>
         <div class="main-left-side">
-            <p>Корзина</p>
+            <p class="main-left-text">Корзина</p>
             <!-- Товары в наличии -->
             <div class="main-in-stock">
                 <div class="main-in-stock-header">
@@ -364,34 +366,23 @@
                 <div class="total-cost-container">
                     <!-- Итого -->
                     <div class="total-cost-final-price-container">
-                        <p class="total-cost-final-price-text">Итого</p>
-                        <div class="total-cost-final-price">
-                            <p class="total-cost-final-price-sum">2 101 063</p>
-                            <p class="total-cost-final-price-value">сом</p>
-                        </div>
+                        <p class="total-cost-final-price-g-text">Итого</p>
+                        <p class="total-cost-final-price-g-sum">2 101 063 <span class="total-cost-final-price-g-value">сом</span></p>
                     </div>
                     <!-- Базовая стоимость за N товаров -->
                     <div class="total-cost-basic-price-container">
                         <p class="total-cost-final-price-text">203 товара</p>
-                        <div class="total-cost-final-price">
-                            <p class="total-cost-final-price-sum">2 302 048</p>
-                            <p class="total-cost-final-price-value">сом</p>
-                        </div>
+                        <p class="total-cost-final-price-sum">2 302 048 сом</p>
                     </div>
                     <!-- Скидка -->
                     <div class="total-cost-sale-container">
                         <p class="total-cost-final-price-text">Скидка</p>
-                        <div class="total-cost-final-price">
-                            <p class="total-cost-final-price-sum">-200 985</p>
-                            <p class="total-cost-final-price-value">сом</p>
-                        </div>
+                        <p class="total-cost-final-price-sum">-200 985 сом</p>
                     </div>
                     <!-- Доставка -->
                     <div class="total-cost-delivery-container">
                         <p class="total-cost-final-price-text">Доставка</p>
-                        <div class="total-cost-final-price">
-                            <p class="total-cost-final-price-sum">Бесплатно</p>
-                        </div>
+                        <p class="total-cost-final-price-sum">Бесплатно</p>
                     </div>
                 </div>
                 <!-- Доставка в пункт выдачи -->

@@ -10,3 +10,17 @@ p {
     margin: 0;
     padding: 0;
 }
+
+main {
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    margin-top: 3px;
+    padding-top: 20px;
+}
+
+.main-left-text {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.01em;
+}

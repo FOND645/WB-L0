@@ -1,0 +1,39 @@
+.main-in-stock-select-all-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.main-in-stock-product-parametr-text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.main-in-stock-product-storage, .main-in-stock-product-seller {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(151, 151, 175, 1);
+}
+
+.main-in-stock-product-balance {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(255, 59, 48, 1);
+}
+
+.main-in-stock-product-final-price-count {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+}
+
+.main-in-stock-product-final-price-value {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+}

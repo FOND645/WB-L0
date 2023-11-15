@@ -1,0 +1,36 @@
+.main-right-side {
+    display: flex;
+    flex-direction: column;
+    width: 303px;
+    border-radius: 16px;
+    padding: 16px 24px 24px 24px;
+    background-color: rgba(255, 255, 255, 1);
+    gap: 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.total-cost-final-price-g-text {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0.01em;
+}
+
+.total-cost-final-price-g-sum {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.01rem;
+}
+
+.total-cost-final-price-g-value {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.total-cost-final-price-text, .total-cost-final-price-sum {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01rem;
+}
