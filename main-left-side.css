@@ -51,6 +51,8 @@
 }
 
 .main-in-stock-product-container {
+    overflow: hidden;
+    transition: height 0.3s ease;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -119,6 +121,11 @@
 
 .main-in-stock-product-counter-plus,
 .main-in-stock-product-counter-minus {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
@@ -130,6 +137,8 @@
     gap: 16px;
     align-self: flex-end;
 }
+
+/*  */
 
 .main-in-stock-product-price-container {
     display: flex;
@@ -221,7 +230,7 @@
 .main-order-control-container {
     display: flex;
     flex-direction: column;
-    gap: 16px
+    gap: 16px;
 }
 
 .main-order-delivery-header-change {
@@ -385,6 +394,7 @@
 
 .main-order-person-form-line {
     display: flex;
+    padding-top: 2px;
     flex-direction: row;
     gap: 24px;
 }
@@ -394,7 +404,7 @@
     width: 100%;
     border-bottom: 1px solid rgba(151, 151, 175, 1);
 }
-.main-order-person-input::placeholder{
+.main-order-person-input::placeholder {
     color: rgba(151, 151, 175, 1);
     font-weight: 400;
     font-size: 16px;
@@ -417,6 +427,12 @@
 
 .main-order-person-input-error {
     height: 16px;
+}
+
+.main-in-stock-product-counter-count {
+    width: 45px;
+    border: none;
+    background-color: transparent;
 }
 
 /* Пробуем GRID */
@@ -442,6 +458,10 @@
     padding: 16px 24px 24px 24px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 16px;
+}
+
+.main-order-person-input-upper-placeholder {
+    height: 16px;
 }
 
 /*  */

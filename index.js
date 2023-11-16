@@ -1,11 +1,3 @@
-interface counterArguments {
-    plusElementID: string;
-    minusElementID: string;
-    countElementID: string;
-    initialCount: number;
-    maxCount: number;
-}
-
 // HTML код элементов для подстановки
 const enabledCheckBoxHTML = `<img
     src="images/check-box.svg"
@@ -30,25 +22,27 @@ const deleteHoveredHTML = '<img src="images/delete-hover.svg" class="main-in-sto
 
 // Класс для счетчик
 class Counter {
-    plusElement: HTMLElement;
-    minusElement: HTMLElement;
-    countElement: HTMLInputElement;
-    count: number;
-    maxCount: number;
-    constructor(args: counterArguments) {
+    constructor(args) {
         // Получаем все элементы DOM'a
-        this.plusElement = document.getElementById(args.plusElementID) as HTMLElement;
-        this.minusElement = document.getElementById(args.minusElementID) as HTMLElement;
-        this.countElement = document.querySelector(args.countElementID) as HTMLInputElement;
+        this.plusElement = document.getElementById(args.plusElementID);
+        this.minusElement = document.getElementById(args.minusElementID);
+        this.countElement = document.getElementById(args.countElementID);
+        this.productFinalSumElement = document.getElementById(args.productFinalSumID);
+        this.productBasicSumElement = document.getElementById(args.productBasicSumID);
+
         this.count = args.initialCount;
         this.maxCount = args.maxCount;
-        this.countElement.innerText = `${this.count}`;
+        this.basicPrice = args.basicPrice;
+        this.discount = args.discount;
+
+        this.countElement.value = `${this.count}`;
 
         // Это реально надо комментировать? Неужели этот код может быть непонятным?
         // Добавляем листнеры событий на соответствующие элементы
-        this.plusElement.addEventListener("click", this.incrementCount);
-        this.minusElement.addEventListener("click", this.incrementCount);
-        this.countElement.addEventListener("input", this.setCount);
+        this.plusElement.addEventListener("click", this.incrementCount.bind(this));
+        this.minusElement.addEventListener("click", this.decrementCount.bind(this));
+        this.countElement.addEventListener("input", this.setCount.bind(this));
+        this.updatePlusMinusStyles();
     }
 
     // Хэндлер клика на +
@@ -57,60 +51,57 @@ class Counter {
     incrementCount() {
         if (this.count === this.maxCount) return;
         this.count++;
-        this.countElement.innerText = `${this.count}`;
-        document.dispatchEvent("");
+        this.countElement.value = `${this.count}`;
+        this.updatePlusMinusStyles();
+        this.updateSums();
+        document.dispatchEvent(new Event("bascetIsChanged"));
     }
 
     // Аналогично, но для нажатия на -
     decrementCount() {
         if (this.count === 1) return;
         this.count--;
-        this.countElement.innerText = `${this.count}`;
-        document.dispatchEvent({ type: "bascetIsChanged" });
+        this.countElement.value = `${this.count}`;
+        this.updatePlusMinusStyles();
+        this.updateSums();
+        document.dispatchEvent(new Event("bascetIsChanged"));
     }
 
     // Хэндлер для вводимого вручную значения
-    setCount(_: Event) {
-        const { value } = this.countElement;
+    setCount(_) {
         // Если пользователь как-то введет дробную часть числа - выкидываем ее
-        if (!Number.isInteger(value)) this.countElement.value = Math.trunc(+value).toString();
+        const value = this.countElement.innerText;
+        if (!Number.isInteger(this.countElement.innerText)) this.countElement.innerText = Math.trunc(+value).toString();
         this.count = Math.trunc(+value);
-        this.countElement.innerText = `${this.count}`;
-        document.dispatchEvent({ type: "bascetIsChanged" });
+        this.countElement.value = `${this.count}`;
+        this.updatePlusMinusStyles();
+        this.updateSums();
+        document.dispatchEvent(new Event("bascetIsChanged"));
+    }
+
+    updateSums() {
+        console.log("basic price", this.basicPrice);
+        console.log("discount", this.discount);
+        console.log("final price", this.basicPrice - this.discount);
+        console.log("full basic price", this.basicPrice * this.count);
+        console.log("full discount", this.discount * this.count);
+        console.log("full final price", (this.basicPrice - this.discount) * this.count);
+        this.productFinalSumElement.innerText = ((this.basicPrice - this.discount) * this.count).toLocaleString();
+        this.productBasicSumElement.innerText = (this.basicPrice * this.count).toLocaleString();
+    }
+
+    updatePlusMinusStyles() {
+        this.plusElement.style.color = this.count === this.maxCount ? `#00000033` : "#000000";
+        this.plusElement.style.cursor = this.count === this.maxCount ? `default` : "pointer";
+
+        this.minusElement.style.color = this.count === 1 ? `#00000033` : "#000000";
+        this.minusElement.style.cursor = this.count === 1 ? `default` : "pointer";
     }
 }
 
-interface productArgs {
-    counterArgs: counterArguments;
-    maxCount: number;
-    basicPrice: number;
-    discount: number;
-
-    productContainerID: string;
-    productLikeButtonID: string;
-    productDeleteButtonID: string;
-    productCheckBoxContainerID: string;
-}
-
 // Класс продуктов
-export class Product {
-    counter: Counter;
-
-    maxCount: number;
-    basicPrice: number;
-    discount: number;
-
-    isEnable: boolean;
-    isLiked: boolean;
-    isSelected: boolean;
-    isHovered: boolean;
-
-    productContainerElement: HTMLElement;
-    productLikeButtonElement: HTMLElement;
-    productDeleteButtonElement: HTMLElement;
-    productCheckBoxContainerElement: HTMLElement;
-
-    constructor(args: productArgs) {
+class Product {
+    constructor(args) {
         // Инициализируем счетчик для продукта
         this.counter = new Counter(args.counterArgs);
 
@@ -126,10 +117,10 @@ export class Product {
         this.isHovered = false;
 
         // Получаем элементы из DOM дерева
-        this.productContainerElement = document.getElementById(args.productContainerID) as HTMLElement;
-        this.productLikeButtonElement = document.getElementById(args.productLikeButtonID) as HTMLElement;
-        this.productDeleteButtonElement = document.getElementById(args.productDeleteButtonID) as HTMLElement;
-        this.productCheckBoxContainerElement = document.getElementById(args.productCheckBoxContainerID) as HTMLElement;
+        this.productContainerElement = document.getElementById(args.productContainerID);
+        this.productLikeButtonElement = document.getElementById(args.productLikeButtonID);
+        this.productDeleteButtonElement = document.getElementById(args.productDeleteButtonID);
+        this.productCheckBoxContainerElement = document.getElementById(args.productCheckBoxContainerID);
 
         // Ставим листнеры на клики по управляющим элементам
         this.productLikeButtonElement.addEventListener("click", this.setLiked);
@@ -138,20 +129,23 @@ export class Product {
 
         // Ставим листнеры для отслеживания ховеров на
         // контейнер товара
-        this.productContainerElement.addEventListener("mouseover", this.containerHoverHandler(true));
-        this.productContainerElement.addEventListener("mouseout", this.containerHoverHandler(false));
+        this.productContainerElement.addEventListener("mouseover", this.containerHoverHandler(true).bind(this));
+        this.productContainerElement.addEventListener("mouseout", this.containerHoverHandler(false).bind(this));
 
         // кнопку лайка
-        this.productLikeButtonElement.addEventListener("mouseover", this.likeHoverHandler(true));
-        this.productLikeButtonElement.addEventListener("mouseout", this.likeHoverHandler(false));
+        this.productLikeButtonElement.addEventListener("mouseover", this.likeHoverHandler(true).bind(this));
+        this.productLikeButtonElement.addEventListener("mouseout", this.likeHoverHandler(false).bind(this));
 
         // кнопку удаления
-        this.productDeleteButtonElement.addEventListener("mouseover", this.deleteHoverHandler(true));
-        this.productDeleteButtonElement.addEventListener("mouseout", this.deleteHoverHandler(false));
+        this.productDeleteButtonElement.addEventListener("mouseover", this.deleteHoverHandler(true).bind(this));
+        this.productDeleteButtonElement.addEventListener("mouseout", this.deleteHoverHandler(false).bind(this));
+
+        this.productLikeButtonElement.innerHTML = "";
+        this.productDeleteButtonElement.innerHTML = "";
     }
 
     // Функция возвращающая хэндлер наведения на кнопку лайка в зависимости от наведения (true - наведено, false - не наведено) и состояния лайка
-    likeHoverHandler(isHovered: boolean) {
+    likeHoverHandler(isHovered) {
         return () => {
             if (isHovered) {
                 this.productLikeButtonElement.innerHTML = this.isLiked ? hoveredActiveLikeHTML : hoveredLikeHTML;
@@ -162,7 +156,7 @@ export class Product {
     }
 
     // Функция возвращающая хэндлер наведения на кнопку удаления в зависимости от наведения (true - наведено, false - не наведено)
-    deleteHoverHandler(isHovered: boolean) {
+    deleteHoverHandler(isHovered) {
         return () => {
             if (isHovered) {
                 this.productDeleteButtonElement.innerHTML = deleteHoveredHTML;
@@ -173,7 +167,7 @@ export class Product {
     }
 
     // Функция возвращающая хэндлер наведения на контейнер продукта в зависимости от наведения (true - наведено, false - не наведено)
-    containerHoverHandler(isHovered: boolean) {
+    containerHoverHandler(isHovered) {
         return () => {
             if (isHovered) {
                 this.productLikeButtonElement.innerHTML = this.isLiked ? activeLikeHTML : likeHTML;
@@ -204,77 +198,57 @@ export class Product {
     }
 }
 
-interface bascetArgs {
-    productsArgs: productArgs[];
-    finalSumElementID: string;
-    basicSumElementID: string;
-    discountSumElementID: string;
-}
-
 // Класс корзины
 class bascet {
-    products: Product[];
-    basicSum: number;
-    discountSum: number;
-    finalSumElement: HTMLElement;
-    basicSumElement: HTMLElement;
-    discountSumElement: HTMLElement;
-    constructor(args: bascetArgs) {
+    constructor(args) {
         // Инициализируем все товары, пришедшие в аргументах
         this.products = args.productsArgs.map((ProdArgs) => new Product(ProdArgs));
 
         // Высчитываем базовую сумму и сумму со скидкой
         this.basicSum = this.products.reduce((Sum, Prod) => (Sum += Prod.basicPrice * Prod.counter.count), 0);
-        this.discountSum = this.products.reduce((Sum, Prod) => (Sum += Prod.discount), 0);
+        this.discountSum = this.products.reduce((Sum, Prod) => (Sum += Prod.discount * Prod.counter.count), 0);
 
         // Получаем элементы сумм из DOM'a
-        this.finalSumElement = document.getElementById(args.finalSumElementID) as HTMLElement;
-        this.basicSumElement = document.getElementById(args.basicSumElementID) as HTMLElement;
-        this.discountSumElement = document.getElementById(args.discountSumElementID) as HTMLElement;
+        this.finalSumElement = document.getElementById(args.finalSumElementID);
+        this.basicSumElement = document.getElementById(args.basicSumElementID);
+        this.discountSumElement = document.getElementById(args.discountSumElementID);
 
         // Записываем значения сумм в DOM
         this.basicSumElement.innerText = `${this.basicSum.toLocaleString()}`;
-        this.discountSumElement.innerText = `${this.discountSum.toLocaleString()}`;
+        this.discountSumElement.innerText = `−${this.discountSum.toLocaleString()}`;
         this.finalSumElement.innerText = `${(this.basicSum - this.discountSum).toLocaleString()}`;
 
         // Добавляем листнер на изменения в корзине
-        document.addEventListener("bascetIsChanged", this.updateSum);
+        document.addEventListener("bascetIsChanged", this.updateSum.bind(this));
     }
 
     // Хэндлер изменений в корзине
     updateSum() {
         // Высчитываем базовую сумму и сумму скидки
-        this.basicSum = this.products.reduce((Sum, Prod) => (Sum += Prod.isEnable ? Prod.basicPrice : 0), 0);
-        this.discountSum = this.products.reduce((Sum, Prod) => (Sum += Prod.isEnable ? Prod.discount : 0), 0);
+        this.basicSum = this.products.reduce((Sum, Prod) => (Sum += Prod.isEnable ? Prod.basicPrice * Prod.counter.count : 0), 0);
+        this.discountSum = this.products.reduce((Sum, Prod) => (Sum += Prod.isEnable ? Prod.discount * Prod.counter.count : 0), 0);
 
         // Записываем все суммы в DOM
         this.basicSumElement.innerText = this.basicSum.toLocaleString();
-        this.discountSumElement.innerText = this.discountSum.toLocaleString();
+        this.discountSumElement.innerText = `−${this.discountSum.toLocaleString()}`;
         this.finalSumElement.innerText = `${(this.basicSum - this.discountSum).toLocaleString()}`;
     }
 }
 
-interface freeNotificationArgs {
-    targetTextID: string;
-    targetNotificationID: string;
-}
-
 // Класс для всплывающих подсказок
 class freeNotification {
-    targetTextElement: HTMLElement;
-    targetNotificationElement: HTMLElement;
-    constructor(args: freeNotificationArgs) {
-        this.targetTextElement = document.getElementById(args.targetTextID) as HTMLElement;
-        this.targetNotificationElement = document.getElementById(args.targetNotificationID) as HTMLElement;
+    constructor(args) {
+        this.targetTextElement = document.getElementById(args.targetTextID);
+        this.targetNotificationElement = document.getElementById(args.targetNotificationID);
 
-        this.targetTextElement.addEventListener("mouseover", this.notificationHandler(true));
-        this.targetTextElement.addEventListener("mouseout", this.notificationHandler(false));
+        this.targetTextElement.addEventListener("mouseover", this.notificationHandler(true).bind(this));
+        this.targetTextElement.addEventListener("mouseout", this.notificationHandler(false).bind(this));
     }
 
-    notificationHandler(isHover: boolean) {
+    notificationHandler(isHover) {
         return () => {
             if (isHover) {
-                this.targetNotificationElement.style.display = "initial";
+                this.targetNotificationElement.style.display = "flex";
             } else {
                 this.targetNotificationElement.style.display = "none";
             }
@@ -283,12 +257,12 @@ class freeNotification {
 }
 
 const pageBascet = new bascet({
-    finalSumElementID: "basic-sum-element",
+    finalSumElementID: "final-sum-element",
     basicSumElementID: "basic-sum-element",
     discountSumElementID: "discount-sum-element",
     productsArgs: [1, 2, 3].map((Ind) => {
         return {
-            basicPrice: [0, 1051, 11500, 247][Ind],
+            basicPrice: [0, 1051, 11500, 475][Ind],
             discount: [0, 529, 1000, 228][Ind],
             maxCount: [0, 2, Infinity, 2][Ind],
             productCheckBoxContainerID: `product-${Ind}-in-stock-check-box-container`,
@@ -297,10 +271,14 @@ const pageBascet = new bascet({
             productLikeButtonID: `product-${Ind}-like-button-container`,
             counterArgs: {
                 minusElementID: `product-${Ind}-decrementer`,
-                plusElementID: `product-${Ind}-counter`,
-                countElementID: `product-${Ind}-incrementer`,
+                plusElementID: `product-${Ind}-incrementer`,
+                countElementID: `product-${Ind}-counter`,
                 maxCount: [0, 2, Infinity, 2][Ind],
                 initialCount: [0, 1, 200, 2][Ind],
+                productFinalSumID: `product-${Ind}-final-sum`,
+                productBasicSumID: `product-${Ind}-basic-sum`,
+                basicPrice: [0, 1051, 11500, 475][Ind],
+                discount: [0, 529, 1000, 228][Ind],
             },
         };
     }),
