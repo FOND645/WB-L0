@@ -51,11 +51,28 @@
 }
 
 .main-in-stock-product-container {
+    fill: #f6f6fa;
     overflow: hidden;
     transition: height 0.3s ease;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.main-in-stock-product-container:hover {
+    fill: black;
+}
+
+.main-in-stock-product-like:hover {
+    fill: #EE4624;
+}
+
+.main-in-stock-product-delete:hover {
+    fill: #EE4624;
+}
+
+.like-delete-btn-container {
+    cursor: pointer;
 }
 
 .main-in-stock-product-image-container {
@@ -432,7 +449,13 @@
 .main-in-stock-product-counter-count {
     width: 45px;
     border: none;
+    text-align: center;
     background-color: transparent;
+}
+
+.main-in-stock-product-counter-count:focus {
+    border-style: none;
+    outline: none;
 }
 
 /* Пробуем GRID */

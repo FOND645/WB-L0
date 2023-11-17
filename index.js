@@ -1,24 +1,28 @@
 // HTML код элементов для подстановки
-const enabledCheckBoxHTML = `<img
-    src="images/check-box.svg"
-    class="main-in-stock-product-image-check-box-svg check-box-default check-box"
-/>
-<img
-    src="images/check-mark.svg"
-    class="main-in-stock-product-image-check-mark-svg check-box-default-mark check-mark"
-/>`;
-const disabledCheckBoxHTML = `<img
-    src="images/check-box.svg"
-    class="main-in-stock-product-image-check-box-svg check-box-default check-box"
-/>`;
+const enabledCheckBoxHTML = `<svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_7_1035)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.653961 3.77606C0 5.05953 0 6.73969 0 10.1V12.9C0 16.2603 0 17.9405 0.653961 19.2239C1.2292 20.3529 2.14708 21.2708 3.27606 21.846C4.55953 22.5 6.23969 22.5 9.6 22.5H12.4C15.7603 22.5 17.4405 22.5 18.7239 21.846C19.8529 21.2708 20.7708 20.3529 21.346 19.2239C22 17.9405 22 16.2603 22 12.9V10.1C22 6.73969 22 5.05953 21.346 3.77606C20.7708 2.64708 19.8529 1.7292 18.7239 1.15396C17.4405 0.5 15.7603 0.5 12.4 0.5H9.6C6.23969 0.5 4.55953 0.5 3.27606 1.15396C2.14708 1.7292 1.2292 2.64708 0.653961 3.77606Z" fill="#CB11AB"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M17.7354 7.17929L9.58662 15.9839L5.25781 11.1682L6.74523 9.83115L9.60819 13.0162L16.2676 5.8208L17.7354 7.17929Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_7_1035">
+<rect width="22" height="22" fill="white" transform="translate(0 0.5)"/>
+</clipPath>
+</defs>
+</svg>
+`;
+const disabledCheckBoxHTML = `<svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_7_1080)">
+<path d="M0.5 10.1C0.5 8.41159 0.500389 7.17536 0.580085 6.19993C0.659303 5.23034 0.814384 4.56255 1.09946 4.00305C1.62677 2.96816 2.46816 2.12677 3.50305 1.59946C4.06255 1.31438 4.73034 1.1593 5.69993 1.08008C6.67536 1.00039 7.91159 1 9.6 1H12.4C14.0884 1 15.3246 1.00039 16.3001 1.08008C17.2697 1.1593 17.9374 1.31438 18.4969 1.59946C19.5318 2.12677 20.3732 2.96816 20.9005 4.00305C21.1856 4.56255 21.3407 5.23034 21.4199 6.19993C21.4996 7.17536 21.5 8.41159 21.5 10.1V12.9C21.5 14.5884 21.4996 15.8246 21.4199 16.8001C21.3407 17.7697 21.1856 18.4374 20.9005 18.9969C20.3732 20.0318 19.5318 20.8732 18.4969 21.4005C17.9374 21.6856 17.2697 21.8407 16.3001 21.9199C15.3246 21.9996 14.0884 22 12.4 22H9.6C7.91159 22 6.67536 21.9996 5.69993 21.9199C4.73034 21.8407 4.06255 21.6856 3.50305 21.4005C2.46816 20.8732 1.62677 20.0318 1.09946 18.9969C0.814384 18.4374 0.659303 17.7697 0.580085 16.8001C0.500389 15.8246 0.5 14.5884 0.5 12.9V10.1Z" stroke="black" stroke-opacity="0.2"/>
+</g>
+<defs>
+<clipPath id="clip0_7_1080">
+<rect width="22" height="22" fill="white" transform="translate(0 0.5)"/>
+</clipPath>
+</defs>
+</svg>
+`;
 
-const likeHTML = ' <img src="images/like.svg" class="main-in-stock-product-like" />';
-const hoveredLikeHTML = '<img src="images/like-hover.svg" class="main-in-stock-product-like" />';
-const activeLikeHTML = '<img src="images/like-active.svg" class="main-in-stock-product-like" />';
-const hoveredActiveLikeHTML = '<img src="images/like-active-hover.svg" class="main-in-stock-product-like" />';
-
-const deleteHTML = '<img src="images/delete.svg" class="main-in-stock-product-delete" />';
-const deleteHoveredHTML = '<img src="images/delete-hover.svg" class="main-in-stock-product-delete" />';
 
 // Класс для счетчик
 class Counter {
@@ -43,6 +47,7 @@ class Counter {
         this.minusElement.addEventListener("click", this.decrementCount.bind(this));
         this.countElement.addEventListener("input", this.setCount.bind(this));
         this.updatePlusMinusStyles();
+        this.updateSums()
     }
 
     // Хэндлер клика на +
@@ -70,8 +75,11 @@ class Counter {
     // Хэндлер для вводимого вручную значения
     setCount(_) {
         // Если пользователь как-то введет дробную часть числа - выкидываем ее
-        const value = this.countElement.innerText;
-        if (!Number.isInteger(this.countElement.innerText)) this.countElement.innerText = Math.trunc(+value).toString();
+        let value = this.countElement.value;
+        if (value === "") return
+        if (value > this.maxCount) value = this.maxCount
+        if (value < 1) value = 1
+        if (!Number.isInteger(value)) value = Math.trunc(+value).toString();
         this.count = Math.trunc(+value);
         this.countElement.value = `${this.count}`;
         this.updatePlusMinusStyles();
@@ -80,12 +88,13 @@ class Counter {
     }
 
     updateSums() {
-        console.log("basic price", this.basicPrice);
-        console.log("discount", this.discount);
-        console.log("final price", this.basicPrice - this.discount);
-        console.log("full basic price", this.basicPrice * this.count);
-        console.log("full discount", this.discount * this.count);
-        console.log("full final price", (this.basicPrice - this.discount) * this.count);
+        // console.log("basic price", this.basicPrice);
+        // console.log("discount", this.discount);
+        // console.log("final price", this.basicPrice - this.discount);
+        // console.log("full basic price", this.basicPrice * this.count);
+        // console.log("full discount", this.discount * this.count);
+        // console.log("full final price", (this.basicPrice - this.discount) * this.count);
+        this.productFinalSumElement.classList = (this.basicPrice - this.discount) * this.count >= 1000000 ? ['h4'] : ['h3']
         this.productFinalSumElement.innerText = ((this.basicPrice - this.discount) * this.count).toLocaleString();
         this.productBasicSumElement.innerText = (this.basicPrice * this.count).toLocaleString();
     }
@@ -114,87 +123,42 @@ class Product {
         this.isSelected = true;
         this.isEnable = true;
         this.isLiked = false;
-        this.isHovered = false;
 
         // Получаем элементы из DOM дерева
         this.productContainerElement = document.getElementById(args.productContainerID);
-        this.productLikeButtonElement = document.getElementById(args.productLikeButtonID);
-        this.productDeleteButtonElement = document.getElementById(args.productDeleteButtonID);
+        // this.productLikeButtonElement = document.getElementById(args.productLikeButtonContainerID);
+        this.productLikeButtonElement = document.getElementById(args.productLikeButtonContainerID)
+        this.productDeleteButtonElement = document.getElementById(args.productDeleteButtonContainerID);
         this.productCheckBoxContainerElement = document.getElementById(args.productCheckBoxContainerID);
 
         // Ставим листнеры на клики по управляющим элементам
-        this.productLikeButtonElement.addEventListener("click", this.setLiked);
-        this.productDeleteButtonElement.addEventListener("click", this.changeSelect);
-        this.productCheckBoxContainerElement.addEventListener("click", this.changeSelect);
+        // this.productLikeButtonElement.addEventListener("click", this.setLiked);
+        this.productDeleteButtonElement.addEventListener("click", this.delete.bind(this));
+        this.productCheckBoxContainerElement.addEventListener("click", this.changeSelect.bind(this));
 
-        // Ставим листнеры для отслеживания ховеров на
-        // контейнер товара
-        this.productContainerElement.addEventListener("mouseover", this.containerHoverHandler(true).bind(this));
-        this.productContainerElement.addEventListener("mouseout", this.containerHoverHandler(false).bind(this));
-
-        // кнопку лайка
-        this.productLikeButtonElement.addEventListener("mouseover", this.likeHoverHandler(true).bind(this));
-        this.productLikeButtonElement.addEventListener("mouseout", this.likeHoverHandler(false).bind(this));
-
-        // кнопку удаления
-        this.productDeleteButtonElement.addEventListener("mouseover", this.deleteHoverHandler(true).bind(this));
-        this.productDeleteButtonElement.addEventListener("mouseout", this.deleteHoverHandler(false).bind(this));
-
-        this.productLikeButtonElement.innerHTML = "";
-        this.productDeleteButtonElement.innerHTML = "";
+        this.productLikeButtonElement.addEventListener('click', this.setLiked.bind(this))
     }
 
-    // Функция возвращающая хэндлер наведения на кнопку лайка в зависимости от наведения (true - наведено, false - не наведено) и состояния лайка
-    likeHoverHandler(isHovered) {
-        return () => {
-            if (isHovered) {
-                this.productLikeButtonElement.innerHTML = this.isLiked ? hoveredActiveLikeHTML : hoveredLikeHTML;
-            } else {
-                this.productLikeButtonElement.innerHTML = this.isLiked ? activeLikeHTML : likeHTML;
-            }
-        };
-    }
-
-    // Функция возвращающая хэндлер наведения на кнопку удаления в зависимости от наведения (true - наведено, false - не наведено)
-    deleteHoverHandler(isHovered) {
-        return () => {
-            if (isHovered) {
-                this.productDeleteButtonElement.innerHTML = deleteHoveredHTML;
-            } else {
-                this.productDeleteButtonElement.innerHTML = deleteHTML;
-            }
-        };
-    }
-
-    // Функция возвращающая хэндлер наведения на контейнер продукта в зависимости от наведения (true - наведено, false - не наведено)
-    containerHoverHandler(isHovered) {
-        return () => {
-            if (isHovered) {
-                this.productLikeButtonElement.innerHTML = this.isLiked ? activeLikeHTML : likeHTML;
-                this.productDeleteButtonElement.innerHTML = deleteHTML;
-            } else {
-                this.productLikeButtonElement.innerHTML = this.isLiked ? activeLikeHTML : "";
-                this.productDeleteButtonElement.innerHTML = "";
-            }
-        };
-    }
-
-    // Хэндлер лайка
     setLiked() {
-        this.isLiked = !this.isLiked;
-        this.productLikeButtonElement.innerHTML = this.isLiked ? hoveredActiveLikeHTML : hoveredLikeHTML;
+        console.log(this.isLiked)
+        this.isLiked = !this.isLiked
+        console.log(this.isLiked)
+        this.productLikeButtonElement.style.fill = this.isLiked ? '#C400A7' : 'inherit'
     }
 
     // Хэндлер чекбокса
     changeSelect() {
         this.isSelected = !this.isSelected;
         this.productCheckBoxContainerElement.innerHTML = this.isSelected ? enabledCheckBoxHTML : disabledCheckBoxHTML;
+        document.dispatchEvent(new Event("bascetIsChanged"));
+        document.dispatchEvent(new Event("productSelectChanged"))
     }
 
     // Хэндлер удаления продукта
     delete() {
         this.isEnable = false;
-        this.productContainerElement.style.height = "0px";
+        this.productContainerElement.style.display = 'none';
+        document.dispatchEvent(new Event("bascetIsChanged"));
     }
 }
 
@@ -204,14 +168,22 @@ class bascet {
         // Инициализируем все товары, пришедшие в аргументах
         this.products = args.productsArgs.map((ProdArgs) => new Product(ProdArgs));
 
-        // Высчитываем базовую сумму и сумму со скидкой
-        this.basicSum = this.products.reduce((Sum, Prod) => (Sum += Prod.basicPrice * Prod.counter.count), 0);
-        this.discountSum = this.products.reduce((Sum, Prod) => (Sum += Prod.discount * Prod.counter.count), 0);
+        this.isShowed = true
+        this.isSelectAll = true
+
+        this.arrowButtonElement = document.getElementById(args.arrowButtonID)
+        this.productsContainerElement = document.getElementById(args.productsContainerID)
+        this.bascetCheckBoxElemnt = document.getElementById(args.bascetCheckBoxContainerID)
+
+        this.arrowButtonElement.addEventListener('click', this.setShowed.bind(this))
+        this.bascetCheckBoxElemnt.addEventListener('click', this.setSelectAll.bind(this))
 
         // Получаем элементы сумм из DOM'a
         this.finalSumElement = document.getElementById(args.finalSumElementID);
         this.basicSumElement = document.getElementById(args.basicSumElementID);
         this.discountSumElement = document.getElementById(args.discountSumElementID);
+
+        this.updateSum()
 
         // Записываем значения сумм в DOM
         this.basicSumElement.innerText = `${this.basicSum.toLocaleString()}`;
@@ -220,13 +192,34 @@ class bascet {
 
         // Добавляем листнер на изменения в корзине
         document.addEventListener("bascetIsChanged", this.updateSum.bind(this));
+        document.addEventListener('productSelectChanged', this.productSlectedHandler.bind(this))
+    }
+
+    productSlectedHandler() {
+        const isAllSelected = this.products.every(Prod => Prod.isSelected)
+        this.bascetCheckBoxElemnt.innerHTML = isAllSelected ? enabledCheckBoxHTML : disabledCheckBoxHTML
+        this.isSelectAll = isAllSelected
+    }
+
+    setShowed() {
+        this.isShowed = !this.isShowed
+        this.arrowButtonElement.style.rotate = this.isShowed ? '0' : '180'
+        this.productsContainerElement.style.display = this.isShowed ? 'flex' : 'none'
+    }
+
+    setSelectAll() {
+        this.isSelectAll = !this.isSelectAll
+        this.products.forEach(Prod => {
+            if (Prod.isSelected !== this.isSelectAll) Prod.changeSelect(true)
+        })
+        this.bascetCheckBoxElemnt.innerHTML = this.isSelectAll ? enabledCheckBoxHTML : disabledCheckBoxHTML
     }
 
     // Хэндлер изменений в корзине
     updateSum() {
         // Высчитываем базовую сумму и сумму скидки
-        this.basicSum = this.products.reduce((Sum, Prod) => (Sum += Prod.isEnable ? Prod.basicPrice * Prod.counter.count : 0), 0);
-        this.discountSum = this.products.reduce((Sum, Prod) => (Sum += Prod.isEnable ? Prod.discount * Prod.counter.count : 0), 0);
+        this.basicSum = this.products.reduce((Sum, Prod) => (Sum += Prod.basicPrice * Prod.counter.count * +(Prod.isSelected && Prod.isEnable)), 0);
+        this.discountSum = this.products.reduce((Sum, Prod) => (Sum += Prod.discount * Prod.counter.count * +(Prod.isSelected && Prod.isEnable)), 0);
 
         // Записываем все суммы в DOM
         this.basicSumElement.innerText = this.basicSum.toLocaleString();
@@ -259,6 +252,12 @@ class freeNotification {
 const pageBascet = new bascet({
     finalSumElementID: "final-sum-element",
     basicSumElementID: "basic-sum-element",
+
+    bascetCheckBoxContainerID: 'show-all-in-stock-button',
+
+    productsContainerID: "main-in-stock-products",
+
+    arrowButtonID: 'bascet-in-stock-arrow-btn',
     discountSumElementID: "discount-sum-element",
     productsArgs: [1, 2, 3].map((Ind) => {
         return {
@@ -267,8 +266,11 @@ const pageBascet = new bascet({
             maxCount: [0, 2, Infinity, 2][Ind],
             productCheckBoxContainerID: `product-${Ind}-in-stock-check-box-container`,
             productContainerID: `product-${Ind}-in-stock-container`,
-            productDeleteButtonID: `product-${Ind}-delete-button-container`,
-            productLikeButtonID: `product-${Ind}-like-button-container`,
+
+            productDeleteButtonContainerID: `product-${Ind}-delete-button-container`, 
+
+            productLikeButtonContainerID: `product-${Ind}-like-button-container`,
+
             counterArgs: {
                 minusElementID: `product-${Ind}-decrementer`,
                 plusElementID: `product-${Ind}-incrementer`,

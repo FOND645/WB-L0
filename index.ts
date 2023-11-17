@@ -175,6 +175,7 @@ export class Product {
     // Функция возвращающая хэндлер наведения на контейнер продукта в зависимости от наведения (true - наведено, false - не наведено)
     containerHoverHandler(isHovered: boolean) {
         return () => {
+            console.log('container hovered')
             if (isHovered) {
                 this.productLikeButtonElement.innerHTML = this.isLiked ? activeLikeHTML : likeHTML;
                 this.productDeleteButtonElement.innerHTML = deleteHTML;

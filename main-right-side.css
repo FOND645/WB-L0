@@ -152,10 +152,9 @@
     height: 22px;
 }
 
-.check-box-default-mark {
-    position: relative;
-    top: -27px;
-    left: 5px;
+#total-check-mark {
+    top: -26px;
+    left: 4px;
 }
 
 .total-payment-immediatly-descr {

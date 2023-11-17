@@ -1,583 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="header.css" />
-        <link rel="stylesheet" type="text/css" href="index.css" />
-        <link rel="stylesheet" type="text/css" href="main-right-side.css" />
-        <link rel="stylesheet" type="text/css" href="main-left-side.css" />
-        <script src="index.js" defer></script>
-        <title>Document</title>
-    </head>
 
-    <body>
-        <header>
-            <div class="header-left-side">
-                <div class="header-catalog">
-                    <img src="images/catalog.svg" class="header-catalog-button-svg" />
-                </div>
-                <div class="header-logo">
-                    <p class="header-logo-text">ТОВАРЫ <br />И ТОЧКА</p>
-                </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="header.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="main-right-side.css" />
+    <link rel="stylesheet" type="text/css" href="main-left-side.css" />
+    <script src="index.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="header-left-side">
+            <div class="header-catalog">
+                <img src="images/catalog.svg" class="header-catalog-button-svg" />
             </div>
-            <div class="header-search">
-                <div class="header-search-field">
-                    <p class="header-search-placeholder">Я ищу...</p>
-                    <img src="images/search.svg" class="header-search-button-svg" />
-                </div>
+            <div class="header-logo">
+                <p class="header-logo-text">ТОВАРЫ <br />И ТОЧКА</p>
             </div>
-            <div class="header-right-side">
-                <div class="header-profile-container">
-                    <img src="images/profile.svg" class="header-profile-svg" />
-                    <p class="header-profile-text">Профиль</p>
-                </div>
-                <div class="header-bascet-container">
-                    <div class="header-bascet-count-container">
-                        <div class="header-bascet-count">
-                            <p class="header-bascet-count-number">3</p>
-                        </div>
-                        <img src="images/bascet.svg" class="header-bascet-svg" />
+        </div>
+        <div class="header-search">
+            <div class="header-search-field">
+                <p class="header-search-placeholder">Я ищу...</p>
+                <img src="images/search.svg" class="header-search-button-svg" />
+            </div>
+        </div>
+        <div class="header-right-side">
+            <div class="header-profile-container">
+                <img src="images/profile.svg" class="header-profile-svg" />
+                <p class="header-profile-text">Профиль</p>
+            </div>
+            <div class="header-bascet-container">
+                <div class="header-bascet-count-container">
+                    <div class="header-bascet-count">
+                        <p class="header-bascet-count-number">3</p>
                     </div>
-                    <h1 class="header-bascet-text">Корзина</h1>
+                    <img src="images/bascet.svg" class="header-bascet-svg" />
                 </div>
+                <h1 class="header-bascet-text">Корзина</h1>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main>
-            <div class="main-left-side">
-                <p class="main-left-text">Корзина</p>
-                <!-- Товары в наличии -->
-                <div class="main-in-stock">
-                    <div class="main-in-stock-header">
-                        <div class="main-in-stock-select-all-checkbox check-box-default-container">
-                            <img src="images/check-box.svg" class="main-in-stock-select-all-check-box-svg check-box-default check-box" />
-                            <img src="images/check-mark.svg" class="main-in-stock-select-all-check-mark-svg check-box-default-mark check-mark" />
-                        </div>
-                        <p class="main-in-stock-select-all-text">Выбрать все</p>
+    <main>
+        <div class="main-left-side">
+            <p class="main-left-text">Корзина</p>
+            <!-- Товары в наличии -->
+            <div class="main-in-stock">
+                <div class="main-in-stock-header">
+                    <button class="main-in-stock-select-all-checkbox check-box-default-container" id="show-all-in-stock-button">
+                        <img src="images/check-box.svg"
+                            class="main-in-stock-select-all-check-box-svg check-box-default check-box" />
+                        <img src="images/check-mark.svg"
+                            class="main-in-stock-select-all-check-mark-svg check-box-default-mark check-mark" />
+                    </button>
+                    <p class="main-in-stock-select-all-text">Выбрать все</p>
+                    <button id="bascet-in-stock-arrow-btn">
                         <img src="images/arrow.svg" class="main-in-stock-select-all-arrow" />
+                    </button>
+                </div>
+                <!-- Товар 1 -->
+                <div class="main-in-stock-products" id="main-in-stock-products">
+                    <div class="main-in-stock-product-container" id="product-1-in-stock-container">
+                        <div class="main-in-stock-product-card">
+                            <div class="main-in-stock-product-image-container">
+                                <button class="main-in-stock-product-image-checkbox check-box-default-container"
+                                    id="product-1-in-stock-check-box-container">
+                                    <img src="images/check-box.svg"
+                                        class="main-in-stock-product-image-check-box-svg check-box-default check-box" />
+                                    <img src="images/check-mark.svg"
+                                        class="main-in-stock-product-image-check-mark-svg check-box-default-mark check-mark" />
+                                </button>
+                                <img src="images/T-short.png" class="main-in-stock-product-image-png" />
+                            </div>
+                            <div class="main-in-stock-product-describe-container">
+                                <p class="main-in-stock-product-name">Футболка UZcotton мужская</p>
+                                <div class="main-in-stock-product-parametrs">
+                                    <p class="main-in-stock-product-parametr-text">Цвет: белый</p>
+                                    <p class="main-in-stock-product-parametr-text">Размер: 56</p>
+                                </div>
+                                <div class="main-in-stock-product-distributor-container">
+                                    <p class="main-in-stock-product-storage font-caption">Коледино WB</p>
+                                    <div class="main-in-stock-product-seller-container">
+                                        <p class="main-in-stock-product-seller font-caption">OOO Вайлдберриз</p>
+                                        <img src="images/info-circle.svg" class="main-in-stock-product-info-circle" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-in-stock-product-price-card">
+                            <div class="main-in-stock-product-count-container">
+                                <div class="main-in-stock-product-counter">
+                                    <button class="main-in-stock-product-counter-plus"
+                                        id="product-1-decrementer">−</button>
+                                    <input class="main-in-stock-product-counter-count" id="product-1-counter"
+                                        type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                                    <button class="main-in-stock-product-counter-minus"
+                                        id="product-1-incrementer">+</button>
+                                </div>
+                                <p class="main-in-stock-product-balance">Осталось 2 шт.</p>
+                                <div class="main-in-stock-product-buttons-container">
+                                    <button class="like-delete-btn-container" id="product-1-like-button-container">
+                                        <svg width="20" class="main-in-stock-product-like" id="product-1-like-button"
+                                            height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M3.03399 4.05857C2.26592 4.75224 1.76687 5.83284 1.99496 7.42928C2.22335 9.02783 3.26497 10.6852 4.80439 12.3478C6.25868 13.9184 8.10965 15.4437 9.99999 16.874C11.8903 15.4437 13.7413 13.9184 15.1956 12.3478C16.7351 10.6852 17.7767 9.02783 18.005 7.4293C18.2331 5.83285 17.734 4.75224 16.9659 4.05856C16.1767 3.34572 15.055 3 14 3C12.132 3 11.0924 4.08479 10.5177 4.68443C10.4581 4.7466 10.4035 4.80356 10.3535 4.85355C10.1583 5.04882 9.84169 5.04882 9.64643 4.85355C9.59644 4.80356 9.54185 4.7466 9.48227 4.68443C8.9076 4.08479 7.868 3 5.99999 3C4.94498 3 3.82328 3.34573 3.03399 4.05857ZM2.36374 3.31643C3.37372 2.40427 4.75205 2 5.99999 2C8.07126 2 9.34542 3.11257 9.99999 3.77862C10.6545 3.11257 11.9287 2 14 2C15.2479 2 16.6262 2.40428 17.6362 3.31644C18.6674 4.24776 19.2669 5.66715 18.995 7.5707C18.7233 9.47217 17.515 11.3148 15.9294 13.0272C14.3355 14.7486 12.3064 16.3952 10.3 17.9C10.1222 18.0333 9.87776 18.0333 9.69999 17.9C7.69356 16.3952 5.66446 14.7485 4.07063 13.0272C2.48506 11.3148 1.27668 9.47217 1.00501 7.57072C0.733043 5.66716 1.33253 4.24776 2.36374 3.31643Z"
+                                                fill="inherit" />
+                                        </svg>
+                                    </button>
+                                    <button class="like-delete-btn-container" id="product-1-delete-button-container">
+                                        <svg width="20" class="main-in-stock-product-delete"
+                                            id="product-1-delete-button" height="20" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z"
+                                                fill="inherit" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z"
+                                                fill="inherit" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z"
+                                                fill="inherit" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="main-in-stock-product-price-container">
+                                <div class="main-in-stock-product-final-price">
+                                    <p class="main-in-stock-product-final-price-count">
+                                        <span id="product-1-final-sum" class="h3">522</span><span class="h4"> сом</span>
+                                    </p>
+                                </div>
+                                <p class="main-in-stock-product-basic-price font-caption">
+                                    <span id="product-1-basic-sum">1051</span>
+                                    <span> сом</span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Товар 2 -->
+                    <div class="main-in-stock-product-container" id="product-2-in-stock-container">
+                        <div class="main-in-stock-product-card">
+                            <div class="main-in-stock-product-image-container">
+                                <button class="main-in-stock-product-image-checkbox check-box-default-container"
+                                    id="product-2-in-stock-check-box-container">
+                                    <img src="images/check-box.svg"
+                                        class="main-in-stock-product-image-check-box-svg check-box-default check-box" />
+                                    <img src="images/check-mark.svg"
+                                        class="main-in-stock-product-image-check-mark-svg check-box-default-mark check-mark" />
+                                </button>
+                                <img src="images/phone-cargo.png" class="main-in-stock-product-image-png" />
+                            </div>
+                            <div class="main-in-stock-product-describe-container">
+                                <p class="main-in-stock-product-name">
+                                    Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple
+                                    iPhone XR, MobiSafe
+                                </p>
+                                <div class="main-in-stock-product-parametrs">
+                                    <p class="main-in-stock-product-parametr-text">Цвет: прозрачный</p>
+                                </div>
+                                <div class="main-in-stock-product-distributor-container">
+                                    <p class="main-in-stock-product-storage font-caption">Коледино WB</p>
+                                    <div class="main-in-stock-product-seller-container">
+                                        <p class="main-in-stock-product-seller font-caption">OOO Мегапрофстиль</p>
+                                        <img src="images/info-circle.svg" class="main-in-stock-product-info-circle" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-in-stock-product-price-card">
+                            <div class="main-in-stock-product-count-container">
+                                <div class="main-in-stock-product-counter">
+                                    <button class="main-in-stock-product-counter-plus"
+                                        id="product-2-decrementer">−</button>
+                                    <input class="main-in-stock-product-counter-count" id="product-2-counter"
+                                        type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                                    <button class="main-in-stock-product-counter-minus"
+                                        id="product-2-incrementer">+</button>
+                                </div>
+                                <div class="main-in-stock-product-buttons-container">
+                                    <button class="like-delete-btn-container" id="product-2-like-button-container">
+                                        <svg width="20" class="main-in-stock-product-like" id="product-2-like-button"
+                                            height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M3.03399 4.05857C2.26592 4.75224 1.76687 5.83284 1.99496 7.42928C2.22335 9.02783 3.26497 10.6852 4.80439 12.3478C6.25868 13.9184 8.10965 15.4437 9.99999 16.874C11.8903 15.4437 13.7413 13.9184 15.1956 12.3478C16.7351 10.6852 17.7767 9.02783 18.005 7.4293C18.2331 5.83285 17.734 4.75224 16.9659 4.05856C16.1767 3.34572 15.055 3 14 3C12.132 3 11.0924 4.08479 10.5177 4.68443C10.4581 4.7466 10.4035 4.80356 10.3535 4.85355C10.1583 5.04882 9.84169 5.04882 9.64643 4.85355C9.59644 4.80356 9.54185 4.7466 9.48227 4.68443C8.9076 4.08479 7.868 3 5.99999 3C4.94498 3 3.82328 3.34573 3.03399 4.05857ZM2.36374 3.31643C3.37372 2.40427 4.75205 2 5.99999 2C8.07126 2 9.34542 3.11257 9.99999 3.77862C10.6545 3.11257 11.9287 2 14 2C15.2479 2 16.6262 2.40428 17.6362 3.31644C18.6674 4.24776 19.2669 5.66715 18.995 7.5707C18.7233 9.47217 17.515 11.3148 15.9294 13.0272C14.3355 14.7486 12.3064 16.3952 10.3 17.9C10.1222 18.0333 9.87776 18.0333 9.69999 17.9C7.69356 16.3952 5.66446 14.7485 4.07063 13.0272C2.48506 11.3148 1.27668 9.47217 1.00501 7.57072C0.733043 5.66716 1.33253 4.24776 2.36374 3.31643Z"
+                                                fill="inherit" />
+                                        </svg>
+                                    </button>
+                                    <button class="like-delete-btn-container" id="product-2-delete-button-container">
+                                        <svg width="20" class="main-in-stock-product-delete"
+                                            id="product-2-delete-button" height="20" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z"
+                                                fill="inherit" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z"
+                                                fill="inherit" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z"
+                                                fill="inherit" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="main-in-stock-product-price-container">
+                                <div class="main-in-stock-product-final-price">
+                                    <p class="main-in-stock-product-final-price-count">
+                                        <span id="product-2-final-sum" class="h4">2 100 047</span><span class="h4">
+                                            сом</span>
+                                    </p>
+                                </div>
+                                <p class="main-in-stock-product-basic-price font-caption">
+                                    <span id="product-2-basic-sum">2 300 047</span>
+                                    <span> сом</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Товар 3 -->
+                    <div class="main-in-stock-product-container" id="product-3-in-stock-container">
+                        <div class="main-in-stock-product-card">
+                            <div class="main-in-stock-product-image-container">
+                                <button class="main-in-stock-product-image-checkbox check-box-default-container"
+                                    id="product-3-in-stock-check-box-container">
+                                    <img src="images/check-box.svg"
+                                        class="main-in-stock-product-image-check-box-svg check-box-default check-box" />
+                                    <img src="images/check-mark.svg"
+                                        class="main-in-stock-product-image-check-mark-svg check-box-default-mark check-mark" />
+                                </button>
+                                <img src="images/pencilse.png" class="main-in-stock-product-image-png" />
+                            </div>
+                            <div class="main-in-stock-product-describe-container">
+                                <p class="main-in-stock-product-name">
+                                    Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные,
+                                    Faber-Castell
+                                </p>
+                                <div class="main-in-stock-product-distributor-container">
+                                    <p class="main-in-stock-product-storage font-caption">Коледино WB</p>
+                                    <div class="main-in-stock-product-seller-container">
+                                        <p class="main-in-stock-product-seller font-caption">OOO Вайлдберриз</p>
+                                        <img src="images/info-circle.svg" class="main-in-stock-product-info-circle" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-in-stock-product-price-card">
+                            <div class="main-in-stock-product-count-container">
+                                <div class="main-in-stock-product-counter">
+                                    <button class="main-in-stock-product-counter-plus"
+                                        id="product-3-decrementer">−</button>
+                                    <input class="main-in-stock-product-counter-count" id="product-3-counter"
+                                        type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                                    <button class="main-in-stock-product-counter-minus"
+                                        id="product-3-incrementer">+</button>
+                                </div>
+                                <p class="main-in-stock-product-balance">Осталось 2 шт.</p>
+                                <div class="main-in-stock-product-buttons-container">
+                                    <button class="like-delete-btn-container" id="product-3-like-button-container">
+                                        <svg width="20" class="main-in-stock-product-like" id="product-3-like-button"
+                                            height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M3.03399 4.05857C2.26592 4.75224 1.76687 5.83284 1.99496 7.42928C2.22335 9.02783 3.26497 10.6852 4.80439 12.3478C6.25868 13.9184 8.10965 15.4437 9.99999 16.874C11.8903 15.4437 13.7413 13.9184 15.1956 12.3478C16.7351 10.6852 17.7767 9.02783 18.005 7.4293C18.2331 5.83285 17.734 4.75224 16.9659 4.05856C16.1767 3.34572 15.055 3 14 3C12.132 3 11.0924 4.08479 10.5177 4.68443C10.4581 4.7466 10.4035 4.80356 10.3535 4.85355C10.1583 5.04882 9.84169 5.04882 9.64643 4.85355C9.59644 4.80356 9.54185 4.7466 9.48227 4.68443C8.9076 4.08479 7.868 3 5.99999 3C4.94498 3 3.82328 3.34573 3.03399 4.05857ZM2.36374 3.31643C3.37372 2.40427 4.75205 2 5.99999 2C8.07126 2 9.34542 3.11257 9.99999 3.77862C10.6545 3.11257 11.9287 2 14 2C15.2479 2 16.6262 2.40428 17.6362 3.31644C18.6674 4.24776 19.2669 5.66715 18.995 7.5707C18.7233 9.47217 17.515 11.3148 15.9294 13.0272C14.3355 14.7486 12.3064 16.3952 10.3 17.9C10.1222 18.0333 9.87776 18.0333 9.69999 17.9C7.69356 16.3952 5.66446 14.7485 4.07063 13.0272C2.48506 11.3148 1.27668 9.47217 1.00501 7.57072C0.733043 5.66716 1.33253 4.24776 2.36374 3.31643Z"
+                                                fill="inherit" />
+                                        </svg>
+                                    </button>
+                                    <button class="like-delete-btn-container" id="product-3-delete-button-container">
+                                        <svg width="20" class="main-in-stock-product-delete"
+                                            id="product-3-delete-button" height="20" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M2.5 5C2.5 4.72386 2.72386 4.5 3 4.5H17C17.2761 4.5 17.5 4.72386 17.5 5C17.5 5.27614 17.2761 5.5 17 5.5H3C2.72386 5.5 2.5 5.27614 2.5 5Z"
+                                                fill="inherit" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M3.4584 4.5H16.5059L15.6411 15.6926C15.5405 16.9947 14.4546 18 13.1486 18H6.84639C5.54299 18 4.45829 16.9986 4.35435 15.6994L3.4584 4.5ZM4.5416 5.5L5.35117 15.6196C5.41353 16.3992 6.06435 17 6.84639 17H13.1486C13.9322 17 14.5837 16.3968 14.6441 15.6155L15.4256 5.5H4.5416Z"
+                                                fill="inherit" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M13 5.5H7V3.46875C7 2.65758 7.65758 2 8.46875 2H11.5312C12.3424 2 13 2.65758 13 3.46875V5.5ZM8.46875 3C8.20987 3 8 3.20987 8 3.46875V4.5H12V3.46875C12 3.20987 11.7901 3 11.5312 3H8.46875Z"
+                                                fill="inherit" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="main-in-stock-product-price-container">
+                                <div class="main-in-stock-product-final-price">
+                                    <p class="main-in-stock-product-final-price-count">
+                                        <span id="product-3-final-sum" class="h3">494</span><span class="h4"> сом</span>
+                                    </p>
+                                </div>
+                                <p class="main-in-stock-product-basic-price font-caption">
+                                    <span id="product-3-basic-sum">950</span>
+                                    <span> сом</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Товары НЕ в наличии -->
+            <div class="main-out-stock">
+                <div class="main-out-stock-header">
+                    <p class="main-out-stock-select-all-text">Отсутствуют · 3 товара</p>
+                    <img src="images/arrow.svg" class="main-out-stock-select-all-arrow" />
+                </div>
+                <div class="main-out-stock-products">
                     <!-- Товар 1 -->
-                    <div class="main-in-stock-products">
-                        <div class="main-in-stock-product-container" id="product-1-in-stock-container">
-                            <div class="main-in-stock-product-card">
-                                <div class="main-in-stock-product-image-container">
-                                    <div
-                                        class="main-in-stock-product-image-checkbox check-box-default-container"
-                                        id="product-1-in-stock-check-box-container"
-                                    >
-                                        <img
-                                            src="images/check-box.svg"
-                                            class="main-in-stock-product-image-check-box-svg check-box-default check-box"
-                                        />
-                                        <img
-                                            src="images/check-mark.svg"
-                                            class="main-in-stock-product-image-check-mark-svg check-box-default-mark check-mark"
-                                        />
-                                    </div>
-                                    <img src="images/T-short.png" class="main-in-stock-product-image-png" />
-                                </div>
-                                <div class="main-in-stock-product-describe-container">
-                                    <p class="main-in-stock-product-name">Футболка UZcotton мужская</p>
-                                    <div class="main-in-stock-product-parametrs">
-                                        <p class="main-in-stock-product-parametr-text">Цвет: белый</p>
-                                        <p class="main-in-stock-product-parametr-text">Размер: 56</p>
-                                    </div>
-                                    <div class="main-in-stock-product-distributor-container">
-                                        <p class="main-in-stock-product-storage font-caption">Коледино WB</p>
-                                        <div class="main-in-stock-product-seller-container">
-                                            <p class="main-in-stock-product-seller font-caption">OOO Вайлдберриз</p>
-                                            <img src="images/info-circle.svg" class="main-in-stock-product-info-circle" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-in-stock-product-price-card">
-                                <div class="main-in-stock-product-count-container">
-                                    <div class="main-in-stock-product-counter">
-                                        <button class="main-in-stock-product-counter-plus" id="product-1-decrementer">−</button>
-                                        <input
-                                            class="main-in-stock-product-counter-count"
-                                            id="product-1-counter"
-                                            type="text"
-                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                                        />
-                                        <button class="main-in-stock-product-counter-minus" id="product-1-incrementer">+</button>
-                                    </div>
-                                    <p class="main-in-stock-product-balance">Осталось 2 шт.</p>
-                                    <div class="main-in-stock-product-buttons-container">
-                                        <div id="product-1-like-button-container">
-                                            <img src="images/like.svg" class="main-in-stock-product-like" />
-                                        </div>
-                                        <div id="product-1-delete-button-container">
-                                            <img src="images/delete.svg" class="main-in-stock-product-delete" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="main-in-stock-product-price-container">
-                                    <div class="main-in-stock-product-final-price">
-                                        <p class="main-in-stock-product-final-price-count">
-                                            <span id="product-1-final-sum" class="h3">522</span><span class="h4"> сом</span>
-                                        </p>
-                                    </div>
-                                    <p class="main-in-stock-product-basic-price font-caption">
-                                        <span id="product-1-basic-sum">1051</span>
-                                        <span> сом</span>
-                                    </p>
+                    <div class="main-out-stock-product-container">
+                        <div class="main-out-stock-product-card">
+                            <img src="images/T-short-out.png" class="main-out-stock-product-image-png" />
+                            <div class="main-out-stock-product-describe-container">
+                                <p class="main-out-stock-product-name">Футболка UZcotton мужская</p>
+                                <div class="main-out-stock-product-parametrs">
+                                    <p class="main-out-stock-product-parametr-text font-caption">Цвет: белый</p>
+                                    <p class="main-out-stock-product-parametr-text font-caption">Размер: 56</p>
                                 </div>
                             </div>
                         </div>
-                        <!-- Товар 2 -->
-                        <div class="main-in-stock-product-container" id="product-2-in-stock-container">
-                            <div class="main-in-stock-product-card">
-                                <div class="main-in-stock-product-image-container">
-                                    <div
-                                        class="main-in-stock-product-image-checkbox check-box-default-container"
-                                        id="product-2-in-stock-check-box-container"
-                                    >
-                                        <img
-                                            src="images/check-box.svg"
-                                            class="main-in-stock-product-image-check-box-svg check-box-default check-box"
-                                        />
-                                        <img
-                                            src="images/check-mark.svg"
-                                            class="main-in-stock-product-image-check-mark-svg check-box-default-mark check-mark"
-                                        />
-                                    </div>
-                                    <img src="images/phone-cargo.png" class="main-in-stock-product-image-png" />
-                                </div>
-                                <div class="main-in-stock-product-describe-container">
-                                    <p class="main-in-stock-product-name">
-                                        Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe
-                                    </p>
-                                    <div class="main-in-stock-product-parametrs">
-                                        <p class="main-in-stock-product-parametr-text">Цвет: прозрачный</p>
-                                    </div>
-                                    <div class="main-in-stock-product-distributor-container">
-                                        <p class="main-in-stock-product-storage font-caption">Коледино WB</p>
-                                        <div class="main-in-stock-product-seller-container">
-                                            <p class="main-in-stock-product-seller font-caption">OOO Мегапрофстиль</p>
-                                            <img src="images/info-circle.svg" class="main-in-stock-product-info-circle" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-in-stock-product-price-card">
-                                <div class="main-in-stock-product-count-container">
-                                    <div class="main-in-stock-product-counter">
-                                        <button class="main-in-stock-product-counter-plus" id="product-2-decrementer">−</button>
-                                        <input
-                                            class="main-in-stock-product-counter-count"
-                                            id="product-2-counter"
-                                            type="text"
-                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                                        />
-                                        <button class="main-in-stock-product-counter-minus" id="product-2-incrementer">+</button>
-                                    </div>
-                                    <div class="main-in-stock-product-buttons-container">
-                                        <div id="product-2-like-button-container">
-                                            <img src="images/like.svg" class="main-in-stock-product-like" />
-                                        </div>
-                                        <div id="product-2-delete-button-container">
-                                            <img src="images/delete.svg" class="main-in-stock-product-delete" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="main-in-stock-product-price-container">
-                                    <div class="main-in-stock-product-final-price">
-                                        <p class="main-in-stock-product-final-price-count">
-                                            <span id="product-2-final-sum" class="h4">2 100 047</span><span class="h4"> сом</span>
-                                        </p>
-                                    </div>
-                                    <p class="main-in-stock-product-basic-price font-caption">
-                                        <span id="product-2-basic-sum">2 300 047</span>
-                                        <span> сом</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Товар 3 -->
-                        <div class="main-in-stock-product-container" id="product-3-in-stock-container">
-                            <div class="main-in-stock-product-card">
-                                <div class="main-in-stock-product-image-container">
-                                    <div
-                                        class="main-in-stock-product-image-checkbox check-box-default-container"
-                                        id="product-3-in-stock-check-box-container"
-                                    >
-                                        <img
-                                            src="images/check-box.svg"
-                                            class="main-in-stock-product-image-check-box-svg check-box-default check-box"
-                                        />
-                                        <img
-                                            src="images/check-mark.svg"
-                                            class="main-in-stock-product-image-check-mark-svg check-box-default-mark check-mark"
-                                        />
-                                    </div>
-                                    <img src="images/pencilse.png" class="main-in-stock-product-image-png" />
-                                </div>
-                                <div class="main-in-stock-product-describe-container">
-                                    <p class="main-in-stock-product-name">
-                                        Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell
-                                    </p>
-                                    <div class="main-in-stock-product-distributor-container">
-                                        <p class="main-in-stock-product-storage font-caption">Коледино WB</p>
-                                        <div class="main-in-stock-product-seller-container">
-                                            <p class="main-in-stock-product-seller font-caption">OOO Вайлдберриз</p>
-                                            <img src="images/info-circle.svg" class="main-in-stock-product-info-circle" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-in-stock-product-price-card">
-                                <div class="main-in-stock-product-count-container">
-                                    <div class="main-in-stock-product-counter">
-                                        <button class="main-in-stock-product-counter-plus" id="product-3-decrementer">−</button>
-                                        <input
-                                            class="main-in-stock-product-counter-count"
-                                            id="product-3-counter"
-                                            type="text"
-                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                                        />
-                                        <button class="main-in-stock-product-counter-minus" id="product-3-incrementer">+</button>
-                                    </div>
-                                    <p class="main-in-stock-product-balance">Осталось 2 шт.</p>
-                                    <div class="main-in-stock-product-buttons-container">
-                                        <div id="product-3-like-button-container">
-                                            <img src="images/like.svg" class="main-in-stock-product-like" />
-                                        </div>
-                                        <div id="product-3-delete-button-container">
-                                            <img src="images/delete.svg" class="main-in-stock-product-delete" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="main-in-stock-product-price-container">
-                                    <div class="main-in-stock-product-final-price">
-                                        <p class="main-in-stock-product-final-price-count">
-                                            <span id="product-3-final-sum" class="h3">494</span><span class="h4"> сом</span>
-                                        </p>
-                                    </div>
-                                    <p class="main-in-stock-product-basic-price font-caption">
-                                        <span id="product-3-basic-sum">950</span>
-                                        <span> сом</span>
-                                    </p>
+                        <div class="main-out-stock-product-buttons-container-l1">
+                            <div class="main-out-stock-product-buttons-container-l2">
+                                <div class="main-out-stock-product-buttons-container-l3">
+                                    <img src="images/like.svg" class="main-out-stock-product-like" />
+                                    <img src="images/delete.svg" class="main-out-stock-product-delete" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Товары НЕ в наличии -->
-                <div class="main-out-stock">
-                    <div class="main-out-stock-header">
-                        <p class="main-out-stock-select-all-text">Отсутствуют · 3 товара</p>
-                        <img src="images/arrow.svg" class="main-out-stock-select-all-arrow" />
-                    </div>
-                    <div class="main-out-stock-products">
-                        <!-- Товар 1 -->
-                        <div class="main-out-stock-product-container">
-                            <div class="main-out-stock-product-card">
-                                <img src="images/T-short-out.png" class="main-out-stock-product-image-png" />
-                                <div class="main-out-stock-product-describe-container">
-                                    <p class="main-out-stock-product-name">Футболка UZcotton мужская</p>
-                                    <div class="main-out-stock-product-parametrs">
-                                        <p class="main-out-stock-product-parametr-text font-caption">Цвет: белый</p>
-                                        <p class="main-out-stock-product-parametr-text font-caption">Размер: 56</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-out-stock-product-buttons-container-l1">
-                                <div class="main-out-stock-product-buttons-container-l2">
-                                    <div class="main-out-stock-product-buttons-container-l3">
-                                        <img src="images/like.svg" class="main-out-stock-product-like" />
-                                        <img src="images/delete.svg" class="main-out-stock-product-delete" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Товар 2 -->
-                        <div class="main-out-stock-product-container">
-                            <div class="main-out-stock-product-card">
-                                <img src="images/phone-cargo-out.png" class="main-out-stock-product-image-png" />
-                                <div class="main-out-stock-product-describe-container">
-                                    <p class="main-out-stock-product-name">
-                                        Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe
-                                    </p>
-                                    <div class="main-out-stock-product-parametrs">
-                                        <p class="main-out-stock-product-parametr-text font-caption">Цвет: прозрачный</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-out-stock-product-buttons-container-l1">
-                                <div class="main-out-stock-product-buttons-container-l2">
-                                    <div class="main-out-stock-product-buttons-container-l3">
-                                        <img src="images/like.svg" class="main-out-stock-product-like" />
-                                        <img src="images/delete.svg" class="main-out-stock-product-delete" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Товар 3 -->
-                        <div class="main-out-stock-product-container">
-                            <div class="main-out-stock-product-card">
-                                <img src="images/pencilse-out.png" class="main-out-stock-product-image-png" />
-                                <div class="main-out-stock-product-describe-container">
-                                    <p class="main-out-stock-product-name">
-                                        Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="main-out-stock-product-buttons-container-l1">
-                                <div class="main-out-stock-product-buttons-container-l2">
-                                    <div class="main-out-stock-product-buttons-container-l3">
-                                        <img src="images/like.svg" class="main-out-stock-product-like" />
-                                        <img src="images/delete.svg" class="main-out-stock-product-delete" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Способ доставки -->
-                <div class="main-order-control-container">
-                    <div class="main-order">
-                        <div class="main-order-delivery">
-                            <div class="main-order-delivery-container">
-                                <div class="main-order-delivery-header">
-                                    <h2 class="main-order-delivery-header-title">Способ доставки</h2>
-                                    <h4 class="main-order-delivery-header-change">Изменить</h4>
-                                </div>
-                                <div class="main-order-delivery-content">
-                                    <!-- ЗДЕСЬ ДЕЛАТЬ ЧЕРЕЗ GRID -->
-                                    <p class="main-order-delivery-point-title fond-bold main-order-delivery-left-col">Пункт выдачи</p>
-                                    <div class="main-order-delivery-point-content">
-                                        <p class="main-order-delivery-point-address">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
-                                        <div class="main-order-delivery-point-details">
-                                            <div class="main-order-delivery-point-raiting-container">
-                                                <img src="images/star.svg" class="main-order-delivery-point-star-svg" />
-                                                <p class="main-order-delivery-point-raiting font-caption">4.99</p>
-                                            </div>
-                                            <p class="font-caption">Ежедневно с 10 до 21</p>
-                                        </div>
-                                    </div>
-                                    <p class="main-order-delivery-price-title fond-bold main-order-delivery-left-col">Стоимость доставки</p>
-                                    <p class="main-order-delivery-price-content">Бесплатно</p>
-                                    <p class="main-order-delivery-date-title fond-bold main-order-delivery-left-col">5—6 февраля</p>
-                                    <div class="main-order-delivery-date-content">
-                                        <div class="main-order-delivery-product-container">
-                                            <img src="images/T-short.png" class="main-order-delivery-product-img" />
-                                        </div>
-                                        <div class="main-order-delivery-product-container">
-                                            <img src="images/phone-cargo.png" class="main-order-delivery-product-img" />
-                                            <div class="main-order-delivery-product-count-invis-container">
-                                                <div class="main-order-delivery-product-count-container">
-                                                    <p class="main-order-delivery-product-count">184</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="main-order-delivery-product-container">
-                                            <img src="images/pencilse.png" class="main-order-delivery-product-img" />
-                                            <div class="main-order-delivery-product-count-invis-container">
-                                                <div class="main-order-delivery-product-count-container">
-                                                    <p class="main-order-delivery-product-count">2</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="main-order-delivery-date-title fond-bold main-order-delivery-left-col">7—8 февраля</p>
-                                    <div class="main-order-delivery-date-content">
-                                        <div class="main-order-delivery-product-container">
-                                            <img src="images/phone-cargo.png" class="main-order-delivery-product-img" />
-                                            <div class="main-order-delivery-product-count-invis-container">
-                                                <div class="main-order-delivery-product-count-container">
-                                                    <p class="main-order-delivery-product-count">16</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-order-delivery-refund">
-                                <img src="images/refund-check.svg" class="main-order-delivery-refund-check refund-check" />
-                                <p class="main-order-delivery-refund-text refund-text font-caption">
-                                    Обратная доставка товаров на склад при отказе —
-                                    <span class="refund-text-free" id="left-notification-text">бесплатно</span>
+                    <!-- Товар 2 -->
+                    <div class="main-out-stock-product-container">
+                        <div class="main-out-stock-product-card">
+                            <img src="images/phone-cargo-out.png" class="main-out-stock-product-image-png" />
+                            <div class="main-out-stock-product-describe-container">
+                                <p class="main-out-stock-product-name">
+                                    Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple
+                                    iPhone XR, MobiSafe
                                 </p>
-
-                                <div class="free-delivery-notification-container" id="left-side-notification-container">
-                                    <p class="free-delivery-notification" id="left-side-notification">
-                                        Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно
-                                    </p>
+                                <div class="main-out-stock-product-parametrs">
+                                    <p class="main-out-stock-product-parametr-text font-caption">Цвет: прозрачный</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-out-stock-product-buttons-container-l1">
+                            <div class="main-out-stock-product-buttons-container-l2">
+                                <div class="main-out-stock-product-buttons-container-l3">
+                                    <img src="images/like.svg" class="main-out-stock-product-like" />
+                                    <img src="images/delete.svg" class="main-out-stock-product-delete" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Способ оплаты -->
-                    <div class="main-order-payment">
-                        <div class="main-order-payment-container">
-                            <div class="main-order-payment-header">
-                                <h2 class="main-order-payment-header-text">Способ оплаты</h2>
-                                <h4 class="main-order-payment-header-change">Изменить</h4>
-                            </div>
-                            <div class="main-order-payment-content">
-                                <img src="images/mir-card.svg" class="main-order-payment-mir-card-png mir-card-png" />
-                                <div class="main-order-payment-card">
-                                    <p class="main-order-payment-card-number">1234 56•• •••• 1234</p>
-                                    <p class="main-order-payment-card-date">01/30</p>
-                                </div>
+
+                    <!-- Товар 3 -->
+                    <div class="main-out-stock-product-container">
+                        <div class="main-out-stock-product-card">
+                            <img src="images/pencilse-out.png" class="main-out-stock-product-image-png" />
+                            <div class="main-out-stock-product-describe-container">
+                                <p class="main-out-stock-product-name">
+                                    Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные,
+                                    Faber-Castell
+                                </p>
                             </div>
                         </div>
-                        <p class="main-order-payment-footer-text font-caption">Спишем оплату с карты при получении</p>
-                    </div>
-                    <!-- Получатель -->
-                    <div class="main-order-person">
-                        <h2 class="main-order-person-header">Получатель</h2>
-                        <div class="main-order-person-form">
-                            <div class="main-order-person-form-line">
-                                <div class="main-order-person-input-container main-order-person-input-container-first-name">
-                                    <p
-                                        class="main-order-person-input-upper-placeholder"
-                                        id="main-order-person-input-upper-placeholder-first-name"
-                                    ></p>
-                                    <input placeholder="Имя" class="main-order-person-input-first-name main-order-person-input" />
-                                    <p class="main-order-person-input-error" id="main-order-person-input-error-first-name"></p>
-                                </div>
-
-                                <div class="main-order-person-input-container main-order-person-input-container-last-name">
-                                    <p class="main-order-person-input-upper-placeholder" id="main-order-person-input-upper-placeholder-mail"></p>
-                                    <input placeholder="Фамилия" class="main-order-person-input-last-name main-order-person-input" />
-                                    <p class="main-order-person-input-error" id="main-order-person-input-error-last-name"></p>
-                                </div>
-                            </div>
-                            <div class="main-order-person-form-line">
-                                <div class="main-order-person-input-container main-order-person-input-container-mail">
-                                    <p class="main-order-person-input-upper-placeholder" id="main-order-person-input-upper-placeholder-mail"></p>
-                                    <input placeholder="Почта" class="main-order-person-input-mail main-order-person-input" />
-                                    <p class="main-order-person-input-error" id="main-order-person-input-error-mail"></p>
-                                </div>
-
-                                <div class="main-order-person-input-container main-order-person-input-container-phone">
-                                    <p class="main-order-person-input-upper-placeholder" id="main-order-person-input-upper-placeholder-phone"></p>
-                                    <input placeholder="Телефон" class="main-order-person-input-phone main-order-person-input" />
-                                    <p class="main-order-person-input-error" id="main-order-person-input-error-phone"></p>
-                                </div>
-
-                                <div class="main-order-person-input-container main-order-person-input-container-phone">
-                                    <p class="main-order-person-input-upper-placeholder" id="main-order-person-input-upper-placeholder-inn"></p>
-                                    <input placeholder="ИНН" class="main-order-person-input-inn main-order-person-input" />
-                                    <p class="main-order-person-input-descr">Для таможенного оформления</p>
+                        <div class="main-out-stock-product-buttons-container-l1">
+                            <div class="main-out-stock-product-buttons-container-l2">
+                                <div class="main-out-stock-product-buttons-container-l3">
+                                    <img src="images/like.svg" class="main-out-stock-product-like" />
+                                    <img src="images/delete.svg" class="main-out-stock-product-delete" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Правая сторона -->
-            <div class="main-right-side">
-                <div class="resume-container">
-                    <!-- Стоимости -->
-                    <div class="total-cost-container">
-                        <!-- Итого -->
-                        <div class="total-cost-final-price-container total-cost-line-container">
-                            <h2 class="total-cost-final-price-g-text">Итого</h2>
-                            <h2 class="total-cost-final-price-g-sum">
-                                <span class="total-cost-final-price-g-sum" id="final-sum-element">2 101 063</span>
-                                <span class="total-cost-final-price-g-value"> сом</span>
-                            </h2>
-                        </div>
-                        <div class="total-cost-final-price-rest-info">
-                            <!-- Базовая стоимость за N товаров -->
-                            <div class="total-cost-basic-price-container total-cost-line-container">
-                                <p class="total-cost-final-price-text">203 товара</p>
-                                <p class="total-cost-final-price-sum">
-                                    <span class="total-cost-final-price-sum" id="basic-sum-element">2 302 048</span>
-                                    <span class="total-cost-final-price-sum">сом</span>
-                                </p>
+            <!-- Способ доставки -->
+            <div class="main-order-control-container">
+                <div class="main-order">
+                    <div class="main-order-delivery">
+                        <div class="main-order-delivery-container">
+                            <div class="main-order-delivery-header">
+                                <h2 class="main-order-delivery-header-title">Способ доставки</h2>
+                                <h4 class="main-order-delivery-header-change">Изменить</h4>
                             </div>
-                            <!-- Скидка -->
-                            <div class="total-cost-sale-container total-cost-line-container">
-                                <p class="total-cost-final-price-text">Скидка</p>
-                                <p class="total-cost-final-price-sum">
-                                    <span class="total-cost-final-price-sum" id="discount-sum-element">−200 985</span>
-                                    <span class="total-cost-final-price-sum">сом</span>
-                                </p>
-                            </div>
-                            <!-- Доставка -->
-                            <div class="total-cost-delivery-container total-cost-line-container">
-                                <p class="total-cost-final-price-text">Доставка</p>
-                                <p class="total-cost-final-price-sum">Бесплатно</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Доставка в пункт выдачи -->
-                    <div class="total-delivery-container">
-                        <div class="total-delivery-point-contaier">
-                            <div class="total-delivery-point-header">
-                                <h4 class="total-delivery-point-header-text">Доставка в пункт выдачи</h4>
-                                <img src="images/edit-pen.svg" class="total-delivery-point-header-edit edit-button" />
-                            </div>
-                            <p class="total-delivery-point-address font-caption">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
-                            <p class="font-caption total-delivery-date">5–8 фев</p>
-                        </div>
-                        <div class="total-delivery-refund-container">
-                            <img src="images/refund-check.svg" class="total-delivery-refund-check refund-check" />
-                            <div class="total-delivery-refund-text-container refund-text-container">
-                                <p class="total-delivery-refund-text refund-text font-caption">
-                                    Обратная доставка товаров на склад при отказе —
-                                    <span class="refund-text-free" id="right-notification-text">бесплатно</span>
-                                </p>
-                                <div class="free-delivery-notification-container" id="right-side-notification-container">
-                                    <p class="free-delivery-notification" id="right-side-notification">
-                                        Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно
+                            <div class="main-order-delivery-content">
+                                <!-- ЗДЕСЬ ДЕЛАТЬ ЧЕРЕЗ GRID -->
+                                <p class="main-order-delivery-point-title fond-bold main-order-delivery-left-col">Пункт
+                                    выдачи</p>
+                                <div class="main-order-delivery-point-content">
+                                    <p class="main-order-delivery-point-address">Бишкек, улица Ахматбека Суюмбаева, 12/1
                                     </p>
+                                    <div class="main-order-delivery-point-details">
+                                        <div class="main-order-delivery-point-raiting-container">
+                                            <img src="images/star.svg" class="main-order-delivery-point-star-svg" />
+                                            <p class="main-order-delivery-point-raiting font-caption">4.99</p>
+                                        </div>
+                                        <p class="font-caption">Ежедневно с 10 до 21</p>
+                                    </div>
+                                </div>
+                                <p class="main-order-delivery-price-title fond-bold main-order-delivery-left-col">
+                                    Стоимость доставки</p>
+                                <p class="main-order-delivery-price-content">Бесплатно</p>
+                                <p class="main-order-delivery-date-title fond-bold main-order-delivery-left-col">5—6
+                                    февраля</p>
+                                <div class="main-order-delivery-date-content">
+                                    <div class="main-order-delivery-product-container">
+                                        <img src="images/T-short.png" class="main-order-delivery-product-img" />
+                                    </div>
+                                    <div class="main-order-delivery-product-container">
+                                        <img src="images/phone-cargo.png" class="main-order-delivery-product-img" />
+                                        <div class="main-order-delivery-product-count-invis-container">
+                                            <div class="main-order-delivery-product-count-container">
+                                                <p class="main-order-delivery-product-count">184</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="main-order-delivery-product-container">
+                                        <img src="images/pencilse.png" class="main-order-delivery-product-img" />
+                                        <div class="main-order-delivery-product-count-invis-container">
+                                            <div class="main-order-delivery-product-count-container">
+                                                <p class="main-order-delivery-product-count">2</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="main-order-delivery-date-title fond-bold main-order-delivery-left-col">7—8
+                                    февраля</p>
+                                <div class="main-order-delivery-date-content">
+                                    <div class="main-order-delivery-product-container">
+                                        <img src="images/phone-cargo.png" class="main-order-delivery-product-img" />
+                                        <div class="main-order-delivery-product-count-invis-container">
+                                            <div class="main-order-delivery-product-count-container">
+                                                <p class="main-order-delivery-product-count">16</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Оплата картой -->
-                    <div class="total-payment-container">
-                        <div class="total-payment-requisites">
-                            <div class="total-payment-header">
-                                <h4 class="total-payment-header-text">Оплата картой</h4>
-                                <img src="images/edit-pen.svg" class="total-payment-header-edit edit-button" />
+                        <div class="main-order-delivery-refund">
+                            <img src="images/refund-check.svg" class="main-order-delivery-refund-check refund-check" />
+                            <p class="main-order-delivery-refund-text refund-text font-caption">
+                                Обратная доставка товаров на склад при отказе —
+                                <span class="refund-text-free" id="left-notification-text">бесплатно</span>
+                            </p>
+
+                            <div class="free-delivery-notification-container" id="left-side-notification-container">
+                                <p class="free-delivery-notification" id="left-side-notification">
+                                    Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно
+                                </p>
                             </div>
-                            <div class="total-payment-content">
-                                <img src="images/mir-card.svg" class="total-payment-mir-card-png mir-card-png" />
-                                <p class="total-payment-card-number font-caption">1234 56•• •••• 1234</p>
-                            </div>
-                        </div>
-                        <div class="total-payment-immediatly-container">
-                            <div class="total-payment-immediatly-checkbox-container">
-                                <div class="total-payment-immediatly-checkbox check-box-default-container">
-                                    <img src="images/check-box.svg" class="total-payment-immediatly-check-box-svg check-box-default check-box" />
-                                    <img
-                                        src="images/check-mark.svg"
-                                        class="total-payment-immediatly-check-mark-svg check-box-default-mark check-mark"
-                                    />
-                                </div>
-                                <p class="total-payment-immediatly-text font-caption">Списать оплату сразу</p>
-                            </div>
-                            <p class="total-payment-immediatly-descr font-caption">Спишем оплату с карты при получении</p>
                         </div>
                     </div>
                 </div>
-                <!-- Подтверждение заказа и соглашения -->
-                <div class="confirm-order-container">
-                    <h4 class="confirm-order-button">Заказать</h4>
-                    <div class="confirm-conditions-container">
-                        <img src="images/check-mark-gray.svg" class="confirm-conditions-check-mark-svg check-mark" />
-                        <p class="confirm-conditions-paragraph font-caption">
-                            Соглашаюсь с
-                            <a class="condition-link" href="https://global.wildberries.ru/services/terms">правилами пользования торговой площадкой</a>
-                            и <a class="condition-link" href="https://global.wildberries.ru/services/item-return">возврата</a>
-                        </p>
+                <!-- Способ оплаты -->
+                <div class="main-order-payment">
+                    <div class="main-order-payment-container">
+                        <div class="main-order-payment-header">
+                            <h2 class="main-order-payment-header-text">Способ оплаты</h2>
+                            <h4 class="main-order-payment-header-change">Изменить</h4>
+                        </div>
+                        <div class="main-order-payment-content">
+                            <img src="images/mir-card.svg" class="main-order-payment-mir-card-png mir-card-png" />
+                            <div class="main-order-payment-card">
+                                <p class="main-order-payment-card-number">1234 56•• •••• 1234</p>
+                                <p class="main-order-payment-card-date">01/30</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="main-order-payment-footer-text font-caption">Спишем оплату с карты при получении</p>
+                </div>
+                <!-- Получатель -->
+                <div class="main-order-person">
+                    <h2 class="main-order-person-header">Получатель</h2>
+                    <div class="main-order-person-form">
+                        <div class="main-order-person-form-line">
+                            <div class="main-order-person-input-container main-order-person-input-container-first-name">
+                                <p class="main-order-person-input-upper-placeholder"
+                                    id="main-order-person-input-upper-placeholder-first-name"></p>
+                                <input placeholder="Имя"
+                                    class="main-order-person-input-first-name main-order-person-input" />
+                                <p class="main-order-person-input-error" id="main-order-person-input-error-first-name">
+                                </p>
+                            </div>
+
+                            <div class="main-order-person-input-container main-order-person-input-container-last-name">
+                                <p class="main-order-person-input-upper-placeholder"
+                                    id="main-order-person-input-upper-placeholder-mail"></p>
+                                <input placeholder="Фамилия"
+                                    class="main-order-person-input-last-name main-order-person-input" />
+                                <p class="main-order-person-input-error" id="main-order-person-input-error-last-name">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="main-order-person-form-line">
+                            <div class="main-order-person-input-container main-order-person-input-container-mail">
+                                <p class="main-order-person-input-upper-placeholder"
+                                    id="main-order-person-input-upper-placeholder-mail"></p>
+                                <input placeholder="Почта"
+                                    class="main-order-person-input-mail main-order-person-input" />
+                                <p class="main-order-person-input-error" id="main-order-person-input-error-mail"></p>
+                            </div>
+
+                            <div class="main-order-person-input-container main-order-person-input-container-phone">
+                                <p class="main-order-person-input-upper-placeholder"
+                                    id="main-order-person-input-upper-placeholder-phone"></p>
+                                <input placeholder="Телефон"
+                                    class="main-order-person-input-phone main-order-person-input" />
+                                <p class="main-order-person-input-error" id="main-order-person-input-error-phone"></p>
+                            </div>
+
+                            <div class="main-order-person-input-container main-order-person-input-container-phone">
+                                <p class="main-order-person-input-upper-placeholder"
+                                    id="main-order-person-input-upper-placeholder-inn"></p>
+                                <input placeholder="ИНН" class="main-order-person-input-inn main-order-person-input" />
+                                <p class="main-order-person-input-descr">Для таможенного оформления</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+        <!-- Правая сторона -->
+        <div class="main-right-side">
+            <div class="resume-container">
+                <!-- Стоимости -->
+                <div class="total-cost-container">
+                    <!-- Итого -->
+                    <div class="total-cost-final-price-container total-cost-line-container">
+                        <h2 class="total-cost-final-price-g-text">Итого</h2>
+                        <h2 class="total-cost-final-price-g-sum">
+                            <span class="total-cost-final-price-g-sum" id="final-sum-element">2 101 063</span>
+                            <span class="total-cost-final-price-g-value"> сом</span>
+                        </h2>
+                    </div>
+                    <div class="total-cost-final-price-rest-info">
+                        <!-- Базовая стоимость за N товаров -->
+                        <div class="total-cost-basic-price-container total-cost-line-container">
+                            <p class="total-cost-final-price-text">203 товара</p>
+                            <p class="total-cost-final-price-sum">
+                                <span class="total-cost-final-price-sum" id="basic-sum-element">2 302 048</span>
+                                <span class="total-cost-final-price-sum">сом</span>
+                            </p>
+                        </div>
+                        <!-- Скидка -->
+                        <div class="total-cost-sale-container total-cost-line-container">
+                            <p class="total-cost-final-price-text">Скидка</p>
+                            <p class="total-cost-final-price-sum">
+                                <span class="total-cost-final-price-sum" id="discount-sum-element">−200 985</span>
+                                <span class="total-cost-final-price-sum">сом</span>
+                            </p>
+                        </div>
+                        <!-- Доставка -->
+                        <div class="total-cost-delivery-container total-cost-line-container">
+                            <p class="total-cost-final-price-text">Доставка</p>
+                            <p class="total-cost-final-price-sum">Бесплатно</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Доставка в пункт выдачи -->
+                <div class="total-delivery-container">
+                    <div class="total-delivery-point-contaier">
+                        <div class="total-delivery-point-header">
+                            <h4 class="total-delivery-point-header-text">Доставка в пункт выдачи</h4>
+                            <img src="images/edit-pen.svg" class="total-delivery-point-header-edit edit-button" />
+                        </div>
+                        <p class="total-delivery-point-address font-caption">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+                        <p class="font-caption total-delivery-date">5–8 фев</p>
+                    </div>
+                    <div class="total-delivery-refund-container">
+                        <img src="images/refund-check.svg" class="total-delivery-refund-check refund-check" />
+                        <div class="total-delivery-refund-text-container refund-text-container">
+                            <p class="total-delivery-refund-text refund-text font-caption">
+                                Обратная доставка товаров на склад при отказе —
+                                <span class="refund-text-free" id="right-notification-text">бесплатно</span>
+                            </p>
+                            <div class="free-delivery-notification-container" id="right-side-notification-container">
+                                <p class="free-delivery-notification" id="right-side-notification">
+                                    Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Оплата картой -->
+                <div class="total-payment-container">
+                    <div class="total-payment-requisites">
+                        <div class="total-payment-header">
+                            <h4 class="total-payment-header-text">Оплата картой</h4>
+                            <img src="images/edit-pen.svg" class="total-payment-header-edit edit-button" />
+                        </div>
+                        <div class="total-payment-content">
+                            <img src="images/mir-card.svg" class="total-payment-mir-card-png mir-card-png" />
+                            <p class="total-payment-card-number font-caption">1234 56•• •••• 1234</p>
+                        </div>
+                    </div>
+                    <div class="total-payment-immediatly-container">
+                        <div class="total-payment-immediatly-checkbox-container">
+                            <div class="total-payment-immediatly-checkbox check-box-default-container">
+                                <img src="images/check-box.svg"
+                                    class="total-payment-immediatly-check-box-svg check-box-default check-box" />
+                                <img src="images/check-mark.svg"
+                                    class="total-payment-immediatly-check-mark-svg check-box-default-mark check-mark"
+                                    id="total-check-mark" />
+                            </div>
+                            <p class="total-payment-immediatly-text font-caption">Списать оплату сразу</p>
+                        </div>
+                        <p class="total-payment-immediatly-descr font-caption">Спишем оплату с карты при получении</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Подтверждение заказа и соглашения -->
+            <div class="confirm-order-container">
+                <h4 class="confirm-order-button">Заказать</h4>
+                <div class="confirm-conditions-container">
+                    <img src="images/check-mark-gray.svg" class="confirm-conditions-check-mark-svg check-mark" />
+                    <p class="confirm-conditions-paragraph font-caption">
+                        Соглашаюсь с
+                        <a class="condition-link" href="https://global.wildberries.ru/services/terms">правилами
+                            пользования торговой площадкой</a>
+                        и <a class="condition-link"
+                            href="https://global.wildberries.ru/services/item-return">возврата</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
 
-        <footer>
-            <p>© 2022 ООО «Товары и точка»</p>
-        </footer>
-    </body>
+    <footer>
+        <p>© 2022 ООО «Товары и точка»</p>
+    </footer>
+</body>
+
 </html>
