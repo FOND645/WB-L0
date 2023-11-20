@@ -221,7 +221,7 @@ class bascet {
 
     setShowed() {
         this.isShowed = !this.isShowed
-        this.arrowButtonElement.style.rotate = this.isShowed ? '0' : '180'
+        this.arrowButtonElement.style.transform = this.isShowed ? 'rotate(0deg)' : 'rotate(180deg)'
         this.productsContainerElement.style.display = this.isShowed ? 'flex' : 'none'
     }
 
