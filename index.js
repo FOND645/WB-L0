@@ -23,6 +23,13 @@ const disabledCheckBoxHTML = `<svg width="22" height="23" viewBox="0 0 22 23" fi
 </svg>
 `;
 
+const outStockTitleText = [
+    '0 товаров',
+    '1 товар',
+    "2 товара",
+    "3 товара"
+]
+
 
 // Класс для счетчик
 class Counter {
@@ -74,11 +81,14 @@ class Counter {
 
     // Хэндлер для вводимого вручную значения
     setCount(_) {
-        // Если пользователь как-то введет дробную часть числа - выкидываем ее
         let value = this.countElement.value;
+        // Если введена пустая строка - не делаем ничего, ждем еще чего-нибудь
         if (value === "") return
+        // Если пользователь ввел кол-во превышающее максимальное - выводим максимальное
         if (value > this.maxCount) value = this.maxCount
+        // Если пользователь ввел число меньше 1 то принудительно ставим 1
         if (value < 1) value = 1
+        // Если пользователь как-то введет дробную часть числа - выкидываем ее
         if (!Number.isInteger(value)) value = Math.trunc(+value).toString();
         this.count = Math.trunc(+value);
         this.countElement.value = `${this.count}`;
@@ -146,6 +156,12 @@ class Product {
         this.productLikeButtonElement.style.fill = this.isLiked ? '#C400A7' : 'inherit'
     }
 
+    outsideSetSelect(selected) {
+        this.isSelected = selected
+        this.productCheckBoxContainerElement.innerHTML = this.isSelected ? enabledCheckBoxHTML : disabledCheckBoxHTML;
+        document.dispatchEvent(new Event("bascetIsChanged"));
+    }
+
     // Хэндлер чекбокса
     changeSelect() {
         this.isSelected = !this.isSelected;
@@ -171,6 +187,8 @@ class bascet {
         this.isShowed = true
         this.isSelectAll = true
 
+        this.productCounterContainerElement = document.getElementById(args.productCounterContainerID)
+        this.productCounterElement = document.getElementById(args.porductCounterID)
         this.arrowButtonElement = document.getElementById(args.arrowButtonID)
         this.productsContainerElement = document.getElementById(args.productsContainerID)
         this.bascetCheckBoxElemnt = document.getElementById(args.bascetCheckBoxContainerID)
@@ -210,7 +228,7 @@ class bascet {
     setSelectAll() {
         this.isSelectAll = !this.isSelectAll
         this.products.forEach(Prod => {
-            if (Prod.isSelected !== this.isSelectAll) Prod.changeSelect(true)
+            Prod.outsideSetSelect(this.isSelectAll)
         })
         this.bascetCheckBoxElemnt.innerHTML = this.isSelectAll ? enabledCheckBoxHTML : disabledCheckBoxHTML
     }
@@ -220,11 +238,71 @@ class bascet {
         // Высчитываем базовую сумму и сумму скидки
         this.basicSum = this.products.reduce((Sum, Prod) => (Sum += Prod.basicPrice * Prod.counter.count * +(Prod.isSelected && Prod.isEnable)), 0);
         this.discountSum = this.products.reduce((Sum, Prod) => (Sum += Prod.discount * Prod.counter.count * +(Prod.isSelected && Prod.isEnable)), 0);
+        const productsCount = this.products.reduce((Sum, Prod) => Sum += +Prod.isEnable, 0)
 
         // Записываем все суммы в DOM
+        this.productCounterElement.innerText = productsCount ? productsCount : ''
+        if (productsCount) {
+            this.productCounterContainerElement.style.backgroundColor = 'rgba(245, 81, 35, 1)'
+        } else {
+            this.productCounterContainerElement.style.backgroundColor = 'transparent'
+        }
+
         this.basicSumElement.innerText = this.basicSum.toLocaleString();
-        this.discountSumElement.innerText = `−${this.discountSum.toLocaleString()}`;
+        this.discountSumElement.innerText = `${this.discountSum === 0 ? '' : '−'}${this.discountSum.toLocaleString()}`;
         this.finalSumElement.innerText = `${(this.basicSum - this.discountSum).toLocaleString()}`;
+    }
+}
+
+class outStockProduct {
+    constructor(args) {
+        console.log(args)
+        this.productContainerElement = document.getElementById(args.productContainerID)
+        this.likeButtionElement = document.getElementById(args.likeButtonID)
+        this.deleteButtonElement = document.getElementById(args.deleteButtonID)
+        
+        this.isLiked = false
+        this.isEnable = true
+
+        this.deleteButtonElement.addEventListener('click', this.delete.bind(this))
+        this.likeButtionElement.addEventListener('click', this.setLiked.bind(this))
+    }
+
+    setLiked() {
+        this.isLiked = !this.isLiked
+        this.likeButtionElement.style.fill = this.isLiked ? '#C400A7' : 'inherit'
+    }
+
+    delete() {
+        this.isEnable = false;
+        this.productContainerElement.style.display = 'none';
+        document.dispatchEvent(new Event("outStockProdsIsChanged"));
+    }
+}
+
+class outStockBascet {
+    constructor(args) {
+        this.products = args.productArgs.map(ProdArgs => new outStockProduct(ProdArgs))
+        this.arrowButtonElement = document.getElementById(args.arrowButtonID)
+        this.productsCounterElement = document.getElementById(args.productsConterID)
+        this.productsContainerElement = document.getElementById(args.productsContainerID)
+
+        this.isHidden = false
+        
+        this.arrowButtonElement.addEventListener('click', this.arrowHandler.bind(this))
+        document.addEventListener('outStockProdsIsChanged', this.updateProductsCounter.bind(this))
+    }
+
+    arrowHandler() {
+        this.isHidden = !this.isHidden
+        this.productsContainerElement.style.display = this.isHidden ? "none" : "flex"
+        this.arrowButtonElement.style.transform = this.isHidden ? 'rotate(180deg)' : 'rotate(0deg)'
+
+    }
+
+    updateProductsCounter () {
+        console.log(this.products.reduce((Sum, Prod) => +Prod.isEnable, 0))
+        this.productsCounterElement.innerText = outStockTitleText[this.products.reduce((Sum, Prod) => Sum += +Prod.isEnable, 0)]
     }
 }
 
@@ -249,9 +327,13 @@ class freeNotification {
     }
 }
 
+// Инициализируем корзину налич. товаров
 const pageBascet = new bascet({
     finalSumElementID: "final-sum-element",
     basicSumElementID: "basic-sum-element",
+
+    productCounterContainerID: 'header-protuct-counter-container',
+    porductCounterID: 'header-protuct-counter',
 
     bascetCheckBoxContainerID: 'show-all-in-stock-button',
 
@@ -267,7 +349,7 @@ const pageBascet = new bascet({
             productCheckBoxContainerID: `product-${Ind}-in-stock-check-box-container`,
             productContainerID: `product-${Ind}-in-stock-container`,
 
-            productDeleteButtonContainerID: `product-${Ind}-delete-button-container`, 
+            productDeleteButtonContainerID: `product-${Ind}-delete-button-container`,
 
             productLikeButtonContainerID: `product-${Ind}-like-button-container`,
 
@@ -285,6 +367,20 @@ const pageBascet = new bascet({
         };
     }),
 });
+
+// Инициализируем корзину отсутствующих товаров
+const outStockBAscet = new outStockBascet({
+    productsConterID: 'out-stock-products-counter',
+    arrowButtonID: 'out-stock-arrow',
+    productsContainerID: 'main-out-stock-products-container',
+    productArgs: [1, 2, 3].map((Ind) => {
+        return {
+            productContainerID: `out-stock-product-container-${Ind}`,
+            likeButtonID: `product-out-${Ind}-like-button-container`,
+            deleteButtonID: `product-out-${Ind}-delete-button-container`
+        }
+    })
+})
 
 const leftSideNotification = new freeNotification({
     targetNotificationID: "left-side-notification",
