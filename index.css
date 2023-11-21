@@ -144,3 +144,14 @@ button {
     top: -21px;
     left: 0px;
 }
+
+.edit-button {
+    cursor: pointer;
+}
+
+.text-signature-bold {    
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0px;
+}

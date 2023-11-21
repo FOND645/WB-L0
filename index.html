@@ -8,11 +8,350 @@
     <link rel="stylesheet" type="text/css" href="index.css" />
     <link rel="stylesheet" type="text/css" href="main-right-side.css" />
     <link rel="stylesheet" type="text/css" href="main-left-side.css" />
-    <script src="index.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="modal-payment.css" />
+    <link rel="stylesheet" type="text/css" href="modal-delivery.css" />
+    <script type="module" src="index.js" defer></script>
     <title>Document</title>
 </head>
 
 <body>
+    <div class="modal-delivery-background">
+        <div class="modal-delivery-container">
+            <div class="modal-delivery-header">
+                <h3 class="modal-delivery-header-text">Способ доставки</h3>
+                <button class="modal-delivery-header-exit-btn">
+                    <img src="images/exit.svg" id="modal-delivery-exit">
+                </button>
+            </div>
+            <div class="modal-delivery-main">
+                <div class="modal-delivery-type-container">
+                    <button class="modal-delivery-type-button">
+                        <p class="modal-delivery-type-text text-signature-bold">В пункт выдачи</p>
+                    </button>
+                    <button class="modal-delivery-type-button">
+                        <p class="modal-delivery-type-text text-signature-bold">Курьером</p>
+                    </button>
+                </div>
+                <div class="modal-delivery-options-container">
+                    <h4 class="modal-delivery-options-text text-signature-bold">Мои адреса</h4>
+                    <div class="modal-delivery-option-container" id="delivery-point-private-0">
+                        <div class="modal-delivery-checkbox-container modal-payment-card-ratio">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10.5" r="7.5" stroke="black" stroke-opacity="0.2" />
+                            </svg>
+                        </div>
+                        <p class="modal-delivery-address-text">г. Бишкек, улица Табышалиева, 57</p>
+                        <svg class="modal-delivery-delete-button" width="20" height="36" viewBox="0 0 20 36" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.5 13C2.5 12.7239 2.72386 12.5 3 12.5H17C17.2761 12.5 17.5 12.7239 17.5 13C17.5 13.2761 17.2761 13.5 17 13.5H3C2.72386 13.5 2.5 13.2761 2.5 13Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3.4584 12.5H16.5059L15.6411 23.6926C15.5405 24.9947 14.4546 26 13.1486 26H6.84639C5.54299 26 4.45829 24.9986 4.35435 23.6994L3.4584 12.5ZM4.5416 13.5L5.35117 23.6196C5.41353 24.3992 6.06435 25 6.84639 25H13.1486C13.9322 25 14.5837 24.3968 14.6441 23.6155L15.4256 13.5H4.5416Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M13 13.5H7V11.4688C7 10.6576 7.65758 10 8.46875 10H11.5312C12.3424 10 13 10.6576 13 11.4688V13.5ZM8.46875 11C8.20987 11 8 11.2099 8 11.4688V12.5H12V11.4688C12 11.2099 11.7901 11 11.5312 11H8.46875Z"
+                                fill="#9797AF" />
+                        </svg>
+                    </div>
+
+                    <div class="modal-delivery-option-container" id="delivery-point-private-1">
+                        <div class="modal-delivery-checkbox-container modal-payment-card-ratio">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10.5" r="7.5" stroke="black" stroke-opacity="0.2" />
+                            </svg>
+                        </div>
+                        <p class="modal-delivery-address-text">г. Бишкек, улица Жукеева-Пудовкина, 77/1</p>
+                        <svg class="modal-delivery-delete-button" width="20" height="36" viewBox="0 0 20 36" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.5 13C2.5 12.7239 2.72386 12.5 3 12.5H17C17.2761 12.5 17.5 12.7239 17.5 13C17.5 13.2761 17.2761 13.5 17 13.5H3C2.72386 13.5 2.5 13.2761 2.5 13Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3.4584 12.5H16.5059L15.6411 23.6926C15.5405 24.9947 14.4546 26 13.1486 26H6.84639C5.54299 26 4.45829 24.9986 4.35435 23.6994L3.4584 12.5ZM4.5416 13.5L5.35117 23.6196C5.41353 24.3992 6.06435 25 6.84639 25H13.1486C13.9322 25 14.5837 24.3968 14.6441 23.6155L15.4256 13.5H4.5416Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M13 13.5H7V11.4688C7 10.6576 7.65758 10 8.46875 10H11.5312C12.3424 10 13 10.6576 13 11.4688V13.5ZM8.46875 11C8.20987 11 8 11.2099 8 11.4688V12.5H12V11.4688C12 11.2099 11.7901 11 11.5312 11H8.46875Z"
+                                fill="#9797AF" />
+                        </svg>
+                    </div>
+
+                    <div class="modal-delivery-option-container" id="delivery-point-private-2">
+                        <div class="modal-delivery-checkbox-container modal-payment-card-ratio">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10.5" r="7.5" stroke="black" stroke-opacity="0.2" />
+                            </svg>
+                        </div>
+                        <p class="modal-delivery-address-text">г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</p>
+                        <svg class="modal-delivery-delete-button" width="20" height="36" viewBox="0 0 20 36" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.5 13C2.5 12.7239 2.72386 12.5 3 12.5H17C17.2761 12.5 17.5 12.7239 17.5 13C17.5 13.2761 17.2761 13.5 17 13.5H3C2.72386 13.5 2.5 13.2761 2.5 13Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3.4584 12.5H16.5059L15.6411 23.6926C15.5405 24.9947 14.4546 26 13.1486 26H6.84639C5.54299 26 4.45829 24.9986 4.35435 23.6994L3.4584 12.5ZM4.5416 13.5L5.35117 23.6196C5.41353 24.3992 6.06435 25 6.84639 25H13.1486C13.9322 25 14.5837 24.3968 14.6441 23.6155L15.4256 13.5H4.5416Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M13 13.5H7V11.4688C7 10.6576 7.65758 10 8.46875 10H11.5312C12.3424 10 13 10.6576 13 11.4688V13.5ZM8.46875 11C8.20987 11 8 11.2099 8 11.4688V12.5H12V11.4688C12 11.2099 11.7901 11 11.5312 11H8.46875Z"
+                                fill="#9797AF" />
+                        </svg>
+                    </div>
+
+                    <div class="modal-delivery-option-container" id="delivery-point-pub-0">
+                        <div class="modal-delivery-checkbox-container modal-payment-card-ratio">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10.5" r="7.5" stroke="black" stroke-opacity="0.2" />
+                            </svg>
+                        </div>
+                        <div class="modal-delivery-point-container">
+                            <p class="modal-delivery-address-text">г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д.
+                                67/1
+                            </p>
+                            <div class="modal-devlivery-point-raiting-container">
+                                <div class="modal-delivery-point-raiting-content">
+                                    <svg class="modal-delivery-point-raiting-star" width="12" height="16"
+                                        viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M6.69769 3.14922C6.43817 2.5284 5.56198 2.52839 5.30244 3.14919L6.69769 3.14922ZM5.30244 3.14919L4.14719 5.90977L1.19202 6.16613C0.519264 6.22467 0.262282 7.05966 0.759713 7.49464L3.00514 9.45915L2.33207 12.3824C2.18436 13.0238 2.87792 13.5567 3.46133 13.2023L6.00032 11.6561L8.53797 13.2015C9.12269 13.5588 9.81568 13.0227 9.66861 12.3826L8.99549 9.45915L11.2402 7.49537C11.7385 7.05961 11.4793 6.22519 10.8083 6.16667L7.85294 5.91029L6.69769 3.14922"
+                                            fill="#FF970D" />
+                                    </svg>
+                                    <p class="modal-delivery-point-raiting-count">4.99</p>
+                                </div>
+                                <p class="modal-delivery-raiting-devpoint-text">Пункт выдачи</p>
+                            </div>
+                        </div>
+                        <svg class="modal-delivery-delete-button" width="20" height="36" viewBox="0 0 20 36" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.5 13C2.5 12.7239 2.72386 12.5 3 12.5H17C17.2761 12.5 17.5 12.7239 17.5 13C17.5 13.2761 17.2761 13.5 17 13.5H3C2.72386 13.5 2.5 13.2761 2.5 13Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3.4584 12.5H16.5059L15.6411 23.6926C15.5405 24.9947 14.4546 26 13.1486 26H6.84639C5.54299 26 4.45829 24.9986 4.35435 23.6994L3.4584 12.5ZM4.5416 13.5L5.35117 23.6196C5.41353 24.3992 6.06435 25 6.84639 25H13.1486C13.9322 25 14.5837 24.3968 14.6441 23.6155L15.4256 13.5H4.5416Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M13 13.5H7V11.4688C7 10.6576 7.65758 10 8.46875 10H11.5312C12.3424 10 13 10.6576 13 11.4688V13.5ZM8.46875 11C8.20987 11 8 11.2099 8 11.4688V12.5H12V11.4688C12 11.2099 11.7901 11 11.5312 11H8.46875Z"
+                                fill="#9797AF" />
+                        </svg>
+                    </div>
+
+                    <div class="modal-delivery-option-container" id="delivery-point-pub-1">
+                        <div class="modal-delivery-checkbox-container modal-payment-card-ratio">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10.5" r="7.5" stroke="black" stroke-opacity="0.2" />
+                            </svg>
+                        </div>
+                        <div class="modal-delivery-point-container">
+                            <p class="modal-delivery-address-text">г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д.
+                                67/1
+                            </p>
+                            <div class="modal-devlivery-point-raiting-container">
+                                <div class="modal-delivery-point-raiting-content">
+                                    <svg class="modal-delivery-point-raiting-star" width="12" height="16"
+                                        viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M6.69769 3.14922C6.43817 2.5284 5.56198 2.52839 5.30244 3.14919L6.69769 3.14922ZM5.30244 3.14919L4.14719 5.90977L1.19202 6.16613C0.519264 6.22467 0.262282 7.05966 0.759713 7.49464L3.00514 9.45915L2.33207 12.3824C2.18436 13.0238 2.87792 13.5567 3.46133 13.2023L6.00032 11.6561L8.53797 13.2015C9.12269 13.5588 9.81568 13.0227 9.66861 12.3826L8.99549 9.45915L11.2402 7.49537C11.7385 7.05961 11.4793 6.22519 10.8083 6.16667L7.85294 5.91029L6.69769 3.14922"
+                                            fill="#FF970D" />
+                                    </svg>
+                                    <p class="modal-delivery-point-raiting-count">4.99</p>
+                                </div>
+                                <p class="modal-delivery-raiting-devpoint-text">Пункт выдачи</p>
+                            </div>
+                        </div>
+                        <svg class="modal-delivery-delete-button" width="20" height="36" viewBox="0 0 20 36" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.5 13C2.5 12.7239 2.72386 12.5 3 12.5H17C17.2761 12.5 17.5 12.7239 17.5 13C17.5 13.2761 17.2761 13.5 17 13.5H3C2.72386 13.5 2.5 13.2761 2.5 13Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3.4584 12.5H16.5059L15.6411 23.6926C15.5405 24.9947 14.4546 26 13.1486 26H6.84639C5.54299 26 4.45829 24.9986 4.35435 23.6994L3.4584 12.5ZM4.5416 13.5L5.35117 23.6196C5.41353 24.3992 6.06435 25 6.84639 25H13.1486C13.9322 25 14.5837 24.3968 14.6441 23.6155L15.4256 13.5H4.5416Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M13 13.5H7V11.4688C7 10.6576 7.65758 10 8.46875 10H11.5312C12.3424 10 13 10.6576 13 11.4688V13.5ZM8.46875 11C8.20987 11 8 11.2099 8 11.4688V12.5H12V11.4688C12 11.2099 11.7901 11 11.5312 11H8.46875Z"
+                                fill="#9797AF" />
+                        </svg>
+                    </div>
+
+                    <div class="modal-delivery-option-container" id="delivery-point-pub-2">
+                        <div class="modal-delivery-checkbox-container modal-payment-card-ratio">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10.5" r="7.5" stroke="black" stroke-opacity="0.2" />
+                            </svg>
+                        </div>
+                        <div class="modal-delivery-point-container">
+                            <p class="modal-delivery-address-text">г. Бишкек, улица Табышалиева, д. 57</p>
+                            <div class="modal-devlivery-point-raiting-container">
+                                <div class="modal-delivery-point-raiting-content">
+                                    <svg class="modal-delivery-point-raiting-star" width="12" height="16"
+                                        viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M6.69769 3.14922C6.43817 2.5284 5.56198 2.52839 5.30244 3.14919L6.69769 3.14922ZM5.30244 3.14919L4.14719 5.90977L1.19202 6.16613C0.519264 6.22467 0.262282 7.05966 0.759713 7.49464L3.00514 9.45915L2.33207 12.3824C2.18436 13.0238 2.87792 13.5567 3.46133 13.2023L6.00032 11.6561L8.53797 13.2015C9.12269 13.5588 9.81568 13.0227 9.66861 12.3826L8.99549 9.45915L11.2402 7.49537C11.7385 7.05961 11.4793 6.22519 10.8083 6.16667L7.85294 5.91029L6.69769 3.14922"
+                                            fill="#FF970D" />
+                                    </svg>
+                                    <p class="modal-delivery-point-raiting-count">4.99</p>
+                                </div>
+                                <p class="modal-delivery-raiting-devpoint-text">Пункт выдачи</p>
+                            </div>
+                        </div>
+                        <svg class="modal-delivery-delete-button" width="20" height="36" viewBox="0 0 20 36" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M2.5 13C2.5 12.7239 2.72386 12.5 3 12.5H17C17.2761 12.5 17.5 12.7239 17.5 13C17.5 13.2761 17.2761 13.5 17 13.5H3C2.72386 13.5 2.5 13.2761 2.5 13Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3.4584 12.5H16.5059L15.6411 23.6926C15.5405 24.9947 14.4546 26 13.1486 26H6.84639C5.54299 26 4.45829 24.9986 4.35435 23.6994L3.4584 12.5ZM4.5416 13.5L5.35117 23.6196C5.41353 24.3992 6.06435 25 6.84639 25H13.1486C13.9322 25 14.5837 24.3968 14.6441 23.6155L15.4256 13.5H4.5416Z"
+                                fill="#9797AF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M13 13.5H7V11.4688C7 10.6576 7.65758 10 8.46875 10H11.5312C12.3424 10 13 10.6576 13 11.4688V13.5ZM8.46875 11C8.20987 11 8 11.2099 8 11.4688V12.5H12V11.4688C12 11.2099 11.7901 11 11.5312 11H8.46875Z"
+                                fill="#9797AF" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-delivery-footer">
+                <button class="modal-delivery-footer-button">
+                    <h4 class="modal-delivery-footer-button-text">Выбрать</h4>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-payment-backgroud" id="modal-payment-container">
+        <div class="modal-payment-container">
+            <div class="modal-payment-header">
+                <h3 class="modal-payment-header-text">Способ оплаты</h3>
+                <button class="modal-payment-header-button">
+                    <img src="images/exit.svg" id="modal-payment-exit">
+                </button>
+            </div>
+            <div class="modal-payment-main">
+                <div class="modal-payment-cards-container">
+                    <div class="modal-payment-crad-line" id="mir-container">
+                        <div class="modal-payment-card-ratio-container" id="modal-payment-0-ratio">
+                            <svg class="modal-payment-card-ratio" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10.5" r="7.5" fill="#CB11AB" stroke="#CB11AB" />
+                                <path
+                                    d="M10 13.5C11.6569 13.5 13 12.1569 13 10.5C13 8.84315 11.6569 7.5 10 7.5C8.34315 7.5 7 8.84315 7 10.5C7 12.1569 8.34315 13.5 10 13.5Z"
+                                    fill="white" />
+                            </svg>
+                        </div>
+                        <div class="modal-payment-card-container">
+                            <svg class="modal-payment-card-ratio" width="32" height="25" viewBox="0 0 32 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect y="0.5" width="32" height="24" rx="4" fill="#F6F6FA" />
+                                <path
+                                    d="M17.682 9.34377L15.8652 13.2583H15.6814V8.50031H13.0859V16.5024H15.238C15.8219 16.5024 16.341 16.1672 16.5898 15.6481L18.4174 11.7444H18.6012V16.5024H21.1966V8.50031H19.0121C18.4498 8.50031 17.9199 8.83553 17.682 9.34377Z"
+                                    fill="#319B42" />
+                                <path
+                                    d="M7.97268 9.54923L6.90207 13.2583H6.71823L5.6368 9.54923C5.45296 8.92204 4.8798 8.50031 4.23095 8.50031H1.66797V16.5024H4.26339V11.7444H4.44723L5.9396 16.5024H7.66988L9.16225 11.7444H9.34609V16.5024H11.9415V8.50031H9.37853C8.72968 8.50031 8.14571 8.92204 7.97268 9.54923Z"
+                                    fill="#319B42" />
+                                <path
+                                    d="M22.3247 12.0674V16.5024H24.9209V13.9063H27.7119C28.9235 13.9063 29.9512 13.1383 30.3298 12.0674H22.3247Z"
+                                    fill="#319B42" />
+                                <path
+                                    d="M27.636 8.50031H21.8594C22.2164 10.4041 23.8823 11.7454 25.8836 11.7454H30.3729C30.4054 11.5724 30.427 11.3776 30.427 11.1829C30.427 9.6361 29.183 8.50031 27.636 8.50031Z"
+                                    fill="url(#paint0_linear_17_1070)" />
+                                <defs>
+                                    <linearGradient id="paint0_linear_17_1070" x1="21.8594" y1="10.1229" x2="30.427"
+                                        y2="10.1229" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#00A3E1" />
+                                        <stop offset="0.3042" stop-color="#009ADD" />
+                                        <stop offset="0.7987" stop-color="#0082D4" />
+                                        <stop offset="1" stop-color="#0076CF" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <p class="">1234 56•• •••• 1234</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-payment-cards-container">
+                    <div class="modal-payment-crad-line" id="visa-container">
+                        <div class="modal-payment-card-ratio-container" id="modal-payment-1-ratio">
+                            <svg class="modal-payment-card-ratio" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10.5" r="7.5" stroke="black" stroke-opacity="0.2" />
+                            </svg>
+                        </div>
+                        <div class="modal-payment-card-container">
+                            <svg class="modal-payment-card-ratio" width="32" height="13" viewBox="0 0 32 13" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M16.4709 4.67817C16.453 6.08581 17.7254 6.87134 18.6838 7.33838C19.6686 7.81763 19.9994 8.12493 19.9956 8.55341C19.9881 9.20931 19.21 9.49869 18.4818 9.50995C17.2113 9.52967 16.4727 9.16698 15.8855 8.89262L15.4279 11.0341C16.017 11.3057 17.108 11.5425 18.2394 11.5528C20.8949 11.5528 22.6323 10.242 22.6418 8.2095C22.6521 5.6301 19.0738 5.48725 19.0982 4.33426C19.1067 3.98472 19.4403 3.61163 20.1713 3.51674C20.5331 3.46886 21.532 3.43217 22.6643 3.95366L23.1087 1.88176C22.4998 1.65997 21.7171 1.44757 20.7427 1.44757C18.2431 1.44757 16.485 2.77627 16.4709 4.67817ZM27.3796 1.6261C26.8947 1.6261 26.4859 1.90899 26.3037 2.3431L22.5102 11.4006H25.1638L25.6919 9.94125H28.9347L29.241 11.4006H31.5799L29.5389 1.6261H27.3796ZM27.7507 4.26659L28.5165 7.93694H26.4192L27.7507 4.26659ZM13.2535 1.6261L11.1618 11.4006H13.6904L15.7812 1.6261H13.2535ZM9.51266 1.6261L6.88061 8.27897L5.81595 2.62215C5.69101 1.99074 5.19768 1.6261 4.64982 1.6261H0.347122L0.286962 1.90992C1.17028 2.10159 2.17385 2.41077 2.78179 2.74153C3.15386 2.94353 3.2601 3.12018 3.38222 3.60037L5.39874 11.4006H8.07123L12.1682 1.6261H9.51266Z"
+                                    fill="#1434CB" />
+                            </svg>
+                            <p class="">1234 56•• •••• 1234</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-payment-cards-container">
+                    <div class="modal-payment-crad-line" id="MC-container">
+                        <div class="modal-payment-card-ratio-container" id="modal-payment-2-ratio">
+                            <svg class="modal-payment-card-ratio" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10.5" r="7.5" stroke="black" stroke-opacity="0.2" />
+                            </svg>
+                        </div>
+                        <div class="modal-payment-card-container">
+                            <svg class="modal-payment-card-ratio" width="32" height="25" viewBox="0 0 32 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect y="0.5" width="32" height="24" rx="4" fill="#F6F6FA" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M26.9337 16.8367V16.5649H26.8629L26.781 16.7514L26.6996 16.5649H26.6286V16.8367H26.6788V16.632L26.7554 16.8086H26.8075L26.884 16.6315V16.8367H26.9339H26.9337ZM26.4846 16.8367V16.6115H26.5752V16.5656H26.3438V16.6115H26.4343V16.8367H26.4846Z"
+                                    fill="#F79410" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M18.8883 18.0014H12.7637V6.99463H18.8884L18.8883 18.0014Z" fill="#FF5F00" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M13.1515 12.4999C13.1515 10.2671 14.1969 8.27821 15.8248 6.99643C14.5928 6.02498 13.0681 5.49741 11.4992 5.49976C7.63356 5.49976 4.5 8.63376 4.5 12.4999C4.5 16.3659 7.63356 19.4999 11.4992 19.4999C13.0681 19.5023 14.5929 18.9747 15.8249 18.0032C14.1971 16.7217 13.1515 14.7327 13.1515 12.4999Z"
+                                    fill="#EB001B" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M27.1497 12.4999C27.1497 16.3659 24.0161 19.4999 20.1505 19.4999C18.5814 19.5022 17.0565 18.9747 15.8242 18.0032C17.4526 16.7215 18.498 14.7327 18.498 12.4999C18.498 10.267 17.4526 8.27821 15.8242 6.99643C17.0564 6.02498 18.5813 5.49749 20.1504 5.49976C24.016 5.49976 27.1496 8.63376 27.1496 12.4999"
+                                    fill="#F79410" />
+                            </svg>
+                            <p class="">1234 56•• •••• 1234</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-payment-cards-container">
+                    <div class="modal-payment-crad-line" id="maestro-container">
+                        <div class="modal-payment-card-ratio-container" id="modal-payment-3-ratio">
+                            <svg class="modal-payment-card-ratio" width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10.5" r="7.5" stroke="black" stroke-opacity="0.2" />
+                            </svg>
+                        </div>
+                        <div class="modal-payment-card-container">
+                            <svg width="32" height="25" viewBox="0 0 32 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect y="0.5" width="32" height="24" rx="4" fill="#F6F6FA" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M18.8883 18.0017H12.7637V6.99487H18.8884L18.8883 18.0017Z" fill="#6C6BBD" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M13.1515 12.5001C13.1515 10.2674 14.1969 8.27845 15.8248 6.99668C14.5928 6.02523 13.0681 5.49766 11.4992 5.50001C7.63356 5.50001 4.5 8.63401 4.5 12.5001C4.5 16.3662 7.63356 19.5002 11.4992 19.5002C13.0681 19.5025 14.5929 18.9749 15.8249 18.0035C14.1971 16.7219 13.1515 14.7329 13.1515 12.5001Z"
+                                    fill="#EB001B" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M27.1497 12.5001C27.1497 16.3662 24.0161 19.5002 20.1505 19.5002C18.5814 19.5024 17.0565 18.9749 15.8242 18.0035C17.4526 16.7217 18.498 14.7329 18.498 12.5001C18.498 10.2672 17.4526 8.27845 15.8242 6.99668C17.0564 6.02523 18.5813 5.49773 20.1504 5.50001C24.016 5.50001 27.1496 8.63401 27.1496 12.5001"
+                                    fill="#0099DF" />
+                            </svg>
+                            <p class="">1234 56•• •••• 1234</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-payment-footer">
+                <button class="modal-payment-footer-button" id="modal-payment-confirm-button">
+                    <h4 class="modal-payment-footer-button-text">Выбрать</h4>
+                </button>
+            </div>
+        </div>
+    </div>
     <header>
         <div class="header-left-side">
             <div class="header-catalog">
@@ -455,7 +794,7 @@
                         <div class="main-order-delivery-container">
                             <div class="main-order-delivery-header">
                                 <h2 class="main-order-delivery-header-title">Способ доставки</h2>
-                                <h4 class="main-order-delivery-header-change">Изменить</h4>
+                                <h4 class="main-order-delivery-header-change edit-button">Изменить</h4>
                             </div>
                             <div class="main-order-delivery-content">
                                 <!-- ЗДЕСЬ ДЕЛАТЬ ЧЕРЕЗ GRID -->
@@ -532,10 +871,13 @@
                     <div class="main-order-payment-container">
                         <div class="main-order-payment-header">
                             <h2 class="main-order-payment-header-text">Способ оплаты</h2>
-                            <h4 class="main-order-payment-header-change">Изменить</h4>
+                            <h4 class="main-order-payment-header-change edit-button" id="open-select-payment-1">Изменить
+                            </h4>
                         </div>
                         <div class="main-order-payment-content">
-                            <img src="images/mir-card.svg" class="main-order-payment-mir-card-png mir-card-png" />
+                            <div class="main-order-payment-mir-card-png mir-card-png" id="card-container-left">
+
+                            </div>
                             <div class="main-order-payment-card">
                                 <p class="main-order-payment-card-number">1234 56•• •••• 1234</p>
                                 <p class="main-order-payment-card-date">01/30</p>
@@ -662,10 +1004,13 @@
                     <div class="total-payment-requisites">
                         <div class="total-payment-header">
                             <h4 class="total-payment-header-text">Оплата картой</h4>
-                            <img src="images/edit-pen.svg" class="total-payment-header-edit edit-button" />
+                            <img src="images/edit-pen.svg" class="total-payment-header-edit edit-button"
+                                id="open-select-payment-2" />
                         </div>
                         <div class="total-payment-content">
-                            <img src="images/mir-card.svg" class="total-payment-mir-card-png mir-card-png" />
+                            <div class="total-payment-mir-card-png mir-card-png" id="card-container-right">
+
+                            </div>
                             <p class="total-payment-card-number font-caption">1234 56•• •••• 1234</p>
                         </div>
                     </div>
