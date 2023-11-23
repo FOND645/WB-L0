@@ -89,6 +89,7 @@
 
 .total-delivery-date {
     color: rgba(203, 17, 171, 1);
+    text-decoration: underline dashed #cb11ab33;
 }
 
 .total-delivery-container {
@@ -140,6 +141,7 @@
 }
 
 .total-payment-immediatly-checkbox-container {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     align-items: center;
