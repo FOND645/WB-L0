@@ -169,12 +169,6 @@ class Counter {
     }
 
     updateSums() {
-        // console.log("basic price", this.basicPrice);
-        // console.log("discount", this.discount);
-        // console.log("final price", this.basicPrice - this.discount);
-        // console.log("full basic price", this.basicPrice * this.count);
-        // console.log("full discount", this.discount * this.count);
-        // console.log("full final price", (this.basicPrice - this.discount) * this.count);
         this.productFinalSumElement.classList = (this.basicPrice - this.discount) * this.count >= 1000000 ? ["h4"] : ["h3"];
         this.productFinalSumElement.innerText = ((this.basicPrice - this.discount) * this.count).toLocaleString();
         this.productBasicSumElement.innerText = (this.basicPrice * this.count).toLocaleString();
@@ -199,15 +193,22 @@ class Product {
         this.maxCount = args.maxCount;
         this.basicPrice = args.basicPrice;
         this.discount = args.discount;
+        this.firstDeliveryLimit = args.firstDeliveryLimit;
 
         // Инициализируем состояния товара
         this.isSelected = true;
         this.isEnable = true;
         this.isLiked = false;
 
+        this.firstDeliveryCounterElement = document.getElementById(args.firstDeliveryCounterID);
+        this.firstDeliveryCounterContainerElement = document.getElementById(args.firstDeliveryCounterContainerID);
+        this.firstDeliveryContainerElement = document.getElementById(args.firstDeliveryContainerID);
+        this.secondDeliveryCounterElement = document.getElementById(args.secondDeliveryCounterID);
+        this.secondDeliveryCounterContainerElement = document.getElementById(args.secondDeliveryCounterContainerID);
+        this.secondDeliveryContainerElement = document.getElementById(args.secondDeliveryContainerID);
+
         // Получаем элементы из DOM дерева
         this.productContainerElement = document.getElementById(args.productContainerID);
-        // this.productLikeButtonElement = document.getElementById(args.productLikeButtonContainerID);
         this.productLikeButtonElement = document.getElementById(args.productLikeButtonContainerID);
         this.productDeleteButtonElement = document.getElementById(args.productDeleteButtonContainerID);
         this.productCheckBoxContainerElement = document.getElementById(args.productCheckBoxContainerID);
@@ -218,12 +219,12 @@ class Product {
         this.productCheckBoxContainerElement.addEventListener("click", this.changeSelect.bind(this));
 
         this.productLikeButtonElement.addEventListener("click", this.setLiked.bind(this));
+        document.addEventListener("bascetIsChanged", this.updateDeliveryCounters.bind(this));
+        this.updateDeliveryCounters();
     }
 
     setLiked() {
-        console.log(this.isLiked);
         this.isLiked = !this.isLiked;
-        console.log(this.isLiked);
         this.productLikeButtonElement.style.fill = this.isLiked ? "#C400A7" : "inherit";
     }
 
@@ -231,6 +232,21 @@ class Product {
         this.isSelected = selected;
         this.productCheckBoxContainerElement.innerHTML = this.isSelected ? enabledCheckBoxHTML : disabledCheckBoxHTML;
         document.dispatchEvent(new Event("bascetIsChanged"));
+    }
+
+    updateDeliveryCounters() {
+        if (!this.isEnable || !this.isSelected) {
+            this.firstDeliveryContainerElement.style.display = "none";
+            this.secondDeliveryContainerElement.style.display = "none";
+            return;
+        }
+        this.firstDeliveryCounterElement.innerText = this.counter.count <= this.firstDeliveryLimit ? this.counter.count : this.firstDeliveryLimit;
+        this.firstDeliveryCounterContainerElement.style.display = this.counter.count === 1 ? "none" : "flex";
+        this.firstDeliveryContainerElement.style.display = this.counter.count === 0 ? "none" : "unset";
+
+        this.secondDeliveryCounterElement.innerText = this.counter.count - this.firstDeliveryLimit;
+        this.secondDeliveryCounterContainerElement.style.display = this.counter.count - this.firstDeliveryLimit === 1 ? "none" : "flex";
+        this.secondDeliveryContainerElement.style.display = this.counter.count < this.firstDeliveryLimit ? "none" : "unset";
     }
 
     // Хэндлер чекбокса
@@ -260,6 +276,7 @@ class bascet {
         this.isShowed = true;
         this.isSelectAll = true;
 
+        this.deliveryContainersElements = args.delvierySecondIDs.map((ID) => document.getElementById(ID));
         this.productCounterContainerElement = document.getElementById(args.productCounterContainerID);
         this.productCounterElement = document.getElementById(args.porductCounterID);
         this.arrowButtonElement = document.getElementById(args.arrowButtonID);
@@ -284,6 +301,12 @@ class bascet {
         // Добавляем листнер на изменения в корзине
         document.addEventListener("bascetIsChanged", this.updateSum.bind(this));
         document.addEventListener("productSelectChanged", this.productSlectedHandler.bind(this));
+    }
+
+    updateDispalyDelivery() {
+        const isSecondDate = !this.products.every((Prod) => Prod.counter.count - Prod.firstDeliveryLimit <= 0);
+        console.log(isSecondDate);
+        this.deliveryContainersElements.forEach((Element) => (Element.style.display = isSecondDate ? "flex" : "none"));
     }
 
     productSlectedHandler() {
@@ -325,13 +348,13 @@ class bascet {
         this.discountSumElement.innerText = `${this.discountSum === 0 ? "" : "−"}${this.discountSum.toLocaleString()}`;
         this.finalSumElement.innerText = `${(this.basicSum - this.discountSum).toLocaleString()}`;
         this.payImmediatly.updateSums(this.basicSum - this.discountSum);
+        this.updateDispalyDelivery();
     }
 }
 
 // Класс отсутствующих продуктов
 class outStockProduct {
     constructor(args) {
-        console.log(args);
         this.productContainerElement = document.getElementById(args.productContainerID);
         this.likeButtionElement = document.getElementById(args.likeButtonID);
         this.deleteButtonElement = document.getElementById(args.deleteButtonID);
@@ -368,7 +391,6 @@ class paymentsSelector {
         this.ConfirmButtonElement.addEventListener("click", this.confirmChoiseCard.bind(this));
 
         this.cardsRatioButtonsElements = args.cardsRatioButtons.map((ID) => document.getElementById(ID));
-        console.log(this);
         this.cardsRatioButtonsElements.forEach((Element, ind) => Element.addEventListener("click", this.cardsSelectHandler(ind).bind(this)));
         this.cardsContainersElements = args.cardsContainers.map((ID) => document.getElementById(ID));
 
@@ -381,7 +403,6 @@ class paymentsSelector {
 
     cardsSelectHandler(cardIndex) {
         return () => {
-            console.log(this);
             this.selectedCardIndex = cardIndex;
             this.cardsRatioButtonsElements.forEach((Elemnet, ind) => (Elemnet.innerHTML = ind === cardIndex ? activeRatio : inactiveRatio));
         };
@@ -393,7 +414,6 @@ class paymentsSelector {
     }
 
     confirmChoiseCard() {
-        console.log(this);
         this.chosenCardIndex = this.selectedCardIndex;
         this.cardsContainersElements.forEach((Element) => (Element.innerHTML = this.cardsParams[this.chosenCardIndex].cardIconSVG));
         this.cardsRatioButtonsElements.forEach((Elemnet, ind) => (Elemnet.innerHTML = ind === this.chosenCardIndex ? activeRatio : inactiveRatio));
@@ -499,7 +519,6 @@ class deliverySelector {
 
     isDeliveryPointHidden(isPublic, ind) {
         const result = isPublic ? this.deletedPublicAddresses.includes(ind) : this.deletedPrivateAddresses.includes(ind);
-        console.log(result, isPublic, ind);
         return result;
     }
 
@@ -571,7 +590,6 @@ class outStockBascet {
     }
 
     updateProductsCounter() {
-        console.log(this.products.reduce((Sum, Prod) => +Prod.isEnable, 0));
         this.productsCounterElement.innerText = outStockTitleText[this.products.reduce((Sum, Prod) => (Sum += +Prod.isEnable), 0)];
     }
 }
@@ -617,6 +635,10 @@ const pageBascet = new bascet({
 
     arrowButtonID: "bascet-in-stock-arrow-btn",
     discountSumElementID: "discount-sum-element",
+
+    delvierySecondIDs: ["second-delivery-date", "second-delivery-date-container"],
+
+    deliveryContainers: [],
     productsArgs: [1, 2, 3].map((Ind) => {
         return {
             basicPrice: [0, 1060, 11500, 470][Ind],
@@ -624,6 +646,16 @@ const pageBascet = new bascet({
             maxCount: [0, 2, Infinity, 2][Ind],
             productCheckBoxContainerID: `product-${Ind}-in-stock-check-box-container`,
             productContainerID: `product-${Ind}-in-stock-container`,
+
+            firstDeliveryLimit: [0, 4, 184, 4][Ind],
+
+            firstDeliveryCounterID: `delivery-first-date-counter-${Ind}`,
+            firstDeliveryCounterContainerID: `delivery-first-date-counter-container-${Ind}`,
+            firstDeliveryContainerID: `delivery-first-date-container-${Ind}`,
+
+            secondDeliveryCounterID: `delivery-second-date-counter-${Ind}`,
+            secondDeliveryCounterContainerID: `delivery-second-date-counter-container-${Ind}`,
+            secondDeliveryContainerID: `delivery-second-date-container-${Ind}`,
 
             productDeleteButtonContainerID: `product-${Ind}-delete-button-container`,
 
