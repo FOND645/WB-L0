@@ -117,7 +117,15 @@ class Counter {
         this.basicPrice = args.basicPrice;
         this.discount = args.discount;
 
+        this.discountCommonElement = document.getElementById(args.discountCommonID);
+        this.discountPersonalElement = document.getElementById(args.discountPersonalID);
+
         this.countElement.value = `${this.count}`;
+
+        this.tooltipElement = document.getElementById(args.tooltipContainerID);
+        this.tooltipTargetElement = document.getElementById(args.tooltipTargetID);
+        this.tooltipTargetElement.addEventListener("mouseover", this.tooltipHandler(this.tooltipElement, true).bind(this));
+        this.tooltipTargetElement.addEventListener("mouseout", this.tooltipHandler(this.tooltipElement, false).bind(this));
 
         // Это реально надо комментировать? Неужели этот код может быть непонятным?
         // Добавляем листнеры событий на соответствующие элементы
@@ -126,6 +134,12 @@ class Counter {
         this.countElement.addEventListener("input", this.setCount.bind(this));
         this.updatePlusMinusStyles();
         this.updateSums();
+    }
+
+    tooltipHandler(element, isShow) {
+        return () => {
+            element.style.display = isShow ? "flex" : "none";
+        };
     }
 
     // Хэндлер клика на +
@@ -172,6 +186,9 @@ class Counter {
         this.productFinalSumElement.classList = (this.basicPrice - this.discount) * this.count >= 1000000 ? ["h4"] : ["h3"];
         this.productFinalSumElement.innerText = ((this.basicPrice - this.discount) * this.count).toLocaleString();
         this.productBasicSumElement.innerText = (this.basicPrice * this.count).toLocaleString();
+
+        this.discountCommonElement.innerText = ((this.discount / 2) * this.count).toLocaleString();
+        this.discountPersonalElement.innerText = ((this.discount / 2) * this.count).toLocaleString();
     }
 
     updatePlusMinusStyles() {
@@ -316,7 +333,6 @@ class bascet {
 
     updateDispalyDelivery() {
         const isSecondDate = !this.products.every((Prod) => Prod.counter.count - Prod.firstDeliveryLimit <= 0);
-        console.log(isSecondDate);
         this.deliveryContainersElements.forEach((Element) => (Element.style.display = isSecondDate ? "flex" : "none"));
     }
 
@@ -652,8 +668,8 @@ const pageBascet = new bascet({
     deliveryContainers: [],
     productsArgs: [1, 2, 3].map((Ind) => {
         return {
-            basicPrice: [0, 1060, 11500, 470][Ind],
-            discount: [0, 106, 1150, 47][Ind],
+            basicPrice: [0, 1080, 11200, 480][Ind],
+            discount: [0, 108, 1120, 48][Ind],
             maxCount: [0, 2, Infinity, 2][Ind],
             productCheckBoxContainerID: `product-${Ind}-in-stock-check-box-container`,
             productContainerID: `product-${Ind}-in-stock-container`,
@@ -683,8 +699,12 @@ const pageBascet = new bascet({
                 initialCount: [0, 1, 200, 2][Ind],
                 productFinalSumID: `product-${Ind}-final-sum`,
                 productBasicSumID: `product-${Ind}-basic-sum`,
-                basicPrice: [0, 1060, 11500, 470][Ind],
-                discount: [0, 106, 1150, 47][Ind],
+                basicPrice: [0, 1080, 11500, 480][Ind],
+                discount: [0, 108, 1150, 48][Ind],
+                discountCommonID: `product-common-discount-${Ind}`,
+                discountPersonalID: `product-personal-discount-${Ind}`,
+                tooltipContainerID: `product-disount-tooltip-${Ind}`,
+                tooltipTargetID: `product-disount-tooltip-target-${Ind}`,
             },
         };
     }),

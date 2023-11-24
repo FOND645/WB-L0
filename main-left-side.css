@@ -534,11 +534,11 @@
     height: 0px;
     width: 0px;
     overflow: visible;
+    position: relative;
 }
 
 .main-in-stock-product-distributor-inn-container {
     z-index: 10;
-    position: relative;
     height: min-content;
     top: 1px;
     left: 1px;
@@ -558,4 +558,44 @@
     line-height: 16px;
     letter-spacing: 0px;
     text-align: left;
+}
+
+.main-in-stock-product-price-tooltip-shell {
+    height: 0px;
+    width: 0px;
+    display: none;
+    position: relative;
+    top: -2px;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.main-in-stock-product-price-tooltip-contain {
+    position: relative;
+    right: calc();
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    gap: 8px;
+    box-shadow: 0px 0px 1px 0px #0000004d, 0px 2px 10px 0px #00000026;
+    background-color: #ffffff;
+    width: min-content;
+    height: min-content;
+    padding: 11px 16px 13px 16px;
+}
+
+.main-in-stock-product-price-discount-container-titles,
+.main-in-stock-product-price-discount-container-values {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.main-in-stock-product-price-discount-container-titles {
+    color: #a0a0a4;
+    text-wrap: nowrap;
+}
+
+.main-in-stock-product-price-discount-container-values {
+    text-wrap: nowrap;
 }

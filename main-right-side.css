@@ -141,7 +141,6 @@
 }
 
 .total-payment-immediatly-checkbox-container {
-    cursor: pointer;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -187,4 +186,8 @@
 .condition-link:visited {
     color: rgba(0, 0, 0, 1);
     text-decoration: underline solid rgba(0, 0, 0, 0.1);
+}
+
+.total-payment-immediatly-checkbox {
+    cursor: pointer;
 }
