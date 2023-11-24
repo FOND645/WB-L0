@@ -130,7 +130,7 @@ h4,
     position: relative;
 }
 
-button {    
+button {
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -149,7 +149,7 @@ button {
     cursor: pointer;
 }
 
-.text-signature-bold {    
+.text-signature-bold {
     font-size: 13px;
     font-weight: 700;
     line-height: 16px;

@@ -200,6 +200,11 @@ class Product {
         this.isEnable = true;
         this.isLiked = false;
 
+        this.distributorTooltipElement = document.getElementById(args.distributorTooltipID);
+        this.distributorTooltipTargetElement = document.getElementById(args.distributorTooltipTargetID);
+        this.distributorTooltipTargetElement.addEventListener("mouseover", this.tooltipHandler(this.distributorTooltipElement, true).bind(this));
+        this.distributorTooltipTargetElement.addEventListener("mouseout", this.tooltipHandler(this.distributorTooltipElement, false).bind(this));
+
         this.firstDeliveryCounterElement = document.getElementById(args.firstDeliveryCounterID);
         this.firstDeliveryCounterContainerElement = document.getElementById(args.firstDeliveryCounterContainerID);
         this.firstDeliveryContainerElement = document.getElementById(args.firstDeliveryContainerID);
@@ -221,6 +226,12 @@ class Product {
         this.productLikeButtonElement.addEventListener("click", this.setLiked.bind(this));
         document.addEventListener("bascetIsChanged", this.updateDeliveryCounters.bind(this));
         this.updateDeliveryCounters();
+    }
+
+    tooltipHandler(element, isShow) {
+        return () => {
+            element.style.display = isShow ? "flex" : "none";
+        };
     }
 
     setLiked() {
@@ -595,21 +606,21 @@ class outStockBascet {
 }
 
 // Класс для всплывающих подсказок
-class freeNotification {
+class tooltip {
     constructor(args) {
-        this.targetTextElement = document.getElementById(args.targetTextID);
-        this.targetNotificationElement = document.getElementById(args.targetNotificationID);
+        this.targetElement = document.getElementById(args.targetTooltipElement);
+        this.targetTooltipElement = document.getElementById(args.targetTooltipID);
 
-        this.targetTextElement.addEventListener("mouseover", this.notificationHandler(true).bind(this));
-        this.targetTextElement.addEventListener("mouseout", this.notificationHandler(false).bind(this));
+        this.targetElement.addEventListener("mouseover", this.notificationHandler(true).bind(this));
+        this.targetElement.addEventListener("mouseout", this.notificationHandler(false).bind(this));
     }
 
     notificationHandler(isHover) {
         return () => {
             if (isHover) {
-                this.targetNotificationElement.style.display = "flex";
+                this.targetTooltipElement.style.display = "flex";
             } else {
-                this.targetNotificationElement.style.display = "none";
+                this.targetTooltipElement.style.display = "none";
             }
         };
     }
@@ -661,6 +672,9 @@ const pageBascet = new bascet({
 
             productLikeButtonContainerID: `product-${Ind}-like-button-container`,
 
+            distributorTooltipID: `distributor-tooltip-${Ind}`,
+            distributorTooltipTargetID: `distributor-tooltip-target-${Ind}`,
+
             counterArgs: {
                 minusElementID: `product-${Ind}-decrementer`,
                 plusElementID: `product-${Ind}-incrementer`,
@@ -691,15 +705,15 @@ const outStockBAscet = new outStockBascet({
 });
 
 // Инициализируем всплывающую подсказку о бесплатной доставке в левой части
-const leftSideNotification = new freeNotification({
-    targetNotificationID: "left-side-notification",
-    targetTextID: "left-notification-text",
+const leftSideNotification = new tooltip({
+    targetTooltipID: "left-side-notification",
+    targetTooltipElement: "left-notification-text",
 });
 
 // Инициализируем всплывающую подсказку о бесплатной доставке в правой части
-const rightSideNotification = new freeNotification({
-    targetNotificationID: "right-side-notification",
-    targetTextID: "right-notification-text",
+const rightSideNotification = new tooltip({
+    targetTooltipID: "right-side-notification",
+    targetTooltipElement: "right-notification-text",
 });
 
 // Инициализируем управление способами оплаты
