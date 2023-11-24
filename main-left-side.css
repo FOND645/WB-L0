@@ -485,6 +485,12 @@
 
 .main-order-person-input-upper-placeholder {
     height: 16px;
+    color: #9797af;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
 }
 
 /*  */
@@ -598,4 +604,8 @@
 
 .main-in-stock-product-price-discount-container-values {
     text-wrap: nowrap;
+}
+
+.order-person-input:focus {
+    outline: none;
 }

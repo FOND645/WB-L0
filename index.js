@@ -642,6 +642,31 @@ class tooltip {
     }
 }
 
+// Класс
+class inputValidation {
+    constructor(args) {
+        this.conditionRegExp = args.conditionRegExp;
+        this.errorText = args.errorText;
+        this.fieldName = args.fieldName;
+        this.upperPlaceHolderElement = document.getElementById(args.upperPlaceHolderID);
+        this.errorContainerElement = document.getElementById(args.errorContainerID);
+        this.inputElement = document.getElementById(args.inputID);
+
+        this.inputElement.addEventListener("focusout", () => {});
+        this.inputElement.addEventListener("input", this.inputHandler.bind(this));
+    }
+
+    inputHandler() {
+        const isEmpty = this.inputElement.value.length === 0;
+        console.log(isEmpty);
+        this.upperPlaceHolderElement.innerText = isEmpty ? "" : this.fieldName;
+    }
+
+    validation() {
+        const isValid = this.conditionRegExp.test(this.inputElement.value);
+    }
+}
+
 // Инициализируем корзину налич. товаров
 const pageBascet = new bascet({
     finalSumElementID: "final-sum-element",
@@ -778,4 +803,47 @@ const deliveryControl = new deliverySelector({
     deliveryTitleRigthID: "delivery-title-right",
 });
 
-// pay-immediatly-checkbox-holder
+const inputFirstName = new inputValidation({
+    fieldName: "Имя",
+    errorText: "Введите имя",
+    conditionRegExp: /^[А-ЯЁA-Z][а-яёa-z\s-]*$/,
+    upperPlaceHolderID: "input-upper-placeholder-first-name",
+    inputID: "input-first-name",
+    errorContainerID: "input-error-first-name",
+});
+
+const inputLastName = new inputValidation({
+    fieldName: "Фамилия",
+    errorText: "Введите фамилию",
+    conditionRegExp: /^[А-ЯЁA-Z][а-яёa-z\s-]*$/,
+    upperPlaceHolderID: "input-upper-placeholder-last-name",
+    inputID: "input-last-name",
+    errorContainerID: "input-error-last-name",
+});
+
+const inputMail = new inputValidation({
+    fieldName: "Почта",
+    errorText: "Введите почту",
+    conditionRegExp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    upperPlaceHolderID: "input-upper-placeholder-mail",
+    inputID: "input-mail",
+    errorContainerID: "input-error-mail",
+});
+
+const inputPhone = new inputValidation({
+    fieldName: "Телефон",
+    errorText: "Введите телефон",
+    conditionRegExp: /^[А-ЯЁA-Z][а-яёa-z\s-]*$/,
+    upperPlaceHolderID: "input-upper-placeholder-phone",
+    inputID: "input-phone",
+    errorContainerID: "input-error-phone",
+});
+
+const inputINN = new inputValidation({
+    fieldName: "ИНН",
+    errorText: "Введите ИНН",
+    conditionRegExp: /^\d{14}$/,
+    upperPlaceHolderID: "input-upper-placeholder-inn",
+    inputID: "input-inn",
+    errorContainerID: "input-error-inn",
+});
