@@ -1,0 +1,9 @@
+@media (max-width: 1023px) {
+    .mobile-element {
+        display: block;
+    }
+
+    .desktop-element {
+        display: none !important;
+    }
+}

@@ -1,7 +1,9 @@
 .main-right-side {
     display: flex;
     flex-direction: column;
-    width: 304px;
+    position: sticky;
+    top: 10px;
+    width: 31%;
     border-radius: 16px;
     box-sizing: border-box;
     padding: 16px 24px 24px 24px;
@@ -106,19 +108,19 @@
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    padding: 8px 8px 12px 8px;
+    padding: 12px 8px 12px 8px;
 }
 
 .total-payment-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 5px;
 }
 
 .total-payment-requisites {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    /* gap: 8px; */
 }
 
 .total-payment-header {
@@ -130,7 +132,8 @@
 .total-payment-content {
     display: flex;
     flex-direction: row;
-    gap: 8px;
+    align-items: center;
+    gap: 10px;
 }
 
 .total-payment-immediatly-container {

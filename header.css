@@ -1,4 +1,4 @@
-header{
+header {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -7,7 +7,7 @@ header{
     gap: 32px;
 }
 
-.header-left-side{
+.header-left-side {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,7 +15,6 @@ header{
     position: relative;
     top: 0px;
     gap: 16px;
-
 }
 
 .header-catalog {
@@ -33,9 +32,11 @@ header{
 
 .header-logo-text {
     color: rgba(255, 255, 255, 1);
+    width: 107px;
     font-weight: 600;
-    font-size: 24px;
-    letter-spacing: 0.03rem;
+    font-size: 23px;
+    text-wrap: wrap;
+    letter-spacing: 0.05em;
     line-height: 24px;
     size: 28px;
 }
@@ -43,14 +44,14 @@ header{
 .header-search {
     display: flex;
     flex-direction: row;
-    flex-grow: 1;  
+    flex-grow: 1;
     height: 48px;
-    padding: 0px 20px; 
+    padding: 0px 20px;
     border-radius: 36px;
     background-color: rgba(255, 255, 255, 0.2);
     position: relative;
     top: 2px;
-    margin-right: 3px
+    margin-right: 3px;
 }
 
 .header-search-field {
@@ -117,7 +118,8 @@ header{
     height: 28px;
 }
 
-.header-bascet-text, .header-profile-text {
+.header-bascet-text,
+.header-profile-text {
     font-weight: 400;
     font-size: 13px;
     line-height: 16px;
@@ -139,7 +141,6 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .header-bascet-count-number {

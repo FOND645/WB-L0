@@ -5,6 +5,10 @@ body {
     background: rgba(103, 37, 168, 1);
 }
 
+.mobile-element {
+    display: none;
+}
+
 p {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
