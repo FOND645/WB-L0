@@ -87,6 +87,7 @@ class payImmediatly {
 
         this.confirmButtonTextElement = document.getElementById(args.confirmButtonTextID);
         this.leftSideDescriptionTextElement = document.getElementById(args.leftSideDescriptionTextID);
+        this.confirmButtonTextElement.addEventListener("click", () => document.dispatchEvent(new Event("orderConfirmed")));
     }
 
     checkBoxHandler() {
@@ -642,28 +643,80 @@ class tooltip {
     }
 }
 
-// Класс
+// Класс полей валидации
 class inputValidation {
     constructor(args) {
         this.conditionRegExp = args.conditionRegExp;
+        this.errorTextDefault = args.errorTextDefault;
         this.errorText = args.errorText;
         this.fieldName = args.fieldName;
+
+        this.isPhone = args.isPhone;
+        this.isFirstInput = true;
+
         this.upperPlaceHolderElement = document.getElementById(args.upperPlaceHolderID);
         this.errorContainerElement = document.getElementById(args.errorContainerID);
         this.inputElement = document.getElementById(args.inputID);
 
-        this.inputElement.addEventListener("focusout", () => {});
+        this.inputElement.addEventListener("input", this.validation.bind(this));
+        this.inputElement.addEventListener("focusout", this.setFirstInpu.bind(this));
         this.inputElement.addEventListener("input", this.inputHandler.bind(this));
+        if (this.isPhone) this.inputElement.addEventListener("input", this.phoneAutoFormater.bind(this));
+        document.addEventListener("orderConfirmed", this.orderConfirmHandler.bind(this));
+    }
+
+    orderConfirmHandler() {
+        this.isFirstInput = false;
+        this.validation();
+    }
+
+    setFirstInpu() {
+        this.isFirstInput = false;
+        this.validation();
     }
 
     inputHandler() {
         const isEmpty = this.inputElement.value.length === 0;
-        console.log(isEmpty);
         this.upperPlaceHolderElement.innerText = isEmpty ? "" : this.fieldName;
     }
 
     validation() {
+        if (this.isFirstInput) return;
         const isValid = this.conditionRegExp.test(this.inputElement.value);
+        this.inputElement.style.color = isValid ? "#000000" : "#f55123";
+        this.inputElement.style.borderColor = isValid ? "#9797af" : "#f55123";
+        this.errorContainerElement.innerText = isValid ? this.errorTextDefault : this.errorText;
+        this.errorContainerElement.style.color = isValid ? "#000000" : "#f55123";
+        console.log(this.inputElement.classList);
+        if (isValid) {
+            this.inputElement.classList.remove("main-order-person-input-input-error");
+        } else {
+            this.inputElement.classList.add("main-order-person-input-input-error");
+        }
+    }
+
+    phoneAutoFormater() {
+        const input = this.inputElement;
+        const inputValue = input.value.replace(/\D/g, ""); // Удаляем все нецифровые символы
+
+        let formattedValue = "";
+        if (inputValue.length > 0) {
+            formattedValue = `+${inputValue.substring(0, 1)}`;
+            if (inputValue.length > 1) {
+                formattedValue += ` ${inputValue.substring(1, 4)}`;
+                if (inputValue.length > 4) {
+                    formattedValue += ` ${inputValue.substring(4, 7)}`;
+                    if (inputValue.length > 7) {
+                        formattedValue += `-${inputValue.substring(7, 9)}`;
+                        if (inputValue.length > 9) {
+                            formattedValue += `-${inputValue.substring(9, 11)}`;
+                        }
+                    }
+                }
+            }
+        }
+
+        input.value = formattedValue;
     }
 }
 
@@ -806,6 +859,8 @@ const deliveryControl = new deliverySelector({
 const inputFirstName = new inputValidation({
     fieldName: "Имя",
     errorText: "Введите имя",
+    errorTextDefault: "",
+    isPhone: false,
     conditionRegExp: /^[А-ЯЁA-Z][а-яёa-z\s-]*$/,
     upperPlaceHolderID: "input-upper-placeholder-first-name",
     inputID: "input-first-name",
@@ -815,6 +870,8 @@ const inputFirstName = new inputValidation({
 const inputLastName = new inputValidation({
     fieldName: "Фамилия",
     errorText: "Введите фамилию",
+    errorTextDefault: "",
+    isPhone: false,
     conditionRegExp: /^[А-ЯЁA-Z][а-яёa-z\s-]*$/,
     upperPlaceHolderID: "input-upper-placeholder-last-name",
     inputID: "input-last-name",
@@ -824,6 +881,8 @@ const inputLastName = new inputValidation({
 const inputMail = new inputValidation({
     fieldName: "Почта",
     errorText: "Введите почту",
+    errorTextDefault: "",
+    isPhone: false,
     conditionRegExp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     upperPlaceHolderID: "input-upper-placeholder-mail",
     inputID: "input-mail",
@@ -833,7 +892,9 @@ const inputMail = new inputValidation({
 const inputPhone = new inputValidation({
     fieldName: "Телефон",
     errorText: "Введите телефон",
-    conditionRegExp: /^[А-ЯЁA-Z][а-яёa-z\s-]*$/,
+    errorTextDefault: "",
+    isPhone: true,
+    conditionRegExp: /^\+7 9\d{2} \d{3}-\d{2}-\d{2}$/,
     upperPlaceHolderID: "input-upper-placeholder-phone",
     inputID: "input-phone",
     errorContainerID: "input-error-phone",
@@ -842,6 +903,8 @@ const inputPhone = new inputValidation({
 const inputINN = new inputValidation({
     fieldName: "ИНН",
     errorText: "Введите ИНН",
+    errorTextDefault: "Для таможенного оформления",
+    isPhone: false,
     conditionRegExp: /^\d{14}$/,
     upperPlaceHolderID: "input-upper-placeholder-inn",
     inputID: "input-inn",
