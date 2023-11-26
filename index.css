@@ -9,6 +9,10 @@ body {
     display: none;
 }
 
+.header {
+    margin: 0px;
+}
+
 p {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;

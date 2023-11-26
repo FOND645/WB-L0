@@ -81,13 +81,15 @@ class payImmediatly {
     constructor(args) {
         this.isImmediatly = false;
         this.sumCache = undefined;
-        this.checkBoxContainerElement = document.getElementById(args.checkBoxContainerID);
-        this.checkBoxContainerElement.addEventListener("click", this.checkBoxHandler.bind(this));
-        this.checkBoxContainerElement.innerHTML = disabledCheckBoxHTML;
+        this.checkBoxContainerElement = args.checkBoxContainerID.map((ID) => document.getElementById(ID));
+        this.checkBoxContainerElement.forEach((Element) => Element.addEventListener("click", this.checkBoxHandler.bind(this)));
+        this.checkBoxContainerElement.forEach((Element) => (Element.innerHTML = disabledCheckBoxHTML));
 
-        this.confirmButtonTextElement = document.getElementById(args.confirmButtonTextID);
-        this.leftSideDescriptionTextElement = document.getElementById(args.leftSideDescriptionTextID);
-        this.confirmButtonTextElement.addEventListener("click", () => document.dispatchEvent(new Event("orderConfirmed")));
+        this.confirmButtonTextElement = args.confirmButtonTextID.map((ID) => document.getElementById(ID));
+        this.leftSideDescriptionTextElement = args.leftSideDescriptionTextID.map((ID) => document.getElementById(ID));
+        this.confirmButtonTextElement.forEach((Element) =>
+            Element.addEventListener("click", () => document.dispatchEvent(new Event("orderConfirmed")))
+        );
     }
 
     checkBoxHandler() {
@@ -107,11 +109,11 @@ class payImmediatly {
 class Counter {
     constructor(args) {
         // Получаем все элементы DOM'a
-        this.plusElement = document.getElementById(args.plusElementID);
-        this.minusElement = document.getElementById(args.minusElementID);
-        this.countElement = document.getElementById(args.countElementID);
-        this.productFinalSumElement = document.getElementById(args.productFinalSumID);
-        this.productBasicSumElement = document.getElementById(args.productBasicSumID);
+        this.plusElement = args.plusElementID.map((ID) => document.getElementById(ID));
+        this.minusElement = args.minusElementID.map((ID) => document.getElementById(ID));
+        this.countElement = args.countElementID.map((ID) => document.getElementById(ID));
+        this.productFinalSumElement = args.productFinalSumID.map((ID) => document.getElementById(ID));
+        this.productBasicSumElement = args.productBasicSumID.map((ID) => document.getElementById(ID));
 
         this.count = args.initialCount;
         this.maxCount = args.maxCount;
@@ -121,7 +123,7 @@ class Counter {
         this.discountCommonElement = document.getElementById(args.discountCommonID);
         this.discountPersonalElement = document.getElementById(args.discountPersonalID);
 
-        this.countElement.value = `${this.count}`;
+        this.countElement.forEach((Element) => (Element.value = `${this.count}`));
 
         this.tooltipElement = document.getElementById(args.tooltipContainerID);
         this.tooltipTargetElement = document.getElementById(args.tooltipTargetID);
@@ -130,9 +132,9 @@ class Counter {
 
         // Это реально надо комментировать? Неужели этот код может быть непонятным?
         // Добавляем листнеры событий на соответствующие элементы
-        this.plusElement.addEventListener("click", this.incrementCount.bind(this));
-        this.minusElement.addEventListener("click", this.decrementCount.bind(this));
-        this.countElement.addEventListener("input", this.setCount.bind(this));
+        this.plusElement.forEach((Element) => Element.addEventListener("click", this.incrementCount.bind(this)));
+        this.minusElement.forEach((Element) => Element.addEventListener("click", this.decrementCount.bind(this)));
+        this.countElement.forEach((Element) => Element.addEventListener("input", this.setCount.bind(this)));
         this.updatePlusMinusStyles();
         this.updateSums();
     }
@@ -149,7 +151,7 @@ class Counter {
     incrementCount() {
         if (this.count === this.maxCount) return;
         this.count++;
-        this.countElement.value = `${this.count}`;
+        this.countElement.forEach((Element) => (Element.value = `${this.count}`));
         this.updatePlusMinusStyles();
         this.updateSums();
         document.dispatchEvent(new Event("bascetIsChanged"));
@@ -159,7 +161,7 @@ class Counter {
     decrementCount() {
         if (this.count === 1) return;
         this.count--;
-        this.countElement.value = `${this.count}`;
+        this.countElement.forEach((Element) => (Element.value = `${this.count}`));
         this.updatePlusMinusStyles();
         this.updateSums();
         document.dispatchEvent(new Event("bascetIsChanged"));
@@ -184,20 +186,22 @@ class Counter {
     }
 
     updateSums() {
-        this.productFinalSumElement.classList = (this.basicPrice - this.discount) * this.count >= 1000000 ? ["h4"] : ["h3"];
-        this.productFinalSumElement.innerText = ((this.basicPrice - this.discount) * this.count).toLocaleString();
-        this.productBasicSumElement.innerText = (this.basicPrice * this.count).toLocaleString();
+        this.productFinalSumElement.forEach(
+            (Element) => (Element.classList = (this.basicPrice - this.discount) * this.count >= 1000000 ? ["h4"] : ["h3"])
+        );
+        this.productFinalSumElement.forEach((Element) => (Element.innerText = ((this.basicPrice - this.discount) * this.count).toLocaleString()));
+        this.productBasicSumElement.forEach((Element) => (Element.innerText = (this.basicPrice * this.count).toLocaleString()));
 
         this.discountCommonElement.innerText = ((this.discount / 2) * this.count).toLocaleString();
         this.discountPersonalElement.innerText = ((this.discount / 2) * this.count).toLocaleString();
     }
 
     updatePlusMinusStyles() {
-        this.plusElement.style.color = this.count === this.maxCount ? `#00000033` : "#000000";
-        this.plusElement.style.cursor = this.count === this.maxCount ? `default` : "pointer";
+        this.plusElement.forEach((Element) => (Element.style.color = this.count === this.maxCount ? `#00000033` : "#000000"));
+        this.plusElement.forEach((Element) => (Element.style.cursor = this.count === this.maxCount ? `default` : "pointer"));
 
-        this.minusElement.style.color = this.count === 1 ? `#00000033` : "#000000";
-        this.minusElement.style.cursor = this.count === 1 ? `default` : "pointer";
+        this.minusElement.forEach((Element) => (Element.style.color = this.count === 1 ? `#00000033` : "#000000"));
+        this.minusElement.forEach((Element) => (Element.style.cursor = this.count === 1 ? `default` : "pointer"));
     }
 }
 
@@ -223,25 +227,25 @@ class Product {
         this.distributorTooltipTargetElement.addEventListener("mouseover", this.tooltipHandler(this.distributorTooltipElement, true).bind(this));
         this.distributorTooltipTargetElement.addEventListener("mouseout", this.tooltipHandler(this.distributorTooltipElement, false).bind(this));
 
-        this.firstDeliveryCounterElement = document.getElementById(args.firstDeliveryCounterID);
-        this.firstDeliveryCounterContainerElement = document.getElementById(args.firstDeliveryCounterContainerID);
-        this.firstDeliveryContainerElement = document.getElementById(args.firstDeliveryContainerID);
-        this.secondDeliveryCounterElement = document.getElementById(args.secondDeliveryCounterID);
-        this.secondDeliveryCounterContainerElement = document.getElementById(args.secondDeliveryCounterContainerID);
-        this.secondDeliveryContainerElement = document.getElementById(args.secondDeliveryContainerID);
+        this.firstDeliveryCounterElement = args.firstDeliveryCounterID.map((ID) => document.getElementById(ID));
+        this.firstDeliveryCounterContainerElement = args.firstDeliveryCounterContainerID.map((ID) => document.getElementById(ID));
+        this.firstDeliveryContainerElement = args.firstDeliveryContainerID.map((ID) => document.getElementById(ID));
+        this.secondDeliveryCounterElement = args.secondDeliveryCounterID.map((ID) => document.getElementById(ID));
+        this.secondDeliveryCounterContainerElement = args.secondDeliveryCounterContainerID.map((ID) => document.getElementById(ID));
+        this.secondDeliveryContainerElement = args.secondDeliveryContainerID.map((ID) => document.getElementById(ID));
 
         // Получаем элементы из DOM дерева
-        this.productContainerElement = document.getElementById(args.productContainerID);
-        this.productLikeButtonElement = document.getElementById(args.productLikeButtonContainerID);
-        this.productDeleteButtonElement = document.getElementById(args.productDeleteButtonContainerID);
-        this.productCheckBoxContainerElement = document.getElementById(args.productCheckBoxContainerID);
+        this.productContainerElement = args.productContainerID.map((ID) => document.getElementById(ID));
+        this.productLikeButtonElement = args.productLikeButtonContainerID.map((ID) => document.getElementById(ID));
+        this.productDeleteButtonElement = args.productDeleteButtonContainerID.map((ID) => document.getElementById(ID));
+        this.productCheckBoxContainerElement = args.productCheckBoxContainerID.map((ID) => document.getElementById(ID));
 
         // Ставим листнеры на клики по управляющим элементам
         // this.productLikeButtonElement.addEventListener("click", this.setLiked);
-        this.productDeleteButtonElement.addEventListener("click", this.delete.bind(this));
-        this.productCheckBoxContainerElement.addEventListener("click", this.changeSelect.bind(this));
+        this.productDeleteButtonElement.forEach((Element) => Element.addEventListener("click", this.delete.bind(this)));
+        this.productCheckBoxContainerElement.forEach((Element) => Element.addEventListener("click", this.changeSelect.bind(this)));
 
-        this.productLikeButtonElement.addEventListener("click", this.setLiked.bind(this));
+        this.productLikeButtonElement.forEach((Element) => Element.addEventListener("click", this.setLiked.bind(this)));
         document.addEventListener("bascetIsChanged", this.updateDeliveryCounters.bind(this));
         this.updateDeliveryCounters();
     }
@@ -254,34 +258,40 @@ class Product {
 
     setLiked() {
         this.isLiked = !this.isLiked;
-        this.productLikeButtonElement.style.fill = this.isLiked ? "#C400A7" : "inherit";
+        this.productLikeButtonElement.forEach((Element) => (Element.style.fill = this.isLiked ? "#C400A7" : "inherit"));
     }
 
     outsideSetSelect(selected) {
         this.isSelected = selected;
-        this.productCheckBoxContainerElement.innerHTML = this.isSelected ? enabledCheckBoxHTML : disabledCheckBoxHTML;
+        this.productCheckBoxContainerElement.forEach((Element) => (Element.innerHTML = this.isSelected ? enabledCheckBoxHTML : disabledCheckBoxHTML));
         document.dispatchEvent(new Event("bascetIsChanged"));
     }
 
     updateDeliveryCounters() {
         if (!this.isEnable || !this.isSelected) {
-            this.firstDeliveryContainerElement.style.display = "none";
-            this.secondDeliveryContainerElement.style.display = "none";
+            this.firstDeliveryContainerElement.forEach((Element) => (Element.style.display = "none"));
+            this.secondDeliveryContainerElement.forEach((Element) => (Element.style.display = "none"));
             return;
         }
-        this.firstDeliveryCounterElement.innerText = this.counter.count <= this.firstDeliveryLimit ? this.counter.count : this.firstDeliveryLimit;
-        this.firstDeliveryCounterContainerElement.style.display = this.counter.count === 1 ? "none" : "flex";
-        this.firstDeliveryContainerElement.style.display = this.counter.count === 0 ? "none" : "unset";
+        this.firstDeliveryCounterElement.forEach(
+            (Element) => (Element.innerText = this.counter.count <= this.firstDeliveryLimit ? this.counter.count : this.firstDeliveryLimit)
+        );
+        this.firstDeliveryCounterContainerElement.forEach((Element) => (Element.style.display = this.counter.count === 1 ? "none" : "flex"));
+        this.firstDeliveryContainerElement.forEach((Element) => (Element.style.display = this.counter.count === 0 ? "none" : "unset"));
 
-        this.secondDeliveryCounterElement.innerText = this.counter.count - this.firstDeliveryLimit;
-        this.secondDeliveryCounterContainerElement.style.display = this.counter.count - this.firstDeliveryLimit === 1 ? "none" : "flex";
-        this.secondDeliveryContainerElement.style.display = this.counter.count < this.firstDeliveryLimit ? "none" : "unset";
+        this.secondDeliveryCounterElement.forEach((Element) => (Element.innerText = this.counter.count - this.firstDeliveryLimit));
+        this.secondDeliveryCounterContainerElement.forEach(
+            (Element) => (Element.style.display = this.counter.count - this.firstDeliveryLimit === 1 ? "none" : "flex")
+        );
+        this.secondDeliveryContainerElement.forEach(
+            (Element) => (Element.style.display = this.counter.count < this.firstDeliveryLimit ? "none" : "unset")
+        );
     }
 
     // Хэндлер чекбокса
     changeSelect() {
         this.isSelected = !this.isSelected;
-        this.productCheckBoxContainerElement.innerHTML = this.isSelected ? enabledCheckBoxHTML : disabledCheckBoxHTML;
+        this.productCheckBoxContainerElement.forEach((Element) => (Element.innerHTML = this.isSelected ? enabledCheckBoxHTML : disabledCheckBoxHTML));
         document.dispatchEvent(new Event("bascetIsChanged"));
         document.dispatchEvent(new Event("productSelectChanged"));
     }
@@ -289,7 +299,7 @@ class Product {
     // Хэндлер удаления продукта
     delete() {
         this.isEnable = false;
-        this.productContainerElement.style.display = "none";
+        this.productContainerElement.forEach((Element) => (Element.style.display = "none"));
         document.dispatchEvent(new Event("bascetIsChanged"));
     }
 }
@@ -306,26 +316,27 @@ class bascet {
         this.isSelectAll = true;
 
         this.deliveryContainersElements = args.delvierySecondIDs.map((ID) => document.getElementById(ID));
-        this.productCounterContainerElement = document.getElementById(args.productCounterContainerID);
-        this.productCounterElement = document.getElementById(args.porductCounterID);
-        this.arrowButtonElement = document.getElementById(args.arrowButtonID);
-        this.productsContainerElement = document.getElementById(args.productsContainerID);
-        this.bascetCheckBoxElemnt = document.getElementById(args.bascetCheckBoxContainerID);
+        this.productCounterContainerElement = args.productCounterContainerID.map((ID) => document.getElementById(ID));
+        this.productCounterElement = args.porductCounterID.map((ID) => document.getElementById(ID));
+        this.arrowButtonElement = args.arrowButtonID.map((ID) => document.getElementById(ID));
+        this.productsContainerElement = args.productsContainerID.map((ID) => document.getElementById(ID));
+        this.bascetCheckBoxElemnt = args.bascetCheckBoxContainerID.map((ID) => document.getElementById(ID));
 
-        this.arrowButtonElement.addEventListener("click", this.setShowed.bind(this));
-        this.bascetCheckBoxElemnt.addEventListener("click", this.setSelectAll.bind(this));
+        this.arrowButtonElement.forEach((Element) => Element.addEventListener("click", this.setShowed.bind(this)));
+        this.bascetCheckBoxElemnt.forEach((Element) => Element.addEventListener("click", this.setSelectAll.bind(this)));
 
         // Получаем элементы сумм из DOM'a
-        this.finalSumElement = document.getElementById(args.finalSumElementID);
-        this.basicSumElement = document.getElementById(args.basicSumElementID);
-        this.discountSumElement = document.getElementById(args.discountSumElementID);
+        this.finalSumElement = args.finalSumElementID.map((ID) => document.getElementById(ID));
+        this.basicSumElement = args.basicSumElementID.map((ID) => document.getElementById(ID));
+        this.discountSumElement = args.discountSumElementID.map((ID) => document.getElementById(ID));
+        console.log(this);
 
         this.updateSum();
 
         // Записываем значения сумм в DOM
-        this.basicSumElement.innerText = `${this.basicSum.toLocaleString()}`;
-        this.discountSumElement.innerText = `−${this.discountSum.toLocaleString()}`;
-        this.finalSumElement.innerText = `${(this.basicSum - this.discountSum).toLocaleString()}`;
+        this.basicSumElement.forEach((Element) => (Element.innerText = `${this.basicSum.toLocaleString()}`));
+        this.discountSumElement.forEach((Element) => (Element.innerText = `−${this.discountSum.toLocaleString()}`));
+        this.finalSumElement.forEach((Element) => (Element.innerText = `${(this.basicSum - this.discountSum).toLocaleString()}`));
 
         // Добавляем листнер на изменения в корзине
         document.addEventListener("bascetIsChanged", this.updateSum.bind(this));
@@ -339,14 +350,14 @@ class bascet {
 
     productSlectedHandler() {
         const isAllSelected = this.products.every((Prod) => Prod.isSelected);
-        this.bascetCheckBoxElemnt.innerHTML = isAllSelected ? enabledCheckBoxHTML : disabledCheckBoxHTML;
+        this.bascetCheckBoxElemnt.forEach((Element) => (Element.innerHTML = isAllSelected ? enabledCheckBoxHTML : disabledCheckBoxHTML));
         this.isSelectAll = isAllSelected;
     }
 
     setShowed() {
         this.isShowed = !this.isShowed;
-        this.arrowButtonElement.style.transform = this.isShowed ? "rotate(0deg)" : "rotate(180deg)";
-        this.productsContainerElement.style.display = this.isShowed ? "flex" : "none";
+        this.arrowButtonElement.forEach((Element) => (Element.style.transform = this.isShowed ? "rotate(0deg)" : "rotate(180deg)"));
+        this.productsContainerElement.forEach((Element) => (Element.style.display = this.isShowed ? "flex" : "none"));
     }
 
     setSelectAll() {
@@ -354,7 +365,7 @@ class bascet {
         this.products.forEach((Prod) => {
             Prod.outsideSetSelect(this.isSelectAll);
         });
-        this.bascetCheckBoxElemnt.innerHTML = this.isSelectAll ? enabledCheckBoxHTML : disabledCheckBoxHTML;
+        this.bascetCheckBoxElemnt.forEach((Element) => (Element.innerHTML = this.isSelectAll ? enabledCheckBoxHTML : disabledCheckBoxHTML));
     }
 
     // Хэндлер изменений в корзине
@@ -365,16 +376,18 @@ class bascet {
         const productsCount = this.products.reduce((Sum, Prod) => (Sum += +Prod.isEnable), 0);
 
         // Записываем все суммы в DOM
-        this.productCounterElement.innerText = productsCount ? productsCount : "";
+        this.productCounterElement.forEach((Element) => (Element.innerText = productsCount ? productsCount : ""));
         if (productsCount) {
-            this.productCounterContainerElement.style.backgroundColor = "rgba(245, 81, 35, 1)";
+            this.productCounterContainerElement.forEach((Element) => (Element.style.backgroundColor = "rgba(245, 81, 35, 1)"));
         } else {
-            this.productCounterContainerElement.style.backgroundColor = "transparent";
+            this.productCounterContainerElement.forEach((Element) => (Element.style.backgroundColor = "transparent"));
         }
 
-        this.basicSumElement.innerText = this.basicSum.toLocaleString();
-        this.discountSumElement.innerText = `${this.discountSum === 0 ? "" : "−"}${this.discountSum.toLocaleString()}`;
-        this.finalSumElement.innerText = `${(this.basicSum - this.discountSum).toLocaleString()}`;
+        this.basicSumElement.forEach((Element) => (Element.innerText = this.basicSum.toLocaleString()));
+        this.discountSumElement.forEach(
+            (Element) => (Element.innerText = `${this.discountSum === 0 ? "" : "−"}${this.discountSum.toLocaleString()}`)
+        );
+        this.finalSumElement.forEach((Element) => (Element.innerText = `${(this.basicSum - this.discountSum).toLocaleString()}`));
         this.payImmediatly.updateSums(this.basicSum - this.discountSum);
         this.updateDispalyDelivery();
     }
@@ -722,26 +735,26 @@ class inputValidation {
 
 // Инициализируем корзину налич. товаров
 const pageBascet = new bascet({
-    finalSumElementID: "final-sum-element",
-    basicSumElementID: "basic-sum-element",
+    finalSumElementID: ["final-sum-element", "mobile-summary-cost-total"],
+    basicSumElementID: ["basic-sum-element", "mobile-summary-cost-basic"],
+    discountSumElementID: ["discount-sum-element", "mobile-summary-cost-discount"],
 
-    productCounterContainerID: "header-protuct-counter-container",
-    porductCounterID: "header-protuct-counter",
+    productCounterContainerID: ["header-protuct-counter-container", "mobile-header-protuct-counter-container"],
+    porductCounterID: ["header-protuct-counter", "mobile-header-protuct-counter"],
 
-    bascetCheckBoxContainerID: "show-all-in-stock-button",
+    bascetCheckBoxContainerID: ["show-all-in-stock-button", "mobile-select-all-checkbox-container"],
 
-    productsContainerID: "main-in-stock-products",
+    productsContainerID: ["main-in-stock-products", "mobile-bascet-products-in-stock-container"],
 
     payImmediatlyParams: {
-        leftSideDescriptionTextID: "left-side-immediatly-pay-text",
-        confirmButtonTextID: "order-confirm-button",
-        checkBoxContainerID: "immediatly-pay-checkbox-container",
+        leftSideDescriptionTextID: ["left-side-immediatly-pay-text", "mobile-payment-free-refund"],
+        confirmButtonTextID: ["order-confirm-button", "mobile-order-confirm-button"],
+        checkBoxContainerID: ["immediatly-pay-checkbox-container", "mobile-summary-immediatly-checkbox"],
     },
 
-    arrowButtonID: "bascet-in-stock-arrow-btn",
-    discountSumElementID: "discount-sum-element",
+    arrowButtonID: ["bascet-in-stock-arrow-btn", "mobile-bascet-products-in-stock-select-all-arrow"],
 
-    delvierySecondIDs: ["second-delivery-date", "second-delivery-date-container"],
+    delvierySecondIDs: ["second-delivery-date", "second-delivery-date-container", "mobile-delivery-second-date-container"],
 
     deliveryContainers: [],
     productsArgs: [1, 2, 3].map((Ind) => {
@@ -749,34 +762,37 @@ const pageBascet = new bascet({
             basicPrice: [0, 1080, 11200, 480][Ind],
             discount: [0, 108, 1120, 48][Ind],
             maxCount: [0, 2, Infinity, 2][Ind],
-            productCheckBoxContainerID: `product-${Ind}-in-stock-check-box-container`,
-            productContainerID: `product-${Ind}-in-stock-container`,
+            productCheckBoxContainerID: [`product-${Ind}-in-stock-check-box-container`, `mobile-product-in-stock-checkbox-container-${Ind}`],
+            productContainerID: [`product-${Ind}-in-stock-container`, `mobile-product-in-stock-container-${Ind}`],
 
             firstDeliveryLimit: [0, 4, 184, 4][Ind],
 
-            firstDeliveryCounterID: `delivery-first-date-counter-${Ind}`,
-            firstDeliveryCounterContainerID: `delivery-first-date-counter-container-${Ind}`,
-            firstDeliveryContainerID: `delivery-first-date-container-${Ind}`,
+            firstDeliveryCounterID: [`delivery-first-date-counter-${Ind}`, `mobile-delivery-first-date-counter-${Ind}`],
+            firstDeliveryCounterContainerID: [`delivery-first-date-counter-container-${Ind}`, `mobile-delivery-first-date-counter-container-${Ind}`],
+            firstDeliveryContainerID: [`delivery-first-date-container-${Ind}`, `mobile-delivery-first-date-container-${Ind}`],
 
-            secondDeliveryCounterID: `delivery-second-date-counter-${Ind}`,
-            secondDeliveryCounterContainerID: `delivery-second-date-counter-container-${Ind}`,
-            secondDeliveryContainerID: `delivery-second-date-container-${Ind}`,
+            secondDeliveryCounterID: [`delivery-second-date-counter-${Ind}`, `mobile-delivery-second-date-counter-${Ind}`],
+            secondDeliveryCounterContainerID: [
+                `delivery-second-date-counter-container-${Ind}`,
+                `mobile-delivery-second-date-counter-container-${Ind}`,
+            ],
+            secondDeliveryContainerID: [`delivery-second-date-container-${Ind}`, `mobile-delivery-second-date-container-${Ind}`],
 
-            productDeleteButtonContainerID: `product-${Ind}-delete-button-container`,
+            productDeleteButtonContainerID: [`product-${Ind}-delete-button-container`, `mobile-product-in-stock-${Ind}-delete-button-container`],
 
-            productLikeButtonContainerID: `product-${Ind}-like-button-container`,
+            productLikeButtonContainerID: [`product-${Ind}-like-button-container`, `mobile-product-in-stock-${Ind}-like-button-container`],
 
             distributorTooltipID: `distributor-tooltip-${Ind}`,
             distributorTooltipTargetID: `distributor-tooltip-target-${Ind}`,
 
             counterArgs: {
-                minusElementID: `product-${Ind}-decrementer`,
-                plusElementID: `product-${Ind}-incrementer`,
-                countElementID: `product-${Ind}-counter`,
+                minusElementID: [`product-${Ind}-decrementer`, `mobile-product-${Ind}-decrementer`],
+                plusElementID: [`product-${Ind}-incrementer`, `mobile-product-${Ind}-incrementer`],
+                countElementID: [`product-${Ind}-counter`, `mobile-product-${Ind}-counter`],
                 maxCount: [0, 2, Infinity, 2][Ind],
                 initialCount: [0, 1, 200, 2][Ind],
-                productFinalSumID: `product-${Ind}-final-sum`,
-                productBasicSumID: `product-${Ind}-basic-sum`,
+                productFinalSumID: [`product-${Ind}-final-sum`, `produce-final-sum-${Ind}`],
+                productBasicSumID: [`product-${Ind}-basic-sum`, `produce-final-basic-${Ind}`],
                 basicPrice: [0, 1080, 11500, 480][Ind],
                 discount: [0, 108, 1150, 48][Ind],
                 discountCommonID: `product-common-discount-${Ind}`,
