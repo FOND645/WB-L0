@@ -3,16 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="mobile-main.css" />
-        <link rel="stylesheet" type="text/css" href="mobile-header.css" />
-        <link rel="stylesheet" type="text/css" href="header.css" />
-        <link rel="stylesheet" type="text/css" href="index.css" />
-        <link rel="stylesheet" type="text/css" href="footer.css" />
-        <link rel="stylesheet" type="text/css" href="adaptivity.css" />
-        <link rel="stylesheet" type="text/css" href="main-right-side.css" />
-        <link rel="stylesheet" type="text/css" href="main-left-side.css" />
-        <link rel="stylesheet" type="text/css" href="modal-payment.css" />
-        <link rel="stylesheet" type="text/css" href="modal-delivery.css" />
+        <link rel="stylesheet" type="text/css" href="styles/mobile-main.css" />
+        <link rel="stylesheet" type="text/css" href="styles/mobile-header.css" />
+        <link rel="stylesheet" type="text/css" href="styles/header.css" />
+        <link rel="stylesheet" type="text/css" href="styles/index.css" />
+        <link rel="stylesheet" type="text/css" href="styles/footer.css" />
+        <link rel="stylesheet" type="text/css" href="styles/adaptivity.css" />
+        <link rel="stylesheet" type="text/css" href="styles/main-right-side.css" />
+        <link rel="stylesheet" type="text/css" href="styles/main-left-side.css" />
+        <link rel="stylesheet" type="text/css" href="styles/modal-payment.css" />
+        <link rel="stylesheet" type="text/css" href="styles/modal-delivery.css" />
         <script type="module" src="index.js" defer></script>
         <title>Document</title>
     </head>
@@ -1457,7 +1457,7 @@
                         <div class="total-cost-final-price-rest-info">
                             <!-- Базовая стоимость за N товаров -->
                             <div class="total-cost-basic-price-container total-cost-line-container">
-                                <p class="total-cost-final-price-text">203 товара</p>
+                                <p class="total-cost-final-price-text" id="desktop-products-total"></p>
                                 <p class="total-cost-final-price-sum">
                                     <span class="total-cost-final-price-sum" id="basic-sum-element">2 302 048</span>
                                     <span class="total-cost-final-price-sum">сом</span>
@@ -1486,7 +1486,7 @@
                                 <img src="images/edit-pen.svg" class="total-delivery-point-header-edit edit-button" id="delivery-open-modal-1" />
                             </div>
                             <p class="total-delivery-point-address font-caption" id="delivery-address-1">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
-                            <p class="font-caption total-delivery-date">5–8 фев</p>
+                            <p class="font-caption total-delivery-date" id="final-delivery-date-desktop">5–8 фев</p>
                         </div>
                         <div class="total-delivery-refund-container">
                             <img src="images/refund-check.svg" class="total-delivery-refund-check refund-check" />
@@ -1996,8 +1996,10 @@
                         </div>
                         <div class="mobile-bascet-products-out-stock">
                             <div class="mobile-bascet-products-out-stock-header">
-                                <p class="mobile-bascet-products-out-stock-header-text">Отсутствуют · 3 товара</p>
-                                <button class="mobile-bascet-products-out-stock-header-arrow">
+                                <p class="mobile-bascet-products-out-stock-header-text">
+                                    Отсутствуют · <span id="mobile-bascet-products-out-stock-header-text">3 товара</span>
+                                </p>
+                                <button class="mobile-bascet-products-out-stock-header-arrow" id="mobile-bascet-products-out-stock-header-arrow">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M17.3417 14.9117C16.966 15.2978 16.3477 15.304 15.9644 14.9254L10.1418 9.17438C10.0634 9.09694 9.93715 9.09751 9.85945 9.17566L4.15281 14.9155C3.76725 15.3033 3.14293 15.3133 2.74516 14.9381C2.33549 14.5516 2.32163 13.9045 2.71437 13.5008L9.28326 6.74912C9.67588 6.34557 10.3241 6.34557 10.7167 6.74912L17.3417 13.5585C17.7082 13.9351 17.7082 14.5351 17.3417 14.9117Z"
@@ -2006,15 +2008,15 @@
                                     </svg>
                                 </button>
                             </div>
-                            <div class="mobile-bascet-products-out-stock-container">
+                            <div class="mobile-bascet-products-out-stock-container" id="mobile-bascet-products-out-stock-container">
                                 <!-- Товар 1 -->
-                                <div class="mobile-bascet-product-out-stock-container">
+                                <div class="mobile-bascet-product-out-stock-container" id="mobile-bascet-product-out-stock-container-1">
                                     <div class="mobile-bascet-product-out-stock-card">
                                         <div class="mobile-bascet-product-out-stock-photo-container">
                                             <div class="mobile-bascet-product-out-stock-size-container">
                                                 <p class="mobile-bascet-product-out-stock-size-text">56</p>
                                             </div>
-                                            <img src="images/T-short-out.png" alt="" />
+                                            <img src="images/T-short-out.png" alt="" class="mobile-product-photo" />
                                         </div>
                                         <div class="mobile-bascet-product-out-stock-decribe-container">
                                             <p class="mobile-bascet-product-out-stock-name">Футболка UZcotton мужская</p>
@@ -2039,7 +2041,7 @@
                                                 />
                                             </svg>
                                         </button>
-                                        <button class="mobile-like-delete-btn-container" id="mobile-product-out-stock-1-like-button-container">
+                                        <button class="mobile-like-delete-btn-container" id="mobile-product-out-stock-1-delete-button-container">
                                             <svg
                                                 width="20"
                                                 class="mobile-out-stock-product-delete"
@@ -2071,10 +2073,10 @@
                                     </div>
                                 </div>
                                 <!-- Товар 2 -->
-                                <div class="mobile-bascet-product-out-stock-container">
+                                <div class="mobile-bascet-product-out-stock-container" id="mobile-bascet-product-out-stock-container-2">
                                     <div class="mobile-bascet-product-out-stock-card">
                                         <div class="mobile-bascet-product-out-stock-photo-container">
-                                            <img src="images/phone-cargo-out.png" alt="" />
+                                            <img src="images/phone-cargo-out.png" alt="" class="mobile-product-photo" />
                                         </div>
                                         <div class="mobile-bascet-product-out-stock-decribe-container">
                                             <p class="mobile-bascet-product-out-stock-name">
@@ -2133,10 +2135,10 @@
                                     </div>
                                 </div>
                                 <!-- Товар 3 -->
-                                <div class="mobile-bascet-product-out-stock-container">
+                                <div class="mobile-bascet-product-out-stock-container" id="mobile-bascet-product-out-stock-container-3">
                                     <div class="mobile-bascet-product-out-stock-card">
                                         <div class="mobile-bascet-product-out-stock-photo-container">
-                                            <img src="images/pencilse-out.png" alt="" />
+                                            <img src="images/pencilse-out.png" alt="" class="mobile-product-photo" />
                                         </div>
                                         <div class="mobile-bascet-product-out-stock-decribe-container">
                                             <p class="mobile-bascet-product-out-stock-name">
@@ -2203,16 +2205,16 @@
                             <div class="mobile-delivery-params">
                                 <div class="mobile-delivery-header">
                                     <p class="mobile-delivery-header-text">Способ доставки</p>
-                                    <p class="mobile-delivery-change">Изменить</p>
+                                    <p class="mobile-delivery-change" id="mobile-delivery-change">Изменить</p>
                                 </div>
                                 <div class="mobile-delivery-main">
                                     <div class="mobile-delivery-point-shell">
                                         <div class="mobile-delivery-point-container">
                                             <div class="mobile-delivery-point-content">
-                                                <p class="mobile-delivery-title">Пункт выдачи</p>
-                                                <p class="mobile-delivery-text">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+                                                <p class="mobile-delivery-title" id="mobile-delivery-type">Пункт выдачи</p>
+                                                <p class="mobile-delivery-text" id="mobile-delivery-text">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
                                             </div>
-                                            <div class="mobile-delivery-point-raiting-container">
+                                            <div class="mobile-delivery-point-raiting-container" id="mobile-delivery-point-raiting-container">
                                                 <div class="mobile-delivery-point-raiting-content">
                                                     <svg width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path
@@ -2364,10 +2366,10 @@
                             <div class="mobile-payment-main">
                                 <div class="mobile-payment-header">
                                     <p class="mobile-payment-header-text">Способ оплаты</p>
-                                    <p class="mobile-payment-header-change">Изменить</p>
+                                    <p class="mobile-payment-header-change" id="mobile-payment-header-change">Изменить</p>
                                 </div>
                                 <div class="mobile-payment-content">
-                                    <div class="mobile-payment-card-container">
+                                    <div class="mobile-payment-card-container" id="mobile-payment-card-container">
                                         <svg width="32" height="25" viewBox="0 0 32 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect y="0.5" width="32" height="24" rx="4" fill="#F6F6FA" />
                                             <path
@@ -2415,29 +2417,29 @@
                             <p class="mobile-personal-title">Получатель</p>
                             <div class="mobile-personal-form">
                                 <div class="mobile-personal-input-container">
-                                    <p class="mobile-personal-input-upper-placeholder"></p>
-                                    <input class="mobile-personal-input" placeholder="Имя" />
-                                    <p class="mobile-personal-input-error"></p>
+                                    <p class="mobile-personal-input-upper-placeholder" id="moible-upper-placeholder-first-name"></p>
+                                    <input class="mobile-personal-input" placeholder="Имя" id="moible-input-first-name" />
+                                    <p class="mobile-personal-input-error" id="moible-error-first-name"></p>
                                 </div>
                                 <div class="mobile-personal-input-container">
-                                    <p class="mobile-personal-input-upper-placeholder"></p>
-                                    <input class="mobile-personal-input" placeholder="Фамилия" />
-                                    <p class="mobile-personal-input-error"></p>
+                                    <p class="mobile-personal-input-upper-placeholder" id="moible-upper-placeholder-last-name"></p>
+                                    <input class="mobile-personal-input" placeholder="Фамилия" id="moible-input-last-name" />
+                                    <p class="mobile-personal-input-error" id="moible-error-last-name"></p>
                                 </div>
                                 <div class="mobile-personal-input-container">
-                                    <p class="mobile-personal-input-upper-placeholder"></p>
-                                    <input class="mobile-personal-input" placeholder="Электронная почта" />
-                                    <p class="mobile-personal-input-error"></p>
+                                    <p class="mobile-personal-input-upper-placeholder" id="moible-upper-placeholder-mail"></p>
+                                    <input class="mobile-personal-input" placeholder="Электронная почта" id="moible-input-mail" />
+                                    <p class="mobile-personal-input-error" id="moible-error-mail"></p>
                                 </div>
                                 <div class="mobile-personal-input-container">
-                                    <p class="mobile-personal-input-upper-placeholder"></p>
-                                    <input class="mobile-personal-input" placeholder="Телефон" />
-                                    <p class="mobile-personal-input-error"></p>
+                                    <p class="mobile-personal-input-upper-placeholder" id="moible-upper-placeholder-phone"></p>
+                                    <input class="mobile-personal-input" placeholder="Телефон" id="moible-input-phone" />
+                                    <p class="mobile-personal-input-error" id="moible-error-phone"></p>
                                 </div>
                                 <div class="mobile-personal-input-container">
-                                    <p class="mobile-personal-input-upper-placeholder"></p>
-                                    <input class="mobile-personal-input" placeholder="ИНН" />
-                                    <p class="mobile-personal-input-error">Для таможенного оформления</p>
+                                    <p class="mobile-personal-input-upper-placeholder" id="moible-upper-placeholder-inn"></p>
+                                    <input class="mobile-personal-input" placeholder="ИНН" id="moible-input-inn" />
+                                    <p class="mobile-personal-input-error" id="moible-error-inn">Для таможенного оформления</p>
                                 </div>
                             </div>
                         </div>
@@ -2451,7 +2453,7 @@
                                 </div>
                                 <div class="mobile-summary-cost-detail-container">
                                     <div class="mobile-summary-cost-basic-container">
-                                        <p class="mobile-summary-cost-basic-title"><span id="mobile-products-total">203</span> товара</p>
+                                        <p class="mobile-summary-cost-basic-title" id="mobile-products-total"></p>
                                         <p class="mobile-summary-cost-basic-value"><span id="mobile-summary-cost-basic">2 302 048</span> сом</p>
                                     </div>
                                     <div class="mobile-summary-cost-discount-container">

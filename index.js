@@ -94,14 +94,18 @@ class payImmediatly {
 
     checkBoxHandler() {
         this.isImmediatly = !this.isImmediatly;
-        this.checkBoxContainerElement.innerHTML = this.isImmediatly ? enabledCheckBoxHTML : disabledCheckBoxHTML;
+        this.checkBoxContainerElement.forEach((Element) => (Element.innerHTML = this.isImmediatly ? enabledCheckBoxHTML : disabledCheckBoxHTML));
         this.updateSums();
     }
 
     updateSums(sum) {
         this.sumCache = sum ?? this.sumCache;
-        this.confirmButtonTextElement.innerText = this.isImmediatly ? `Оплатить ${this.sumCache.toLocaleString()} сом` : "Заказать";
-        this.leftSideDescriptionTextElement.innerText = this.isImmediatly ? "" : "Спишем оплату с карты при получении";
+        this.confirmButtonTextElement.forEach(
+            (Element) => (Element.innerText = this.isImmediatly ? `Оплатить ${this.sumCache.toLocaleString()} сом` : "Заказать")
+        );
+        this.leftSideDescriptionTextElement.forEach(
+            (Element) => (Element.innerText = this.isImmediatly ? "" : "Спишем оплату с карты при получении")
+        );
     }
 }
 
@@ -168,27 +172,26 @@ class Counter {
     }
 
     // Хэндлер для вводимого вручную значения
-    setCount(_) {
-        let value = this.countElement.value;
+    setCount(event) {
+        let element = event.srcElement;
+        let value = event.srcElement.value;
         // Если введена пустая строка - не делаем ничего, ждем еще чего-нибудь
         if (value === "") return;
         // Если пользователь ввел кол-во превышающее максимальное - выводим максимальное
-        if (value > this.maxCount) value = this.maxCount;
+        if (value > this.maxCount) this.countElement.forEach((Element) => (Element.value = this.maxCount));
         // Если пользователь ввел число меньше 1 то принудительно ставим 1
-        if (value < 1) value = 1;
+        if (value < 1) this.countElement.forEach((Element) => (Element.value = 1));
         // Если пользователь как-то введет дробную часть числа - выкидываем ее
         if (!Number.isInteger(value)) value = Math.trunc(+value).toString();
         this.count = Math.trunc(+value);
-        this.countElement.value = `${this.count}`;
+        this.countElement.forEach((Element) => (Element.value = `${this.count}`));
         this.updatePlusMinusStyles();
         this.updateSums();
         document.dispatchEvent(new Event("bascetIsChanged"));
     }
 
     updateSums() {
-        this.productFinalSumElement.forEach(
-            (Element) => (Element.classList = (this.basicPrice - this.discount) * this.count >= 1000000 ? ["h4"] : ["h3"])
-        );
+        this.productFinalSumElement[0].classList = (this.basicPrice - this.discount) * this.count >= 1000000 ? ["h4"] : ["h3"];
         this.productFinalSumElement.forEach((Element) => (Element.innerText = ((this.basicPrice - this.discount) * this.count).toLocaleString()));
         this.productBasicSumElement.forEach((Element) => (Element.innerText = (this.basicPrice * this.count).toLocaleString()));
 
@@ -315,6 +318,7 @@ class bascet {
         this.isShowed = true;
         this.isSelectAll = true;
 
+        this.totalProductsElements = args.totalProductsID.map((ID) => document.getElementById(ID));
         this.deliveryContainersElements = args.delvierySecondIDs.map((ID) => document.getElementById(ID));
         this.productCounterContainerElement = args.productCounterContainerID.map((ID) => document.getElementById(ID));
         this.productCounterElement = args.porductCounterID.map((ID) => document.getElementById(ID));
@@ -329,7 +333,6 @@ class bascet {
         this.finalSumElement = args.finalSumElementID.map((ID) => document.getElementById(ID));
         this.basicSumElement = args.basicSumElementID.map((ID) => document.getElementById(ID));
         this.discountSumElement = args.discountSumElementID.map((ID) => document.getElementById(ID));
-        console.log(this);
 
         this.updateSum();
 
@@ -389,6 +392,14 @@ class bascet {
         );
         this.finalSumElement.forEach((Element) => (Element.innerText = `${(this.basicSum - this.discountSum).toLocaleString()}`));
         this.payImmediatly.updateSums(this.basicSum - this.discountSum);
+        const productsTotalCount = this.products.reduce((Sum, Prod) => (Sum += Prod.counter.count * +Prod.isEnable * +Prod.isSelected), 0);
+        const productsTotalCountWord = (() => {
+            if (11 <= productsTotalCount && productsTotalCount <= 19) return "товаров";
+            if (productsTotalCount % 10 >= 5 || productsTotalCount % 10 === 0) return "товаров";
+            if (productsTotalCount % 10 >= 2) return "товара";
+            return "товар";
+        })();
+        this.totalProductsElements.forEach((Element) => (Element.innerText = `${productsTotalCount.toLocaleString()} ${productsTotalCountWord}`));
         this.updateDispalyDelivery();
     }
 }
@@ -396,25 +407,25 @@ class bascet {
 // Класс отсутствующих продуктов
 class outStockProduct {
     constructor(args) {
-        this.productContainerElement = document.getElementById(args.productContainerID);
-        this.likeButtionElement = document.getElementById(args.likeButtonID);
-        this.deleteButtonElement = document.getElementById(args.deleteButtonID);
+        this.productContainerElement = args.productContainerID.map((ID) => document.getElementById(ID));
+        this.likeButtionElement = args.likeButtonID.map((ID) => document.getElementById(ID));
+        this.deleteButtonElement = args.deleteButtonID.map((ID) => document.getElementById(ID));
 
         this.isLiked = false;
         this.isEnable = true;
 
-        this.deleteButtonElement.addEventListener("click", this.delete.bind(this));
-        this.likeButtionElement.addEventListener("click", this.setLiked.bind(this));
+        this.deleteButtonElement.forEach((Element) => Element.addEventListener("click", this.delete.bind(this)));
+        this.likeButtionElement.forEach((Element) => Element.addEventListener("click", this.setLiked.bind(this)));
     }
 
     setLiked() {
         this.isLiked = !this.isLiked;
-        this.likeButtionElement.style.fill = this.isLiked ? "#C400A7" : "inherit";
+        this.likeButtionElement.forEach((Element) => (Element.style.fill = this.isLiked ? "#C400A7" : "inherit"));
     }
 
     delete() {
         this.isEnable = false;
-        this.productContainerElement.style.display = "none";
+        this.productContainerElement.forEach((Element) => (Element.style.display = "none"));
         document.dispatchEvent(new Event("outStockProdsIsChanged"));
     }
 }
@@ -485,10 +496,10 @@ class deliverySelector {
 
         // Заголоки меню доставки в правой и левой части
         this.deliveryTitleRigthElement = document.getElementById(args.deliveryTitleRigthID);
-        this.deliveryTitleLeftElement = document.getElementById(args.deliveryTitleLeftID);
+        this.deliveryTitleLeftElement = args.deliveryTitleLeftID.map((ID) => document.getElementById(ID));
 
         // Звездочки рейтинга в левой части
-        this.deliveryDetailContainerElement = document.getElementById(args.deliveryDetailContainerID);
+        this.deliveryDetailContainerElement = args.deliveryDetailContainerID.map((ID) => document.getElementById(ID));
 
         // Варианты пунктов доставки
         this.publicAddressesElements = args.publicAddressesID.map((ID) => document.getElementById(ID));
@@ -597,9 +608,9 @@ class deliverySelector {
         this.deliveryAddressesConainersElements.forEach(
             (Element) => (Element.innerText = (this.isChoisedAdressPublic ? this.publicAddresses : this.privateAddresses)[this.choisedAddressIndex])
         );
-        this.deliveryDetailContainerElement.style.display = this.isChoisedAdressPublic ? "flex" : "none";
+        this.deliveryDetailContainerElement.forEach((Element) => (Element.style.display = this.isChoisedAdressPublic ? "flex" : "none"));
         this.deliveryTitleRigthElement.innerText = this.isChoisedAdressPublic ? "Доставка в пункт выдачи" : "Доставка домой";
-        this.deliveryTitleLeftElement.innerText = this.isChoisedAdressPublic ? "Пункт выдачи" : "Адрес доставки";
+        this.deliveryTitleLeftElement.forEach((Element) => (Element.innerText = this.isChoisedAdressPublic ? "Пункт выдачи" : "Адрес доставки"));
         this.closeModal();
     }
 
@@ -614,24 +625,26 @@ class deliverySelector {
 class outStockBascet {
     constructor(args) {
         this.products = args.productArgs.map((ProdArgs) => new outStockProduct(ProdArgs));
-        this.arrowButtonElement = document.getElementById(args.arrowButtonID);
-        this.productsCounterElement = document.getElementById(args.productsConterID);
-        this.productsContainerElement = document.getElementById(args.productsContainerID);
+        this.arrowButtonElement = args.arrowButtonID.map((ID) => document.getElementById(ID));
+        this.productsCounterElement = args.productsConterID.map((ID) => document.getElementById(ID));
+        this.productsContainerElement = args.productsContainerID.map((ID) => document.getElementById(ID));
 
         this.isHidden = false;
 
-        this.arrowButtonElement.addEventListener("click", this.arrowHandler.bind(this));
+        this.arrowButtonElement.forEach((Element) => Element.addEventListener("click", this.arrowHandler.bind(this)));
         document.addEventListener("outStockProdsIsChanged", this.updateProductsCounter.bind(this));
     }
 
     arrowHandler() {
         this.isHidden = !this.isHidden;
-        this.productsContainerElement.style.display = this.isHidden ? "none" : "flex";
-        this.arrowButtonElement.style.transform = this.isHidden ? "rotate(180deg)" : "rotate(0deg)";
+        this.productsContainerElement.forEach((Element) => (Element.style.display = this.isHidden ? "none" : "flex"));
+        this.arrowButtonElement.forEach((Element) => (Element.style.transform = this.isHidden ? "rotate(180deg)" : "rotate(0deg)"));
     }
 
     updateProductsCounter() {
-        this.productsCounterElement.innerText = outStockTitleText[this.products.reduce((Sum, Prod) => (Sum += +Prod.isEnable), 0)];
+        this.productsCounterElement.forEach(
+            (Element) => (Element.innerText = outStockTitleText[this.products.reduce((Sum, Prod) => (Sum += +Prod.isEnable), 0)])
+        );
     }
 }
 
@@ -666,6 +679,7 @@ class inputValidation {
 
         this.isPhone = args.isPhone;
         this.isFirstInput = true;
+        this.isMobile = args.isMobie;
 
         this.upperPlaceHolderElement = document.getElementById(args.upperPlaceHolderID);
         this.errorContainerElement = document.getElementById(args.errorContainerID);
@@ -681,11 +695,18 @@ class inputValidation {
     orderConfirmHandler() {
         this.isFirstInput = false;
         this.validation();
+        if (!this.isValid() && this.isMobile) {
+            this.inputElement.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
     }
 
     setFirstInpu() {
         this.isFirstInput = false;
         this.validation();
+    }
+
+    isValid() {
+        return this.conditionRegExp.test(this.inputElement.value);
     }
 
     inputHandler() {
@@ -695,12 +716,11 @@ class inputValidation {
 
     validation() {
         if (this.isFirstInput) return;
-        const isValid = this.conditionRegExp.test(this.inputElement.value);
+        const isValid = this.isValid();
         this.inputElement.style.color = isValid ? "#000000" : "#f55123";
         this.inputElement.style.borderColor = isValid ? "#9797af" : "#f55123";
         this.errorContainerElement.innerText = isValid ? this.errorTextDefault : this.errorText;
         this.errorContainerElement.style.color = isValid ? "#000000" : "#f55123";
-        console.log(this.inputElement.classList);
         if (isValid) {
             this.inputElement.classList.remove("main-order-person-input-input-error");
         } else {
@@ -754,6 +774,8 @@ const pageBascet = new bascet({
 
     arrowButtonID: ["bascet-in-stock-arrow-btn", "mobile-bascet-products-in-stock-select-all-arrow"],
 
+    totalProductsID: ["desktop-products-total", "mobile-products-total"],
+
     delvierySecondIDs: ["second-delivery-date", "second-delivery-date-container", "mobile-delivery-second-date-container"],
 
     deliveryContainers: [],
@@ -806,14 +828,14 @@ const pageBascet = new bascet({
 
 // Инициализируем корзину отсутствующих товаров
 const outStockBAscet = new outStockBascet({
-    productsConterID: "out-stock-products-counter",
-    arrowButtonID: "out-stock-arrow",
-    productsContainerID: "main-out-stock-products-container",
+    productsConterID: ["out-stock-products-counter", "mobile-bascet-products-out-stock-header-text"],
+    arrowButtonID: ["out-stock-arrow", "mobile-bascet-products-out-stock-header-arrow"],
+    productsContainerID: ["main-out-stock-products-container", "mobile-bascet-products-out-stock-container"],
     productArgs: [1, 2, 3].map((Ind) => {
         return {
-            productContainerID: `out-stock-product-container-${Ind}`,
-            likeButtonID: `product-out-${Ind}-like-button-container`,
-            deleteButtonID: `product-out-${Ind}-delete-button-container`,
+            productContainerID: [`out-stock-product-container-${Ind}`, `mobile-bascet-product-out-stock-container-${Ind}`],
+            likeButtonID: [`mobile-product-out-stock-${Ind}-like-button-container`, `product-out-${Ind}-like-button-container`],
+            deleteButtonID: [`mobile-product-out-stock-${Ind}-delete-button-container`, `product-out-${Ind}-delete-button-container`],
         };
     }),
 });
@@ -833,13 +855,13 @@ const rightSideNotification = new tooltip({
 // Инициализируем управление способами оплаты
 const paymentsControl = new paymentsSelector({
     modalID: `modal-payment-container`,
-    initialButtons: ["open-select-payment-1", "open-select-payment-2"],
+    initialButtons: ["open-select-payment-1", "open-select-payment-2", "mobile-payment-header-change"],
     CloseButtonID: "modal-payment-exit",
     confirmButtonID: "modal-payment-confirm-button",
     cardsRatioButtons: Array(4)
         .fill(0)
         .map((_, ind) => `modal-payment-${ind}-ratio`),
-    cardsContainers: ["card-container-right", "card-container-left"],
+    cardsContainers: ["card-container-right", "card-container-left", "mobile-payment-card-container"],
     cardsParams: [{ cardIconSVG: mirCardSVG }, { cardIconSVG: visaCardSVG }, { cardIconSVG: masterCardSVG }, { cardIconSVG: maestroSVG }],
 });
 
@@ -857,8 +879,8 @@ const deliveryControl = new deliverySelector({
     CloseButtonID: "modal-delivery-exit-btn",
     privatePointsSelectorID: "modal-delivery-type-btn-private",
     publicPointsSelectorID: "modal-delivery-type-btn-public",
-    initialButtonsID: ["delivery-open-modal-0", "delivery-open-modal-1"],
-    deliveryAddressesConainersID: ["delivery-address-0", "delivery-address-1"],
+    initialButtonsID: ["delivery-open-modal-0", "delivery-open-modal-1", "mobile-delivery-change"],
+    deliveryAddressesConainersID: ["delivery-address-0", "delivery-address-1", "mobile-delivery-text"],
     privateAddressesID: ["delivery-point-private-0", "delivery-point-private-1", "delivery-point-private-2"],
     publicAddressesID: ["delivery-point-pub-0", "delivery-point-pub-1", "delivery-point-pub-2"],
     modalContainerID: "modal-delivery-container",
@@ -867,11 +889,12 @@ const deliveryControl = new deliverySelector({
     confirmButtonID: "modal-delivery-confirm-button",
     deletePrivatePointID: ["delete-private-addr-0", "delete-private-addr-1", "delete-private-addr-2"],
     deletePublicPointID: ["delete-public-addr-0", "delete-public-addr-1", "delete-public-addr-2"],
-    deliveryDetailContainerID: "main-order-delivery-point-details",
-    deliveryTitleLeftID: "delivery-title-left",
+    deliveryDetailContainerID: ["main-order-delivery-point-details", "mobile-delivery-point-raiting-container"],
+    deliveryTitleLeftID: ["delivery-title-left", "mobile-delivery-type"],
     deliveryTitleRigthID: "delivery-title-right",
 });
 
+// Поля валидации
 const inputFirstName = new inputValidation({
     fieldName: "Имя",
     errorText: "Введите имя",
@@ -925,4 +948,65 @@ const inputINN = new inputValidation({
     upperPlaceHolderID: "input-upper-placeholder-inn",
     inputID: "input-inn",
     errorContainerID: "input-error-inn",
+});
+
+// Мобильные поля валидации
+const inputFirstNameMobile = new inputValidation({
+    isMobie: true,
+    fieldName: "Имя",
+    errorText: "Введите имя",
+    errorTextDefault: "",
+    isPhone: false,
+    conditionRegExp: /^[А-ЯЁA-Z][а-яёa-z\s-]*$/,
+    upperPlaceHolderID: "moible-upper-placeholder-first-name",
+    inputID: "moible-input-first-name",
+    errorContainerID: "moible-error-first-name",
+});
+
+const inputLastNameMobile = new inputValidation({
+    isMobie: true,
+    fieldName: "Фамилия",
+    errorText: "Введите фамилию",
+    errorTextDefault: "",
+    isPhone: false,
+    conditionRegExp: /^[А-ЯЁA-Z][а-яёa-z\s-]*$/,
+    upperPlaceHolderID: "moible-upper-placeholder-last-name",
+    inputID: "moible-input-last-name",
+    errorContainerID: "moible-error-last-name",
+});
+
+const inputMailMobile = new inputValidation({
+    isMobie: true,
+    fieldName: "Электронная почта",
+    errorText: "Введите почту",
+    errorTextDefault: "",
+    isPhone: false,
+    conditionRegExp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    upperPlaceHolderID: "moible-upper-placeholder-mail",
+    inputID: "moible-input-mail",
+    errorContainerID: "moible-error-mail",
+});
+
+const inputPhoneMobile = new inputValidation({
+    isMobie: true,
+    fieldName: "Телефон",
+    errorText: "Введите телефон",
+    errorTextDefault: "",
+    isPhone: true,
+    conditionRegExp: /^\+7 9\d{2} \d{3}-\d{2}-\d{2}$/,
+    upperPlaceHolderID: "moible-upper-placeholder-phone",
+    inputID: "moible-input-phone",
+    errorContainerID: "moible-error-phone",
+});
+
+const inputINNMobile = new inputValidation({
+    isMobie: true,
+    fieldName: "ИНН",
+    errorText: "Введите ИНН",
+    errorTextDefault: "Для таможенного оформления",
+    isPhone: false,
+    conditionRegExp: /^\d{14}$/,
+    upperPlaceHolderID: "moible-upper-placeholder-inn",
+    inputID: "moible-input-inn",
+    errorContainerID: "moible-error-inn",
 });

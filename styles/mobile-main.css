@@ -25,7 +25,6 @@
 .mobile-main {
     display: flex;
     flex-direction: column;
-    padding: 0px 16px 0px 16px;
     gap: 32px;
     background-color: #f6f6fa;
     border-radius: 20px;
@@ -34,6 +33,7 @@
 .mobile-bascet {
     display: flex;
     flex-direction: column;
+    padding: 0px 16px 0px 16px;
     gap: 16px;
 }
 
@@ -148,6 +148,7 @@
 .mobile-product-in-stock-cost-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     gap: 5px;
     align-items: flex-end;
 }
@@ -158,6 +159,7 @@
     line-height: 24px;
     letter-spacing: 0px;
     text-align: right;
+    text-wrap: nowrap;
 }
 
 .mobile-product-in-stock-basic-cost {
@@ -169,6 +171,7 @@
     color: #9797af;
     border-bottom: 1px dashed #9797af;
     text-decoration: line-through solid #9797af;
+    text-wrap: nowrap;
 }
 
 .mobile-product-in-stock-storage {
@@ -316,8 +319,10 @@
 }
 
 .mobile-bascet-product-out-stock-container {
+    border-top: solid 1px #0000001a;
     display: flex;
     flex-direction: column;
+    padding-top: 12px;
     gap: 12px;
 }
 
@@ -431,6 +436,7 @@
 }
 
 .mobile-delivery-change {
+    cursor: pointer;
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
@@ -819,6 +825,7 @@
 .mobile-summary-immediatly-checkbox {
     width: 22px;
     height: 22px;
+    cursor: pointer;
 }
 
 .mobile-order-confirm-content {
@@ -934,4 +941,9 @@
 
 .mobile-out-stock-product-like:hover {
     fill: #ee4624;
+}
+
+.mobile-personal-input:focus {
+    /* border-style: none; */
+    outline: none;
 }
