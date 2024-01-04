@@ -226,7 +226,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 0px 0px 0px 0px;
+    padding: 3px 0px 0px 0px;
 }
 
 .main-out-stock-product-container {
@@ -282,7 +282,7 @@
 
 .main-order-control-container {
     display: flex;
-    padding-top: 15px;
+    padding-top: 12px;
     flex-direction: column;
     gap: 16px;
 }
@@ -320,7 +320,7 @@
 .main-order-payment {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
     padding: 16px 24px 24px 24px;
     border-radius: 16px;
     background-color: #ffffff;
@@ -348,7 +348,7 @@
     color: #cb11ab;
     position: relative;
     top: 8px;
-    left: -2px;
+    right: 1px;
 }
 
 .main-order-payment-footer-text {
@@ -363,6 +363,7 @@
     display: flex;
     flex-direction: row;
     gap: 12px;
+    letter-spacing: 0.005em;
 }
 
 .mir-card-png {
@@ -450,7 +451,7 @@
 .main-order-person-form {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
     max-width: 700px;
 }
 
@@ -473,6 +474,8 @@
     font-size: 16px;
     line-height: 24px;
     height: 24px;
+    position: relative;
+    right: 1px;
 }
 
 .main-order-person-input-input-error::placeholder {
@@ -541,8 +544,8 @@
 .main-order-person {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    padding: 16px 24px 24px 24px;
+    gap: 19px;
+    padding: 12px 24px 24px 24px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 16px;
 }
